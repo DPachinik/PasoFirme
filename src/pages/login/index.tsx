@@ -1,22 +1,31 @@
 import { Link } from "react-router-dom";
 import { Input } from "../../components/input";
-
 import {useForm} from 'react-hook-form'
 import {  z } from 'zod'
 import {zodResolver} from '@hookform/resolvers/zod'
+import { auth } from '../../services/firebaseConnection'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
+import  Toast  from 'react-hot-toast';
+
+
 
 const schema = z.object({
     email:z.string().trim().min(1,{
-        message:'el email es obligatorio'
+        message:'introduzca su email'
     }),
     password:z.string().trim().min(1,{
-        message:'el password es obligatorio'
+        message:'introduzca su contraseña'
     })
 })
 
 type FormData = z.infer< typeof schema>
 
 export function Login(){
+
+    const navigate = useNavigate();
+
+
 
     const { register, handleSubmit, formState:{errors}} = useForm<FormData>({
         resolver:zodResolver(schema),
@@ -25,7 +34,42 @@ export function Login(){
     })
 
     function onSubmit(data:FormData){
-        console.log(data)
+        signInWithEmailAndPassword(auth, data.email, data.password)
+        .then((user)=>{
+            console.log(user.user);
+            navigate('/dashboard', {replace:true})
+        })
+        .catch((error) => {
+            let errorMessage = 'Error al iniciar sesión';
+
+            switch(error.code){
+                case 'auth/invalid-credential':
+                    errorMessage = 'Correo o contraseña incorrectos';
+                    break;
+
+                case 'auth/user-disabled':
+                    errorMessage = 'Usuario deshabilitado';
+                    break;
+
+                case 'auth/too-many-requests':
+                    errorMessage = 'Demasiados intentos, intenta más tarde';
+                    break;
+
+                case 'auth/network-request-failed':
+                    errorMessage = 'Error de conexión';
+                    break;
+
+                case 'auth/invalid-email':
+                    errorMessage = 'Correo inválido';
+                    break;
+
+                default:
+                    errorMessage = 'Error inesperado, intenta nuevamente';
+            }
+
+            Toast.error(errorMessage, {style:{backgroundColor:'#dc2626' , color:'#ffff'}});
+        });
+
 
     }
 

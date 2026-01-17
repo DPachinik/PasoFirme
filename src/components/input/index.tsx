@@ -14,13 +14,13 @@ export function Input({type, name, placeholder, register,rules, error}:InputProp
     return(
         <div className='w-full mt-2'>
             <input
-                className='w-full max-w-2xl pl-2 rounded-sm h-8 border border-[#3D4035] outline-none' 
+                className={`w-full max-w-2xl pl-2 rounded-sm h-8 border ${error? 'border-red-500':'border-[#3D4035]'} outline-none`} 
                 type={type}
                 placeholder={placeholder}
                 {...register(name,rules)}
                 id='name'
             />
-            {error && <p>{error}</p>}
+            {error && <p className='text-red-600  text-sm  mt-1 pl-2'>{error}</p>}
         </div>
 
     )
