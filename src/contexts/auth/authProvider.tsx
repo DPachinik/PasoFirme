@@ -44,7 +44,8 @@ function AuthProvider({children}:AuthProviderProps){
         <AuthContext.Provider
         value={{
             signed:!!admin,
-            loadingAdmin
+            loadingAdmin,
+            uid:admin?.uid
         }}>
             {children}
         </AuthContext.Provider>
