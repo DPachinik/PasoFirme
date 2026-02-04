@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@layer base {
+    :root {
+        --primary:#3F4336;
+        --secondary:#B45309;
+    }
+}
+
+@layer utilities {
+
+    .text-primary{
+        color: var(--primary);
+    }
+
+    .text-secondary{
+        color: var(--secondary)
+    }
+
+    .bg-primary{
+        background-color: var(--primary)
+    }
+
+    .bg-secondary{
+        background-color: var(--secondary)
+    }
+
+}
