@@ -1,9 +1,9 @@
  import type {RegisterOptions, UseFormRegister} from 'react-hook-form'
 
 interface InputProps{
-    type:string;
+    type: 'text' | 'number' | 'email' | 'password' | 'color'
     name:string;
-    placeholder:string;
+    placeholder?:string;
     register:UseFormRegister<any>;
     error?:string;
     rules?:RegisterOptions;
@@ -11,14 +11,18 @@ interface InputProps{
 
 
 export function Input({type, name, placeholder, register,rules, error}:InputProps){
+
+    const baseStyles = 'w-full max-w-3xl text-xs  rounded-sm outline-none border border-[#3F4336]  h-7 pl-2 '
+
+    const typeStyles = 'h-6 w-10  rounded-full cursor-pointer border-none'
     return(
-        <div className='w-full mt-2'>
+        <div className='w-full'>
             <input
-                className={`w-full max-w-2xl pl-2 rounded-sm h-8 border ${error? 'border-red-500':'border-[#3D4035]'} outline-none`} 
+                className={` ${type === 'color'? typeStyles : baseStyles} ${error? 'border-red-500':'border-[#3D4035]'} `} 
                 type={type}
-                placeholder={placeholder}
+                placeholder={ type !== 'color'? placeholder: undefined}
                 {...register(name,rules)}
-                id='name'
+                id={name}
             />
             {error && <p className='text-red-600  text-sm  mt-1 pl-2'>{error}</p>}
         </div>
