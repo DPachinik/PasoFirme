@@ -55,7 +55,7 @@ export function Home(){
             <Header />
             <main className="w-full max-w-7xl  mx-auto  mb-4">
                 
-                <h1 className="font-bold text-2xl mt-10 mb-4 text-center text-[#3D4035]">Productos Destacados</h1>
+                <h1 className="font-bold text-2xl mt-10 mb-4 text-center text-primary">Productos Destacados</h1>
 
                 <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 ">
                     {products.map((product)=>(
@@ -70,21 +70,21 @@ export function Home(){
                             <div className='w-full flex justify-end'>
                                 <span
                                 onClick={()=>handleDetail(product.id)}  
-                                className='bg-black w-fit text-white text-sm px-2 rounded-xl mb-2 hover:bg-[#3D4035] hover:cursor-pointer transition-all'>ver detalle</span>
+                                className='bg-black w-fit text-white text-sm px-2 rounded-xl mb-2  hover:cursor-pointer transition-all'>ver detalle</span>
                             </div>
                             
-                            <div className='h-px w-full max-w-90 bg-[#3D4035] '></div>
-                            <p className="font-medium mt-1 mb-2 text-[#3D4035]">{product.title}</p>
+                            <div className='h-px w-full max-w-90 bg-primary '></div>
+                            <p className="font-medium mt-1 mb-2 text-primary">{product.title}</p>
 
                             <div className="flex h-full items-end justify-between gap-3 mb-2  ">
-                                <strong className="text-[#8B4513]">
+                                <strong className="text-secondary">
                                     {product.price.toLocaleString("es-PY",{
                                         style:'currency',
                                         currency:'PYG'
                                     })}
                                 </strong>
 
-                                <button onClick={()=>handleAddItemCart(product)} className="bg-[#3D4035] p-1 rounded">
+                                <button onClick={()=>handleAddItemCart(product)} className="bg-primary p-1 rounded cursor-pointer">
                                     <BsCartPlus size={20} color="#ffff"/>
                                 </button>
                             </div>

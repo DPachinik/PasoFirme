@@ -13,8 +13,8 @@ export function Navbar(){
         <div className="w-full px-1 mt-4  ">
             <nav className="bg-white w-full  max-w-7xl h-14 flex items-center justify-between px-5 mx-auto shadow gap-3 rounded-lg">
                 <Link className="font-bold text-2xl text-amber-50" to='/'>
-                    <span className='bg-[#8B4513] bg-clip-text text-transparent select-none'>PASO</span>
-                    <span className='bg-[#3D4035] bg-clip-text text-transparent select-none'>FIRME</span>
+                    <span className='bg-primary bg-clip-text text-transparent select-none'>PASO</span>
+                    <span className='bg-secondary bg-clip-text text-transparent select-none'>FIRME</span>
                 </Link>
 
                 <div className='flex w-full items-center justify-center gap-2'>

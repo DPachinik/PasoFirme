@@ -18,10 +18,10 @@ export function Header(){
                         <div className='absolute top-4 left-8'>
                             <div className='flex items-end gap-4'>
                                 <IoBagCheckSharp size={42} color='black' className='flex '/>
-                                <h2 className=' text-[#3D4035] font-bold text-2xl lg:text-4xl'>TU TIENDA ONLINE  </h2>
+                                <h2 className=' text-primary font-bold text-2xl lg:text-4xl'>TU TIENDA ONLINE  </h2>
                             </div>
 
-                            <p className='text-lg font-bold text-[#8B4513]'>DESCUBRE PRODUCTOS A PRECIOS INCREIBLES</p>
+                            <p className='text-lg font-bold text-secondary'>DESCUBRE PRODUCTOS A PRECIOS INCREIBLES</p>
                         </div>
 
                         <div className='absolute bottom-4  md:bottom-1/4 left-8 md:left-1/4 rounded-full w-20 h-20 md:h-30 md:w-30 bg-red-600 p-4 flex justify-center items-center '>
@@ -30,15 +30,13 @@ export function Header(){
                             </p>
                         </div>
 
-                        <button className='absolute bottom-2 left-36  px-4 p-1 rounded-2xl flex justify-center items-center  bg-black hover:bg-[#3D4035] hover:cursor-pointer transition-all gap-2'>
+                        <button className='absolute bottom-2 left-36  px-4 p-1 rounded-2xl flex justify-center items-center  bg-black hover:bg-primary hover:cursor-pointer transition-all gap-2'>
                             <p className=' text-white text-center font-semibold text-xs '>
                                     COMPRAR AHORA 
                             </p>
                             <IoIosArrowDown size={24} color='white' />
                         </button>
 
-                        
-  
                         
                     </div>
                      
