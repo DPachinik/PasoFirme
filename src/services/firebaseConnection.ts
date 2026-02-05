@@ -2,12 +2,11 @@ import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import {getStorage} from 'firebase/storage'
 
-
 import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDdoiggV5EQX51_Wu1ZMDtJDyys7TcwrLg",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "pasofirme.firebaseapp.com",
   projectId: "pasofirme",
   storageBucket: "pasofirme.firebasestorage.app",
