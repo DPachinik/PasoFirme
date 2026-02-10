@@ -29,14 +29,14 @@ export function Carrito(){
                     className="flex items-center justify-between border-b-2 border-gray-300 pb-2">
                         <img 
                         className="w-28"
-                        src={item.cover} 
-                        alt={item.title}
+                        src={item.imagenes[0].url} 
+                        alt={item.modelo}
                         />
 
-                        <strong>Precio: {item.price.toLocaleString("es-PY",{
+                        <strong>Precio: {item.precio.toLocaleString("es-PY",{
                                         style:'currency',
                                         currency:'PYG'}
-                                    )}</strong>
+                        )}</strong>
 
                         <div className="flex gap-3 items-center justify-center">
                             <button 

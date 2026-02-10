@@ -9,13 +9,23 @@ export interface CartContextData{
 }
 
 export interface CartProps{
-    id:number;
-    title:string;
-    description:string;
-    price:number;
-    cover:string;
+    id:string;
+    modelo:string;
+    descripcion:string;
+    precio:number;
     amount:number;
     total:number;
+    calceMin:string;
+    calceMax?:string;
+    color:string;
+    estado:string;
+    imagenes:ImageProps[]
+}
+
+interface ImageProps{
+    uid:string;
+    url:string;
+    idImage:string;
 }
 
 export const   CartContext= createContext({} as CartContextData)

@@ -19,7 +19,7 @@ function CartProvider({children}:ProviderProps){
         if(indexItem !== -1){
             const cartList = [...cart]
             cartList[indexItem].amount=cartList[indexItem].amount +1;
-            cartList[indexItem].total =cartList[indexItem].price *cartList[indexItem].amount;
+            cartList[indexItem].total =cartList[indexItem].precio *cartList[indexItem].amount;
 
             setCart(cartList);
             totalResultCart(cartList)
@@ -31,7 +31,7 @@ function CartProvider({children}:ProviderProps){
         const data ={
             ...newItem,
             amount:1,
-            total:newItem.price,
+            total:newItem.precio,
         }
         setCart(products => [...products, data] )
         totalResultCart([...cart, data])
@@ -46,7 +46,7 @@ function CartProvider({children}:ProviderProps){
         if(cart[itemIndex]?.amount >1){
             const listProduct=[...cart];
             listProduct[itemIndex].amount=listProduct[itemIndex].amount - 1;
-            listProduct[itemIndex].total=listProduct[itemIndex].price * listProduct[itemIndex].amount;
+            listProduct[itemIndex].total=listProduct[itemIndex].precio * listProduct[itemIndex].amount;
             setCart(listProduct);
             totalResultCart(listProduct);
             return;
