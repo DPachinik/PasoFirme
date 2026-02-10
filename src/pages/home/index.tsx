@@ -5,6 +5,7 @@ import  Toast  from 'react-hot-toast';
 import { Header } from '../../components/header';
 import {getDocs, collection, query, orderBy} from 'firebase/firestore'
 import {db} from '../../services/firebaseConnection'
+import { ProductsContext } from '../../contexts/products/ProductsContext';
 
 
 export interface ProductsProps{
@@ -19,7 +20,7 @@ export interface ProductsProps{
     imagenes:ImageProps[];
 }
 
-type ImageProps ={
+ export type ImageProps ={
     idImage:string;
     uid:string;
     url:string;
@@ -28,10 +29,11 @@ type ImageProps ={
 
 export function Home(){
 
-    const {addItemCart} = useContext(CartContext)
+    const {addItemCart} = useContext(CartContext);
+    const {products, setProducts}= useContext(ProductsContext)
 
-    const[products, setProducts] = useState<ProductsProps[]>([]);
     const[loadImage, setLoadImage] = useState<string[]>([]);
+    
 
 
     useEffect(()=>{
@@ -69,7 +71,7 @@ export function Home(){
         }
 
         getProducts();
-    },[])
+    },[setProducts])
 
 
 

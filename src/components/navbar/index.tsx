@@ -1,13 +1,63 @@
 import {CartContext} from '../../contexts/cart/CartContext'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { FiShoppingCart } from "react-icons/fi";
 import {  IoSearch } from 'react-icons/io5';
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { getDocs, collection, where, query }  from 'firebase/firestore'
+import { db } from '../../services/firebaseConnection'
+import { ProductsContext } from '../../contexts/products/ProductsContext';
+import type { ProductsProps } from '../../pages/home';
+
+
+
 
 
 export function Navbar(){
 
+
     const{ cart }= useContext(CartContext)
+    const {setProducts}= useContext(ProductsContext)
+    const navigate = useNavigate();
+    const [input, setInput] = useState('');
+
+    async function handleSearch(){
+        if(input === ''){
+            navigate('/')
+            return;
+        }
+
+        setProducts([]);
+
+
+        const q = query(collection(db, 'shoes'),
+        where('modelo', ">=" ,input.trim().toUpperCase()),
+        where('modelo', '<=', input + '\uf8ff' )
+        )
+
+        const querySnapshot = await getDocs(q);
+
+        const listProducts = [] as ProductsProps[];
+
+        querySnapshot.forEach((product)=>{
+            listProducts.push({
+                        id:product.id,
+                        modelo:product.data().modelo,
+                        calceMin:product.data().calceMin,
+                        calceMax:product.data().calceMax,
+                        precio:Number(product.data().precio),
+                        color:product.data().color,
+                        estado:product.data().estado,
+                        descripcion:product.data(). descripcion,
+                        imagenes:product.data().imagenes,
+            })
+        })
+
+        setProducts(listProducts);
+
+    }
+
+
 
     return(
         <div className="w-full px-1 mt-4  ">
@@ -22,6 +72,8 @@ export function Navbar(){
                     className='w-full max-w-2xl pl-2 rounded-sm h-8 border border-[#3D4035] outline-none' 
                     type='text' 
                     placeholder='Buscar'
+                    value={input}
+                    onChange={(e)=>setInput(e.target.value)}
                     />
                     <IoSearch color='#3D4035' size={28} className='cursor-pointer' />
                 </div>
@@ -29,7 +81,12 @@ export function Navbar(){
                 <div className='flex  items-center justify-center gap-3'>
 
                     <Link to='/login'>
-                        <button className='hidden lg:block px-4   rounded-xl text-gray-600  border border-[#3D4035] hover:bg-[#3D4035] hover:text-white transition-all'>Admin</button>
+                        <button 
+                        className='hidden lg:block px-4   rounded-xl text-gray-600  border border-[#3D4035] hover:bg-[#3D4035] hover:text-white transition-all'
+                        onClick={handleSearch}
+                        >
+                            Admin
+                        </button>
                     </Link>
 
                     <Link className="relative" to='/cart'>
