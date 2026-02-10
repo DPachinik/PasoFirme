@@ -61,6 +61,7 @@ export function Home(){
 
                 setProducts(list)
 
+           
             })
             .catch((error)=>{
                 console.log('error:' + error);
