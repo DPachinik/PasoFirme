@@ -58,15 +58,15 @@ export function New(){
             
         }
         
-        const shoesListImage = shoeImages.map(car=>{
+        const shoesListImage = shoeImages.map(item=>{
             return {
-                uid:car.uid,
-                idImage:car.uidImage,
-                url:car.url
+                uid:item.uid,
+                idImage:item.uidImage,
+                url:item.url
             }
         })
 
-        addDoc(collection(db, 'cars'),{
+        addDoc(collection(db, 'shoes'),{
             modelo:data.modelo,
             calceMin:data.calceMin,
             calceMax:data.calceMax,
@@ -76,7 +76,7 @@ export function New(){
             descripcion:data.descripcion,
             created: new Date(),
             uid:uid,
-            images:shoesListImage,
+            imagenes:shoesListImage,
         })
         .then(()=>{
             reset();
@@ -238,7 +238,6 @@ export function New(){
                                     <div className={containerStyle}>
                                         <label  className={labelStyle}>CALCE MÁX</label>
                                         <select id="min" 
-                                        required
                                         {...register('calceMax')}
                                         name="calceMax"
                                         className="border border-[#3F4336] outline-none rounded-sm h-7"
