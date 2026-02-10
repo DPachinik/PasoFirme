@@ -18,6 +18,7 @@ const schema = z.object({
     modelo:z.string().trim().nonempty('campo obligatorio'),
     calceMin:z.string().trim().nonempty('campo obligatorio'),
     calceMax:z.string().trim().optional(),
+    descripcionCorta:z.string().trim().nonempty('campo obligatorio'),
     descripcion:z.string().trim().nonempty('campo obligatorio'),
     color:z.string().nonempty('campo obligatorio'),
     precio:z.string().trim().nonempty('campo obligatorio'),
@@ -67,13 +68,14 @@ export function New(){
         })
 
         addDoc(collection(db, 'shoes'),{
-            modelo:data.modelo,
+            modelo:data.modelo.trim().toUpperCase(),
             calceMin:data.calceMin,
             calceMax:data.calceMax,
             precio:data.precio,
             estado:data.estado,
             color:data.color,
             descripcion:data.descripcion,
+            descripcionCorta:data.descripcionCorta,
             created: new Date(),
             uid:uid,
             imagenes:shoesListImage,
@@ -270,17 +272,28 @@ export function New(){
                             </div>
 
                             <div className=' w-full px-2 rounded-lg flex flex-col gap-1 py-2'>
-                                <p className={labelStyle}>DESCRIPCIÓN DETALLADA</p>
+                                <p className={labelStyle}>DESCRIPCIÓN CORTA </p>
                                 <textarea
-                                className=" w-full max-w-3xl text-xs border border-[#3F4336] h-24 outline-none px-2 pt-2 rounded-lg"
+                                className=" w-full max-w-3xl text-xs border border-[#3F4336] h-10 outline-none px-2 pt-2 rounded-lg"
                                 id="description"
                                 {...register('descripcion')}
                                 name="descripcion"
                                 placeholder="Zapato punta fina elegante, estilo italiano de cuero vacuno... "
                                 />
                             </div>
+                            
+                            <div className=' w-full px-2 rounded-lg flex flex-col gap-1 py-2'>
+                                <p className={labelStyle}>DESCRIPCIÓN</p>
+                                <textarea
+                                className=" w-full max-w-3xl text-xs border border-[#3F4336] h-24 outline-none px-2 pt-2 rounded-lg"
+                                id="descripcionCorta"
+                                {...register('descripcionCorta')}
+                                name="descripcion"
+                                placeholder="Zapato casual para hombre, Diseño X, estilo Y de cuero vacuno... "
+                                />
+                            </div>
 
-                            <div className="flex gap-12"> 
+                            <div className="flex gap-12 items-center"> 
                                 <div className=" p-2 rounded-lg">
                                     <p className={labelStyle}>ESTADO DEL PRODUCTO</p>
                                     <div className="flex gap-4 border border-[#3F4336] w-fit p-2 rounded-lg mt-1 text-slate-600 text-xs">

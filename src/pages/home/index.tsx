@@ -17,6 +17,7 @@ export interface ProductsProps{
     color:string;
     estado:string;
     descripcion:string;
+    descripcionCorta:string;
     imagenes:ImageProps[];
 }
 
@@ -55,6 +56,7 @@ export function Home(){
                         precio:Number(product.data().precio),
                         color:product.data().color,
                         estado:product.data().estado,
+                        descripcionCorta:product.data().descripcionCorta,
                         descripcion:product.data(). descripcion,
                         imagenes:product.data().imagenes,
 
@@ -140,7 +142,7 @@ export function Home(){
                                     </div>
                                 </div>
 
-                                <div className='text-sm text-gray-600  mt-3'>{product.descripcion}</div>
+                                <div className='text-sm text-gray-600  mt-3'>{product.descripcionCorta}</div>
 
                                 <div className="flex h-full items-end justify-between  mb-4 ">
                                     <div className='flex flex-col'>
