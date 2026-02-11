@@ -275,9 +275,8 @@ export function New(){
                                 <p className={labelStyle}>DESCRIPCIÓN CORTA </p>
                                 <textarea
                                 className=" w-full max-w-3xl text-xs border border-[#3F4336] h-10 outline-none px-2 pt-2 rounded-lg"
-                                id="description"
-                                {...register('descripcion')}
-                                name="descripcion"
+                                id="descriptionCorta"
+                                {...register('descripcionCorta')}
                                 placeholder="Zapato punta fina elegante, estilo italiano de cuero vacuno... "
                                 />
                             </div>
@@ -286,9 +285,8 @@ export function New(){
                                 <p className={labelStyle}>DESCRIPCIÓN</p>
                                 <textarea
                                 className=" w-full max-w-3xl text-xs border border-[#3F4336] h-24 outline-none px-2 pt-2 rounded-lg"
-                                id="descripcionCorta"
-                                {...register('descripcionCorta')}
-                                name="descripcion"
+                                id="descripcion"
+                                {...register('descripcion')}
                                 placeholder="Zapato casual para hombre, Diseño X, estilo Y de cuero vacuno... "
                                 />
                             </div>
