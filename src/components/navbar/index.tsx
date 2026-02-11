@@ -32,7 +32,7 @@ export function Navbar(){
 
         const q = query(collection(db, 'shoes'),
         where('modelo', ">=" ,input.trim().toUpperCase()),
-        where('modelo', '<=', input + '\uf8ff' )
+        where('modelo', '<=', input.trim().toUpperCase() + '\uf8ff' )
         )
 
         const querySnapshot = await getDocs(q);
@@ -49,11 +49,13 @@ export function Navbar(){
                         color:product.data().color,
                         estado:product.data().estado,
                         descripcion:product.data(). descripcion,
+                        descripcionCorta:product.data().descripcionCorta,
                         imagenes:product.data().imagenes,
             })
         })
 
         setProducts(listProducts);
+        setInput('')
 
     }
 
@@ -74,16 +76,22 @@ export function Navbar(){
                     placeholder='Buscar'
                     value={input}
                     onChange={(e)=>setInput(e.target.value)}
+                   
                     />
-                    <IoSearch color='#3D4035' size={28} className='cursor-pointer' />
+                    <button 
+                    className=''
+                    onClick={handleSearch}
+                    >
+                        <IoSearch color='#3D4035' size={28} className='cursor-pointer' />
+                    </button>
+                   
                 </div>
 
                 <div className='flex  items-center justify-center gap-3'>
 
                     <Link to='/login'>
                         <button 
-                        className='hidden lg:block px-4   rounded-xl text-gray-600  border border-[#3D4035] hover:bg-[#3D4035] hover:text-white transition-all'
-                        onClick={handleSearch}
+                        className='hidden lg:block px-4   rounded-xl text-gray-600  border border-[#3D4035] hover:bg-[#3D4035] hover:text-white transition-all cursor-pointer'
                         >
                             Admin
                         </button>
