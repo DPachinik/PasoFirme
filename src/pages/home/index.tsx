@@ -36,9 +36,7 @@ export function Home(){
     const[loadImage, setLoadImage] = useState<string[]>([]);
     
 
-
-    useEffect(()=>{
-        async function getProducts(){
+      function getProducts(){
             
             const productsRef = collection(db, 'shoes');
             const queryRef = query(productsRef, orderBy('created', 'desc'))
@@ -72,8 +70,14 @@ export function Home(){
             })
         }
 
+          
+
+    useEffect(()=>{
+
         getProducts();
-    },[setProducts])
+    },[])
+
+
 
 
 
@@ -95,6 +99,14 @@ export function Home(){
             <main className="w-full max-w-7xl  mx-auto  mb-4">
                 
                 <h1 className="font-bold text-2xl mt-10 mb-4 text-center text-primary">Productos Destacados</h1>
+
+                <div className='w-full h-10 flex items-center  rounded-lg  my-4 pl-4'>
+                    <button 
+                    className='border rounded-2xl  text-sm font-bold bg-black text-white py-1 px-6 cursor-pointer'
+                    onClick={getProducts}
+                    >VER TODOS</button>
+
+                </div>
 
                 <div className=" grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-2 place-items-center">
                     {products.map((product)=>(
