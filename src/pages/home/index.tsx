@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { CartContext } from '../../contexts/cart/CartContext'
 import { Link } from 'react-router-dom'
-import  Toast  from 'react-hot-toast';
 import { Header } from '../../components/header';
 import {getDocs, collection, query, orderBy} from 'firebase/firestore'
 import {db} from '../../services/firebaseConnection'
@@ -17,7 +15,7 @@ export interface ProductsProps{
     color:string;
     estado:string;
     descripcion:string;
-    descripcionCorta:string;
+    descripcionCorta?:string;
     imagenes:ImageProps[];
 }
 
@@ -30,7 +28,6 @@ export interface ProductsProps{
 
 export function Home(){
 
-    const {addItemCart} = useContext(CartContext);
     const {products, setProducts}= useContext(ProductsContext)
 
     const[loadImage, setLoadImage] = useState<string[]>([]);
@@ -81,12 +78,7 @@ export function Home(){
 
 
 
-    function handleAddItemCart(product:ProductsProps){
-        addItemCart(product)
-        Toast.success('Producto añadido al carrito',{
-            style:{background:'#121212',color:'#ffff'}
-        })
-    }
+
 
     function handleImageLoad(id:string){
         setLoadImage((prevImage)=>[...prevImage, id])
@@ -122,7 +114,7 @@ export function Home(){
 
                             </div>
                             <div className='w-full min-h-[200px]  rounded-t-lg  '>
-                                <Link to={`/detail/${product.id}`}>
+                                
                                     <img 
                                     className="w-full h-full rounded-t-lg bg-primary mb-2 object-cover "
                                     src={product.imagenes[0].url} alt="producto"
@@ -130,7 +122,7 @@ export function Home(){
                                     style={{display:loadImage.includes(product.id)? 'block':'none'}}                   
                                     />
 
-                                </Link>
+                                
                             </div>
 
                             <div className='absolute top-[180px] h-[200px] w-full flex flex-col   px-3 rounded-xl border bg-amber-50'>
@@ -167,10 +159,12 @@ export function Home(){
                                         </strong>
                                     </div>
 
-
-                                    <button onClick={()=>handleAddItemCart(product)} className="bg-primary p-1 px-2 rounded cursor-pointer text-sm font-medium text-white">
-                                        añadir al carrito
-                                    </button>
+                                    <Link to={`/detail/${product.id}`}>
+                                        <button  className="bg-primary p-1 px-2 rounded cursor-pointer text-sm font-medium text-white">
+                                            ver detalles
+                                        </button>
+                                    </Link>
+                                    
                                 </div>
 
                             </div>
