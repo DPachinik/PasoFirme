@@ -8,18 +8,13 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../services/firebaseConnection';
 import { IoMdStar } from "react-icons/io";
 import { IoStarHalf } from 'react-icons/io5';
-import type { ProductProps } from '../home';
-
-
-
-
-
+import type { ProductsProps } from '../home';
 
 
 export function Detail(){
     const { id }= useParams();
     const navigate = useNavigate();
-    const [product, setProduct] = useState<ProductProps>();
+    const [product, setProduct] = useState<ProductsProps>();
     const [loadImage, setLoadImage] = useState<string[]>([])
     const [selectedSize,setSelectedSize]= useState<number | null>(null);
 
@@ -54,7 +49,7 @@ export function Detail(){
     },[id]);
 
 
-        function handleAddItemCart(product:ProductProps){
+        function handleAddItemCart(product:ProductsProps){
 
             if(!selectedSize){
                 toast.error('seleccione un talle');
@@ -195,7 +190,9 @@ export function Detail(){
                             <button onClick={() => product && handleAddItemCart(product)} className="bg-secondary text-white py-2   w-full font-bold flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer">
                                 Añadir al carrito
                             </button>
-                            <Link to='/'
+
+                            <Link 
+                            to='/'
                             className='w-full flex flex-1'
                             >
 
