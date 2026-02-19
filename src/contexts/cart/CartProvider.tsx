@@ -7,14 +7,21 @@ interface ProviderProps{
     children:ReactNode;
 }
 
+export type AddCartItem = ProductsProps & {
+  talle: number;
+}
+
 function CartProvider({children}:ProviderProps){
 
     const [cart, setCart] = useState<CartProps[]>([]);
     const [totalP, setTotalP] = useState("");
+    
 
-    function addItemCart(newItem:ProductsProps){
+    function addItemCart(newItem:AddCartItem){
 
-        const indexItem= cart.findIndex(item=> item.id === newItem.id);
+        const indexItem = cart.findIndex(
+         (item) => item.id === newItem.id && item.talle === newItem.talle
+        );
 
         if(indexItem !== -1){
             const cartList = [...cart]
@@ -70,7 +77,7 @@ function CartProvider({children}:ProviderProps){
     }
 
     return(
-        <CartContext.Provider value={{cart, addItemCart, removeItemCart, totalP}}>
+        <CartContext.Provider value={{cart, addItemCart, removeItemCart, totalP, setCart}}>
             {children}
         </CartContext.Provider>
     )

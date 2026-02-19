@@ -1,11 +1,12 @@
 import { createContext } from 'react'
-import type { ProductsProps } from '../../pages/home';
+import type { AddCartItem } from './CartProvider';
 
 export interface CartContextData{
     cart:CartProps[]
-    addItemCart:(newItems:ProductsProps)=>void;
+    addItemCart:(newItems:AddCartItem)=>void;
     removeItemCart:(product:CartProps) =>void;
     totalP:string;
+    setCart: React.Dispatch<React.SetStateAction<CartProps[]>>;
 }
 
 export interface CartProps{
@@ -19,7 +20,8 @@ export interface CartProps{
     calceMax?:string;
     color:string;
     estado:string;
-    imagenes:ImageProps[]
+    imagenes:ImageProps[];
+    talle:number;   
 }
 
 interface ImageProps{
