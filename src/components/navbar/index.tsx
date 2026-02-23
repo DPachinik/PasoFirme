@@ -3,63 +3,20 @@ import { useContext, useState } from 'react'
 import { FiShoppingCart } from "react-icons/fi";
 import {  IoSearch } from 'react-icons/io5';
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-import { getDocs, collection, where, query }  from 'firebase/firestore'
-import { db } from '../../services/firebaseConnection'
 import { ProductsContext } from '../../contexts/products/ProductsContext';
-import type { ProductsProps } from '../../pages/home';
-
-
-
 
 
 export function Navbar(){
 
-
     const{ cart }= useContext(CartContext)
-    const {setProducts}= useContext(ProductsContext)
-    const navigate = useNavigate();
+    const {searchProducts }= useContext(ProductsContext)
     const [input, setInput] = useState('');
 
     async function handleSearch(){
-        if(input === ''){
-            navigate('/')
-            return;
-        }
-
-        setProducts([]);
-
-
-        const q = query(collection(db, 'shoes'),
-        where('modelo', ">=" ,input.trim().toUpperCase()),
-        where('modelo', '<=', input.trim().toUpperCase() + '\uf8ff' )
-        )
-
-        const querySnapshot = await getDocs(q);
-
-        const listProducts = [] as ProductsProps[];
-
-        querySnapshot.forEach((product)=>{
-            listProducts.push({
-                        id:product.id,
-                        modelo:product.data().modelo,
-                        calceMin:product.data().calceMin,
-                        calceMax:product.data().calceMax,
-                        precio:Number(product.data().precio),
-                        color:product.data().color,
-                        estado:product.data().estado,
-                        descripcion:product.data(). descripcion,
-                        descripcionCorta:product.data().descripcionCorta,
-                        imagenes:product.data().imagenes,
-            })
-        })
-
-        setProducts(listProducts);
-        setInput('')
+        searchProducts(input)
+        setInput('');
 
     }
-
-
 
     return(
         <div className="w-full px-1 mt-4  ">
