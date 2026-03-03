@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Header } from '../../components/header';
 import { ProductsContext } from '../../contexts/products/ProductsContext';
+import { InputSearch } from '../../components/InputSearch/InputSearch';
+import { MdKeyboardDoubleArrowDown } from 'react-icons/md';
 
 
 
@@ -53,27 +55,39 @@ export function Home(){
 
 
     return(
-        <div className='mx-2'>
+        <div className=''>
 
             <Header />
-            <main className="w-full max-w-7xl  mx-auto  mb-4">
-                
-                <h1 className="font-bold text-2xl mt-10 mb-4 text-center text-primary">Productos Destacados</h1>
-
-                <div className='w-full h-10 flex items-center  rounded-lg  my-4 pl-4'>
-                    <button 
-                    className='border rounded-2xl  text-sm font-bold bg-black text-white py-1 px-6 cursor-pointer'
-                    onClick={TotalProducts}
-                    style={isFiltered?{}:{display:'none'}}
-                    >VER TODOS</button>
-
+            <main className="w-full max-w-7xl  mx-auto z-0 px-2 ">
+                <div className='arrow-container'>
+                    <MdKeyboardDoubleArrowDown size={50}  color='#2A4D4E' className='arrow' />
                 </div>
 
-                <div className=" grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center">
+                
+                <h1 
+                id="productos"
+                className="  font-bold text-2xl  mb-4 text-center text-secondary-rel text-glow ]">Productos Destacados</h1>
+
+
+                <div className='flex  w-full px-8  mb-8'>
+                    <InputSearch />
+                </div>
+
+                <div className='w-full  h-10 flex items-center justify-center  rounded-lg mb-4   pl-4 '>
+                    <button 
+                    className='bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426] text-white px-4 my-12 w-full max-w-3xs rounded-sm font-medium  cursor-pointer'
+                    onClick={TotalProducts}
+                    style={isFiltered?{}:{display:'none'}}
+                    >Ver todos</button>
+                </div>
+
+                <div 
+
+                className=" grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center mb-4">
                     {products.map((product)=>(
                         <section 
                         key={product.id}
-                        className="relative w-full max-w-xs lg:max-w-[90%] h-[380px] bg-amber-300 rounded-lg  flex flex-col items-center">
+                        className="relative w-full   sm:max-w-[80%] md:max-w-[90%] h-[380px] rounded-lg  flex flex-col items-center">
 
                             <div 
                             className='w-full min-h-[200px] bg-slate-100 rounded-t-lg'
@@ -81,10 +95,11 @@ export function Home(){
                             >
 
                             </div>
+
                             <div className='w-full min-h-[200px]  rounded-t-lg  '>
                                 
                                     <img 
-                                    className="w-full h-full rounded-t-lg bg-primary mb-2 object-contain object-top p-4"
+                                    className="w-full h-full rounded-t-lg border border-[#2A4D4E] mb-2 object-contain  sm:p-4"
                                     src={product.imagenes[0].url} alt="producto"
                                     onLoad={()=>handleImageLoad(product.id)} 
                                     style={{display:loadImage.includes(product.id)? 'block':'none'}}                   
@@ -93,12 +108,12 @@ export function Home(){
                                 
                             </div>
 
-                            <div className='absolute top-[180px] h-[200px] w-full flex flex-col   px-3 rounded-xl  bg-amber-50'>
+                            <div className='absolute top-[190px] h-[200px] w-full flex flex-col   px-3 rounded-xl  bg-white '>
                                 
                                 <div className='flex flex-col'>
-                                    <p className="font-bold mt-2 mb-2 text-black/80 uppercase">{product.modelo}</p>
-                                    <div className='flex flex-row items-start gap-2 text-gray-500 font-medium '>
-                                        <div className="border border-gray-500 w-fit p-0.5 px-1 text-[10px] font-bold  rounded-sm ">
+                                    <p className="font-bold mt-2 mb-2 text-primary uppercase">{product.modelo}</p>
+                                    <div className='flex flex-row items-start gap-2 text-slate-600 font-medium '>
+                                        <div className="border border-slate-600 w-fit p-0.5 px-1 text-[10px] font-bold  rounded-sm ">
                                             {product.calceMax
                                                 ? `BRA ${product.calceMin} | ${product.calceMax}`
                                                 :`BRA ${product.calceMin}`}
@@ -114,12 +129,12 @@ export function Home(){
                                     </div>
                                 </div>
 
-                                <div className='text-sm text-gray-600  mt-3'>{product.descripcionCorta}</div>
+                                <div className='text-xs sm:text-sm text-slate-600  mt-3'>{product.descripcionCorta}</div>
 
                                 <div className="flex h-full items-end justify-between  mb-4 ">
                                     <div className='flex flex-col'>
-                                        <span className='text-[11px] font-bold text-gray-600'>PRECIO</span>
-                                        <strong className="text-secondary text-lg">
+                                        <span className=' text-xs sm:text-[11px] font-bold text-slate-600'>PRECIO</span>
+                                        <strong className="text-secondary-rel text-sm sm:text-lg">
                                             {product.precio.toLocaleString("es-PY",{
                                                 style:'currency',
                                                 currency:'PYG'
@@ -128,7 +143,7 @@ export function Home(){
                                     </div>
 
                                     <Link to={`/detail/${product.id}`}>
-                                        <button  className="bg-primary p-1 px-2 rounded cursor-pointer text-sm font-medium text-white">
+                                        <button  className="bg-primary p-1 px-2 rounded cursor-pointer text-xs sm:text-sm font-medium text-white">
                                             ver detalles
                                         </button>
                                     </Link>
@@ -139,13 +154,15 @@ export function Home(){
                         </section>
                     ))}
                 </div>
-                <div>
+
+                <div 
+                className='w-full flex justify-center'>
                     <button
                     onClick={getProducts}
-                    className='bg-black text-white px-4'
+                    className='bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426] text-white px-4 my-12 w-full max-w-3xs rounded-sm font-medium  cursor-pointer'
                     style={empty || isFiltered?{display:'none'}:{} }
                     >
-                        ver más
+                        Ver más
                     </button>
                 </div>
             </main>

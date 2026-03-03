@@ -2,8 +2,12 @@
 
 @layer base {
     :root {
-        --primary:#3F4336;
-        --secondary:#B45309;
+        --primary:#0B2D2E;
+        --secondary:#E86343;
+        --secondary-rel:#C14426;  
+    }
+    html {
+        scroll-behavior: smooth;
     }
 }
 
@@ -16,6 +20,9 @@
     .text-secondary{
         color: var(--secondary)
     }
+    .text-secondary-rel{
+        color: var(--secondary-rel)
+    }
 
     .bg-primary{
         background-color: var(--primary)
@@ -24,5 +31,45 @@
     .bg-secondary{
         background-color: var(--secondary)
     }
+    .bg-secondary-rel{
+        background-color: var(--secondary-rel)
+    }
 
+    .arrow-container{
+        position: relative;
+        height: 100px;
+        display:flex;
+        justify-content: center;
+        overflow:hidden;
+        margin-bottom: 8px;
+        background-color:
+    }
+
+    .arrow{
+        position:absolute;
+        top:0;
+        animation:arrowDown 2s ease-out infinite;
+    }
+
+    @keyframes arrowDown {
+        0% {
+            transform: translateY(0);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        90% {
+            transform: translateY(50px);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(70px);
+            opacity: 0;
+        }
+    }
+
+    .clip{
+        clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0 50%, 0% 0%);
+    }
 }

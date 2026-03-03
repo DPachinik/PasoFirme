@@ -5,30 +5,37 @@ import { LiaShoePrintsSolid } from "react-icons/lia";
 import { BsLightningCharge } from "react-icons/bs";
 
 
-export function Aside(){
-    return(
-       <aside className=" grid grid-cols-2   gap-4 ">
 
-            <section className="bg-linear-0 to-black/90 via-[#8B4513] from-[#8B4513] min-h-[120px] p-1 ">
+export function Aside(){
+
+    const style="shadow shadow-[#2A4D4E] border border-[#2A4D4E] rounded pt-2 px-1 max-h-35  "
+    const color ='#C14426'
+    return(
+       <aside className=" grid grid-cols-2 md:grid-cols-4 px-2 gap-4 w-full max-w-7xl md:mx-auto">
+
+            <section className={style}>
                 <Card  title="Diseño" description="100% originales y exclusivos" >
-                    <MdOutlineDesignServices size={40} color="white" />
+                    <MdOutlineDesignServices size={30} color={color} />
                 </Card>
             </section>
-            <section className="bg-linear-0 to-black via-[#3D4035] from-[#3D4035] min-h-[120px] p-1">
+            <section className={style}>
                 <Card  title="Material" description="Cuero 100% nacional ">
-                    <RxComponentBoolean size={40} color="white" />
+                    <RxComponentBoolean size={30} color={color}/>
                 </Card>
             </section>
-            <section className="bg-linear-0 to-black via-[#3D4035] from-[#3D4035] min-h-[120px] p-1">
+            <section className={style}>
                 <Card  title="Comodidad" description="Máximo confort para el día a día">
-                    <LiaShoePrintsSolid size={40} color="white" />
+                    <LiaShoePrintsSolid size={30} color={color} className="" />
                 </Card>
             </section>
-            <section className="bg-linear-0 to-black/90 via-[#8B4513] from-[#8B4513]  min-h-[120px] p-1">
+            <section className={style}>
                 <Card  title="Durabilidad" description="Hechos para acompañarte por años">
-                    <BsLightningCharge size={40} color="white" />
+                    <BsLightningCharge size={30} color={color} />
                 </Card>
             </section>
+            <div>
+
+            </div>
 
            
        </aside> 

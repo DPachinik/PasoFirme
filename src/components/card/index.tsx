@@ -10,10 +10,14 @@ interface CarProps{
 export function Card ({title, description, children}:CarProps){
     return(
             
-        <div className=" w-full h-full flex flex-col items-center  p-2 border border-dashed border-white">
-            {children}
-            <h2 className="text-white text-lg md:text-xl font-semibold mt-2 mb-4">{title}</h2>
-            <p className="text-white text-center md:text-base text-xs mb-2">{description}</p>
+        <div className=" w-full h-full flex flex-col items-center  ">
+
+            <div className="flex flex-col items-center">
+                {children}
+                <h2 className="text-white text-lg md:text-xl font-semibold  mb-2">{title}</h2>
+            </div>
+
+            <p className=" text-center md:text-base  text-white text-xs mb-2">{description}</p>
             
         </div>
 
