@@ -53,7 +53,7 @@ export function ProductsProvider({ children }: ProviderProps) {
     setEmpty(false);
 
     const productsRef = collection(db, "shoes");
-    const queryRef = query(productsRef, orderBy("created", "desc"), limit(1));
+    const queryRef = query(productsRef, orderBy("created", "desc"), limit(16));
 
     getDocs(queryRef)
       .then((snapshot) => {
@@ -79,7 +79,7 @@ export function ProductsProvider({ children }: ProviderProps) {
       productsRef,
       orderBy("created", "desc"),
       startAfter(doc),
-      limit(1),
+      limit(16),
     );
     getDocs(nextQuery)
       .then((snapshot) => {
