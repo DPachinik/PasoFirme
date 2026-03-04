@@ -185,7 +185,7 @@ export function Detail(){
                     
                     <div className='sticky bottom-0 w-full    flex items-center justify-center gap-0 md:gap-4 mt-4 md:mx-4 md:max-w-[90%]  '>
 
-                            <button onClick={() => product && handleAddItemCart(product)} className="bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426]  text-white py-2   w-full font-bold flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer  md:rounded z-50">
+                            <button onClick={() => product && handleAddItemCart(product)} className="bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426]  text-white py-2   w-full font-medium flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer  md:rounded z-50">
                                 Añadir al carrito
                             </button>
 
@@ -194,7 +194,7 @@ export function Detail(){
                             className='w-full flex flex-1'
                             >
 
-                            <button  className="bg-linear-to-t to-[#2A4D4E] via-[#0B2D2E] from-[#B2D2E] text-white font-semibold py-2   w-full flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer md:rounded z-50 md:border border-[#2A4D4E]">
+                            <button  className="bg-linear-to-t to-[#2A4D4E] via-[#0B2D2E] from-[#B2D2E] text-white font-medium py-2   w-full flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer md:rounded z-50 md:border border-[#2A4D4E]">
                                 Ver más
                             </button>
                             </Link>
