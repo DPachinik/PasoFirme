@@ -1,0 +1,64 @@
+    table{
+        border: 0;
+        margin: 1px;
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 14px;
+    }
+
+    thead{
+        background-color:#ffff;
+        color:#0B2D2E;
+        height:40px;
+    }
+
+    .tr{
+        background-color: #ffff;
+    }
+
+
+    @media screen and (max-width:640px){
+        table{
+            max-width:95%;
+            margin:auto;
+
+        }
+
+        thead{
+            border-radius: none;
+            clip: rect(0,0,0,0);
+            padding: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            position: absolute;
+            margin: -4px;
+        }
+
+        .tr{
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .td{
+            display: flex;
+            justify-content: right;
+            text-align: right;
+            margin-top: 4px;
+            padding-right:4px;
+        }
+
+
+        table td::before{
+            content: attr(data-label);
+            float: left;
+            margin-right:auto;
+            padding-left: 4px;
+            text-align:center;
+            font-weight:bold;
+            color:#0B2D2E;
+            text-transform: uppercase;
+        }
+
+
+    }
