@@ -1,10 +1,12 @@
 import { signOut } from "firebase/auth"
 import { auth } from "../../services/firebaseConnection"
-import { Link } from "react-router-dom";
-import { IoBagCheckSharp, IoHomeOutline } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
+import { IoHomeOutline } from "react-icons/io5";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineAddBox } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
+import logo from '/logo.png'
+
 
 
 export function DashboardHeader(){
@@ -13,41 +15,49 @@ export function DashboardHeader(){
         await signOut(auth);
     }
 
-    const linktStyle = "flex items-center gap-2  pl-4 py-4 hover:border-r-2 border-slate-400 text-primary hover:bg-[#3D4035]/10 transition-all text-amber-50"
+    const linkStyle = 'flex items-center gap-2  pl-4 py-4 text-sm  text-white hover:bg-[#2A4D4E] transition-all '
 
     return(
-        <div className="w-full flex flex-col items-center justify-start h-full  border-r border-[#5A6148]  text-primary font-medium gap-4  mb-4 bg-[#5A6148]/10"> 
+        <div className="w-full flex flex-col items-center justify-start h-full border-b md:border-r border-[#2A4D4E]  text-primary font-medium gap-4 py-12  "> 
             
-            <div className="flex flex-col flex-1 justify-center items-center bg-white h-40 w-40 rounded-full mt-4 border border-[#5A6148]">
-                <IoBagCheckSharp size={42} color='black' className='flex '/>
-                <Link className="font-bold text-2xl " to='/'>
-                    <span className='bg-primary bg-clip-text text-transparent select-none'>PASO</span>
-                    <span className='bg-secondary bg-clip-text text-transparent select-none'>FIRME</span>
-                </Link>
+            <div className=" flex flex-col flex-1 justify-center items-center mt-4 ">
+                <NavLink
+                className="relative font-bold text-2xl lg:text-3xl"
+                to='/'
+                >
+                    <img src={logo} className='w-20 absolute -top-14 right-5'/>
+                    <span className='bg-clip-text text-white select-none'>Paso</span>
+                    <span className='text-secondary bg-clip-text  select-none'>Firme</span>
+                </NavLink>
                 
             </div>
             
             <div className="flex flex-col flex-2 mt-4 w-full  ">
-                <Link to='/' className={linktStyle}>
-                    <IoHomeOutline />
+                <NavLink 
+                to='/' 
+                className={({isActive})=> isActive?` text-secondary ${linkStyle}`:linkStyle}>
+                    <IoHomeOutline className="text-lg" />
                     Inicio
-                </Link>
+                </NavLink>
 
-                <Link to='/dashboard' className={linktStyle}>
-                    <FaRegEdit />
+                <NavLink 
+                to='/dashboard'
+                end 
+                className={({isActive})=> isActive?` text-secondary-rel ${linkStyle}`:linkStyle}>
+                    <FaRegEdit className="text-lg" />
                     Administrar Productos
-                </Link>
+                </NavLink>
 
-                <Link to='/dashboard/new' className={linktStyle}>
-                    <MdOutlineAddBox />
+                <NavLink to='/dashboard/new' className={({isActive})=> isActive?` text-secondary-rel ${linkStyle}`:linkStyle}>
+                    <MdOutlineAddBox className="text-lg" />
                     Registrar producto
-                </Link>
+                </NavLink>
             </div>    
 
             <div className="w-full flex  ">
                 <button 
                 onClick={handleLogout}
-                className="flex w-fit hover:cursor-pointer mb-4 pl-4 rounded-sm text-sm items-center gap-2 h-11 text-amber-700"
+                className="flex w-fit hover:cursor-pointer mb-4 pl-4 rounded-sm text-sm items-center gap-2 h-11 text-white/50 hover:text-[#E86343]"
                 > 
                     <TbLogout2 size={22} />
                     Cerrar Sesión
