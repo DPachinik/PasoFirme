@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import  Toast  from 'react-hot-toast';
 import { useContext } from 'react';
 import { AuthContext} from '../../contexts/auth/authContext'
+import logo from '/logo.png'
+
 
 
 
@@ -90,16 +92,18 @@ export function Login(){
 
     return(
         <div className=" w-full h-dvh flex flex-col items-center justify-center ">
+                <Link className=" relative flex font-bold text-4xl text-amber-50" to='/'>
 
-            <Link className="font-bold text-2xl md:text-4xl text-amber-50 mb-4" to='/'>
-                <span className='bg-[#8B4513] bg-clip-text text-transparent select-none'>PASO</span>
-                <span className='bg-[#3D4035] bg-clip-text text-transparent select-none'>FIRME</span>
-            </Link>
+                    <span className='bg-white bg-clip-text text-transparent select-none'>Paso</span>
+                    <span className='bg-secondary bg-clip-text text-transparent select-none'>Firme</span>
+                    <img src={logo} className='w-14 absolute -right-12'/>
+                </Link>
+
 
 
             <form 
             onSubmit={handleSubmit(onSubmit)}
-            className=" w-full max-w-2xl  flex  flex-col mx-auto bg-white justify-center items-center gap-4 px-8 py-6 rounded-xl">
+            className=" w-full max-w-2xl  flex  flex-col mx-auto justify-center items-center gap-4 px-8 py-6 rounded-xl">
 
                 <Input
                     type="email"
@@ -116,7 +120,7 @@ export function Login(){
                     error={errors.password?.message}
                 />
 
-                <button type="submit" className=" bg-[#3D4035] h-8 w-full text-white text-lg font-medium px-6 rounded-lg cursor-pointer">Ingresar</button>
+                <button type="submit" className='bg-linear-to-t to-[#C14426] via-[#E86343] from-[#C14426] text-white px-4  w-full max-w-3xs rounded-sm font-medium  cursor-pointer'>Ingresar</button>
             </form>
 
         </div>
