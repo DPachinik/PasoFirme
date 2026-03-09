@@ -3,6 +3,7 @@ import { CartContext, type CartProps } from "./CartContext";
 import type { ProductsProps } from "../../pages/home";
 
 
+
 interface ProviderProps{
     children:ReactNode;
 }
@@ -60,7 +61,7 @@ function CartProvider({children}:ProviderProps){
         }
 
 
-        const cartList = cart.filter(item =>item.id !== product.id);
+        const cartList = cart.filter(item => !(item.id === product.id && item.talle === product.talle));
         setCart(cartList);
         totalResultCart(cartList);
     }
