@@ -104,25 +104,27 @@ export function Carrito(){
                     <div className='w-full flex-2'>   
 
                         <table>
+
                             <thead>
                                 <tr >
-                                    <th className='text-start pl-4 font-medium rounded-tl rounded-bl'>Productos</th>
-                                    <th className='text-center font-medium'>Cantidad</th>
-                                    <th className='font-medium rounded-tr rounded-br'>Precio</th>
+                                    <th className='text-start pl-4  rounded-tl rounded-bl'>Productos</th>
+                                    <th className='text-center '>Cantidad</th>
+                                    <th className='rounded-tr  rounded-br'>Precio</th>
                                 </tr>
                             </thead>
 
-                            <tbody className='text-center' id='tbody' >
+                            <tbody >
                                 
                                 {cart.map((item)=>(
                                     <tr 
                                     key={item.id} 
                                     className={styles.tr}>
+
                                         <td 
                                         className={`rounded-tl-lg rounded-bl-lg ${styles.td} `}
                                         data-label='Producto'
                                         >
-                                            <div className='flex   w-full max-w-3xs  '>
+                                            <div className='flex   w-full max-w-3xs '>
                                                 <img 
                                                 src={item.imagenes[0].url}
                                                 className=' w-30 lg:min-w-40 h-25 object-contain object-center'
@@ -135,14 +137,15 @@ export function Carrito(){
                                                     </div>
 
                                                 </div> 
-                                            </div> 
+                                            </div>
+
                                         </td>
 
                                         <td 
                                         className={styles.td}
                                         data-label='Cantidad'
                                         >
-                                            <div className=' px-2 md:px-0 flex items-center justify-center bg-linear-to-t to-[#0B2D2E] via-[#2A4D4E] from-[#0B2D2E] rounded-md text-white gap-2 mr-12 sm:mr-0 '>
+                                            <div className=' px-4 md:px-0 flex items-center justify-center bg-linear-to-t to-[#0B2D2E] via-[#2A4D4E] from-[#0B2D2E] rounded-md text-white gap-2  '>
                                                 <button 
                                                 className=' text-2xl font-bold cursor-pointer '
                                                 onClick={()=>addItemCart(item)}
@@ -167,7 +170,7 @@ export function Carrito(){
                                         className={`rounded-tr-lg rounded-br-lg text-secondary-rel ${styles.td} ` }
                                         data-label='Precio'
                                         >
-                                            <div className='mr-8 md:mr-0'>
+                                            <div className='w-full'>
                                                 <strong >
                                                     {item.precio.toLocaleString('es-PY',{
                                                     style:'currency',
@@ -190,7 +193,7 @@ export function Carrito(){
                             to='/'
                             className='mx-4'
                             >
-                                    <button className="bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426]  text-white   w-full max-w-3xs font-medium flex  items-center justify-center gap-4 cursor-pointer  px-4 rounded"> seguir comprando</button>
+                                    <button className="bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426]  text-white   w-full max-w-3xs font-medium flex  items-center justify-center gap-4 cursor-pointer py-1 px-4 rounded"> seguir comprando</button>
                             </Link>
                         </div>
 
