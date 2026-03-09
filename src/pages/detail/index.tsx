@@ -60,8 +60,7 @@ export function Detail(){
                 talle: selectedSize
             });
 
-            toast.success('Producto añadido al carrito',{
-                style:{background:'#121212',color:'#ffff'}
+            toast.success('Producto añadido al carrito',{style:{backgroundColor:'#ffff', color:'#0B2D2E'}
             })
 
         navigate('/cart')

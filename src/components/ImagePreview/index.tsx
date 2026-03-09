@@ -10,7 +10,7 @@ interface ImagePreviewProps{
 
 export function ImagePreview({image, onDelete}:ImagePreviewProps){
 
-    const layoutShift ="flex  rounded-lg bg-[#5A6148]/10"
+    const layoutShift ="flex  rounded-lg bg-[#2A4D4E]"
 
 
     return(
@@ -21,7 +21,7 @@ export function ImagePreview({image, onDelete}:ImagePreviewProps){
 
                 <img src={`${image.previewUrl}`} className="w-full h-30  rounded-lg"/>
                     <button 
-                    className="absolute right-2 top-1 cursor-pointer bg-amber-600 rounded-full p-1"
+                    className="absolute right-2 top-1 cursor-pointer bg-secondary-rel rounded-full p-1"
                     onClick={onDelete}
                     >
                         <FiTrash2 size={20} color="white" />
@@ -31,7 +31,7 @@ export function ImagePreview({image, onDelete}:ImagePreviewProps){
                                             
             ):(
             <div className="w-full h-full flex items-center justify-center ">
-                <BiImageAdd size={30} color="#3D4035" className="flex" />
+                <BiImageAdd size={30} color="#ffff" className="flex" />
             </div>    
                                             
             )}

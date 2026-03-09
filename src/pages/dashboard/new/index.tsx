@@ -27,7 +27,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
-const labelStyle = "text-xs font-medium  text-primary"
+const labelStyle = "text-xs font-medium  text-secondary"
 const containerStyle = "flex flex-col gap-1 w-full"
 
 
@@ -106,7 +106,7 @@ export function New(){
                 await handleUpLoad (image)
 
             }else{
-                toast.error('el formato debe ser png o jpeg')
+                toast.error('el formato debe ser png o jpeg',{style:{backgroundColor:'#ff2323', color:'#ffff'}})
                 return
             }
         }
@@ -157,7 +157,7 @@ export function New(){
 
 
     return(
-        <div className="grid grid-cols-1 md:grid-cols-[0.5fr_2fr] gap-1 bg-white/80 h-100dvh">
+        <div className="grid grid-cols-1 md:grid-cols-[0.5fr_2fr] gap-1 h-100dvh">
             
                 <div className="w-full">
                     <DashboardHeader />
@@ -165,16 +165,16 @@ export function New(){
                 
                 <div className="flex flex-col my-4 ">
                     
-                    <div className="w-full border border-[#3F4336] border-b-0 rounded-t-lg max-w-4xl mx-auto py-1 pl-4  text-white">
+                    <div className="w-full border border-[#2A4D4E] border-b-0 rounded-t-lg max-w-4xl mx-auto py-1 pl-4  text-white">
                         <h2 className={labelStyle}>REGISTRAR NUEVO PRODUCTO</h2>
                     </div>
 
-                    <div className="w-full max-w-4xl  flex flex-col mx-auto border border-[#3F4336] rounded-b-lg">
+                    <div className="w-full max-w-4xl  flex flex-col mx-auto border border-[#2A4D4E] rounded-b-lg">
 
                         <div className="flex gap-2 w-full max-w-4xl mx-auto px-10  rounded-t-lg pt-4">
 
-                            <button className="w-25 h-30  border rounded-lg flex items-center justify-center ">
-                                <FiUpload size={30} color="black" className="absolute cursor-pointer"/>
+                            <button className="w-25 h-30  rounded-lg flex items-center justify-center bg-white">
+                                <FiUpload size={30} color="#2A4D4E" className="absolute cursor-pointer"/>
                                 <input 
                                     type="file" 
                                     accept="image/*" 
@@ -201,7 +201,7 @@ export function New(){
                         onSubmit={handleSubmit(onSubmit)}
                         className="flex flex-col gap-2 mx-auto  my-4 w-full max-w-3xl ">
 
-                            <div className=" p-2 rounded-lg flex flex-col gap-2 w-full ">
+                            <div className=" p-2 rounded-lg flex flex-col gap-4 w-full ">
                                 <div className={containerStyle}>
                                     <label className={labelStyle}>MODELO</label>
                                     <Input 
@@ -213,10 +213,6 @@ export function New(){
                                     />
 
                                 </div>
-                                <div>
-                                    
-                                </div>
-
 
                                 <div className="flex gap-2">
                                     <div className={containerStyle}>
@@ -225,7 +221,7 @@ export function New(){
                                         required
                                         {...register('calceMin')}
                                         name="calceMin"
-                                        className="border border-[#3F4336]outline-none rounded-sm h-7"
+                                        className=" outline-none rounded-sm h-7 text-primary bg-white"
                                         >
                                             <option>37</option>
                                             <option>38</option>
@@ -242,7 +238,7 @@ export function New(){
                                         <select id="min" 
                                         {...register('calceMax')}
                                         name="calceMax"
-                                        className="border border-[#3F4336] outline-none rounded-sm h-7"
+                                        className=" outline-none text-primary bg-white rounded-sm h-7"
                                         >
                                             <option></option>
                                             <option>37</option>
@@ -265,7 +261,6 @@ export function New(){
                                         register={register}
                                         error={errors.precio?.message}
                                         />
-
                                     </div>
 
                                 </div>
@@ -274,7 +269,7 @@ export function New(){
                             <div className=' w-full px-2 rounded-lg flex flex-col gap-1 py-2'>
                                 <p className={labelStyle}>DESCRIPCIÓN CORTA </p>
                                 <textarea
-                                className=" w-full max-w-3xl text-xs border border-[#3F4336] h-10 outline-none px-2 pt-2 rounded-lg"
+                                className=" w-full max-w-3xl text-xs bg-white h-10 outline-none px-2 pt-2 rounded"
                                 id="descriptionCorta"
                                 {...register('descripcionCorta')}
                                 placeholder="Zapato punta fina elegante, estilo italiano de cuero vacuno... "
@@ -284,7 +279,7 @@ export function New(){
                             <div className=' w-full px-2 rounded-lg flex flex-col gap-1 py-2'>
                                 <p className={labelStyle}>DESCRIPCIÓN</p>
                                 <textarea
-                                className=" w-full max-w-3xl text-xs border border-[#3F4336] h-24 outline-none px-2 pt-2 rounded-lg"
+                                className=" w-full max-w-3xl text-xs bg-white h-24 outline-none px-2 pt-2 rounded"
                                 id="descripcion"
                                 {...register('descripcion')}
                                 placeholder="Zapato casual para hombre, Diseño X, estilo Y de cuero vacuno... "
@@ -294,12 +289,12 @@ export function New(){
                             <div className="flex gap-12 items-center"> 
                                 <div className=" p-2 rounded-lg">
                                     <p className={labelStyle}>ESTADO DEL PRODUCTO</p>
-                                    <div className="flex gap-4 border border-[#3F4336] w-fit p-2 rounded-lg mt-1 text-slate-600 text-xs">
+                                    <div className="flex gap-4  w-fit p-2 rounded-lg mt-1  text-xs text-primary bg-white">
                                         <label className="text-center flex items-center gap-2 ">
-                                            <p>En stock</p>
+                                            <p>Pocas unidades</p>
                                             <input
                                             type="radio"
-                                            value='En stock'
+                                            value='Pocas unidades'
                                             {...register('estado')}
                                             name='estado'
                                             />
@@ -338,7 +333,8 @@ export function New(){
                                 </div>
                             </div>
 
-                            <button type="submit" className="w-full bg-primary text-white rounded-sm h-6 font-semibold text-SM hover:cursor-pointer hover:bg-amber-700 transition-all ">Registrar</button>
+                            <button type="submit" 
+                            className="w-full bg-primary text-white rounded-sm h-6 font-semibold  bg-secondary-rel cursor-pointer">Registrar</button>
 
                             
                         </form>

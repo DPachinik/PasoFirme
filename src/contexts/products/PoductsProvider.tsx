@@ -133,7 +133,7 @@ export function ProductsProvider({ children }: ProviderProps) {
 
     )
     .then(()=>{
-      toast.success('Producto actualizado exitosamente')
+      toast.success('Producto actualizado exitosamente',{style:{backgroundColor:'#ffff', color:'#0B2D2E'}})
     })
     .catch((error)=>{
       console.log('error:' + error);
