@@ -14,6 +14,7 @@
 
     .tr{
         background-color: #ffff;
+        text-align:center;
     }
 
 
@@ -38,6 +39,7 @@
         .tr{
             display: block;
             margin-bottom: 14px;
+            border-radius: 8px
         }
 
         .td{
@@ -45,7 +47,9 @@
             justify-content: right;
             text-align: right;
             margin-top: 4px;
-            padding-right:4px;
+            padding:8px;
+            display:flex;
+            align-items:center
         }
 
 
