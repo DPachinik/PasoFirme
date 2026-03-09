@@ -13,7 +13,8 @@ interface ProductsContextData{
     empty:boolean;
     setIsFiltered:Dispatch<SetStateAction<boolean>>;
     isFiltered:boolean;
-    setDoc:Dispatch<SetStateAction<QueryDocumentSnapshot | null>>;
+    setDocument:Dispatch<SetStateAction<QueryDocumentSnapshot | null>>;
+    updateItem:(item:ProductsProps, status:string)=>void;
 
 }
 

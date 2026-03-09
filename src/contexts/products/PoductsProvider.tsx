@@ -12,7 +12,10 @@ import {
   startAfter,
   QueryDocumentSnapshot,
   type DocumentData,
+  doc,
+  updateDoc,
 } from "firebase/firestore";
+import toast from "react-hot-toast";
 
 interface ProviderProps {
   children: ReactNode;
@@ -20,7 +23,7 @@ interface ProviderProps {
 
 export function ProductsProvider({ children }: ProviderProps) {
   const [products, setProducts] = useState<ProductsProps[]>([]);
-  const [doc, setDoc] = useState<QueryDocumentSnapshot | null>(null);
+  const [document, setDocument] = useState<QueryDocumentSnapshot | null>(null);
   const [empty, setEmpty] = useState<boolean>(false);
   const [isFiltered, setIsFiltered] = useState<boolean>(false);
 
@@ -59,7 +62,7 @@ export function ProductsProvider({ children }: ProviderProps) {
       .then((snapshot) => {
         const list =formatSnapshot(snapshot.docs)
         const ultimoDoc = snapshot.docs[snapshot.docs.length - 1]?? null;
-        setDoc(ultimoDoc);
+        setDocument(ultimoDoc);
 
         setProducts(list);
       })
@@ -70,7 +73,7 @@ export function ProductsProvider({ children }: ProviderProps) {
 
   //Consultar más productos
   function getProducts() {
-    if(!doc){
+    if(!document){
         return;
     }
 
@@ -78,7 +81,7 @@ export function ProductsProvider({ children }: ProviderProps) {
     const nextQuery = query(
       productsRef,
       orderBy("created", "desc"),
-      startAfter(doc),
+      startAfter(document),
       limit(16),
     );
     getDocs(nextQuery)
@@ -91,7 +94,7 @@ export function ProductsProvider({ children }: ProviderProps) {
         const list =formatSnapshot(snapshot.docs)
 
         const ultimoDocActual = snapshot.docs[snapshot.docs.length - 1];
-        setDoc(ultimoDocActual);
+        setDocument(ultimoDocActual);
         setProducts((prevDoc) => [...prevDoc, ...list]);
       })
       .catch(() => {});
@@ -119,6 +122,25 @@ export function ProductsProvider({ children }: ProviderProps) {
     });
   }
 
+  //Actualizar Producto
+
+  function updateItem(product:ProductsProps, status:string){
+    const docRef= doc(db, 'shoes', product.id);
+
+    updateDoc(docRef, {
+      estado:status
+    }
+
+    )
+    .then(()=>{
+      toast.success('Producto actualizado exitosamente')
+    })
+    .catch((error)=>{
+      console.log('error:' + error);
+    })
+
+  }
+
   return (
     <ProductsContext.Provider
       value={{
@@ -130,8 +152,9 @@ export function ProductsProvider({ children }: ProviderProps) {
         setEmpty,
         empty,
         isFiltered,
-        setDoc,
+        setDocument,
         setIsFiltered,
+        updateItem
       }}
     >
       {children}
