@@ -27,9 +27,16 @@ export interface ProductsProps{
 }
 
 
+const estadoColors:Record<string, string>={
+    'Novedades': 'bg-white text-primary',
+    'Pocas unidades': 'bg-secondary-rel text-white',
+    'Agotado': 'bg-[#ff2323] text-white'
+}
+
+
 export function Home(){
 
-    const { products, getProducts, empty,setEmpty, isFiltered , setIsFiltered, setDoc, loadInitialProducts}= useContext(ProductsContext)
+    const { products, getProducts, empty,setEmpty, isFiltered , setIsFiltered, setDocument, loadInitialProducts}= useContext(ProductsContext)
 
     const[loadImage, setLoadImage] = useState<string[]>([]);
     
@@ -42,7 +49,7 @@ export function Home(){
     },[])
 
     function TotalProducts(){
-        setDoc(null);
+        setDocument(null);
         loadInitialProducts();
         setIsFiltered(false)
         setEmpty(false);
@@ -66,7 +73,7 @@ export function Home(){
                 
                 <h1 
                 id="productos"
-                className="  font-bold text-2xl  mb-4 text-center text-secondary-rel text-glow ]">Productos Destacados</h1>
+                className="  font-bold text-2xl  mb-4 text-center text-secondary text-glow ]">Productos Destacados</h1>
 
 
                 <div className='flex  w-full px-8  mb-8'>
@@ -96,7 +103,7 @@ export function Home(){
 
                             </div>
 
-                            <div className='w-full min-h-[200px]  rounded-t-lg  '>
+                            <div className='relative w-full min-h-[200px]  rounded-t-lg  '>
                                 
                                     <img 
                                     className="w-full h-full rounded-t-lg border border-[#2A4D4E] mb-2 object-contain  sm:p-4"
@@ -105,6 +112,9 @@ export function Home(){
                                     style={{display:loadImage.includes(product.id)? 'block':'none'}}                   
                                     />
 
+                                    <div className={`absolute top-2 left-2  rounded text-white px-2 py-1 font-medium text-xs  ${estadoColors[product.estado]} `}>
+                                        {product.estado}
+                                    </div>
                                 
                             </div>
 
