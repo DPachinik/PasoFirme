@@ -20,7 +20,13 @@ export function Navbar(){
 
                     <span className='bg-primary bg-clip-text text-transparent select-none'>Paso</span>
                     <span className='bg-secondary-rel bg-clip-text text-transparent select-none'>Firme</span>
-                    <img src={logo} className='w-12 absolute -right-10'/>
+                    <img 
+                    src={logo} 
+                    className='w-12 absolute -right-10'
+                    loading='lazy'
+                    decoding='async'
+                    alt='logotipo'
+                    />
                 </Link>
 
 

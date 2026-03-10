@@ -210,10 +210,13 @@ export function Dashboard(){
 
                                     <div className="w-fit h-full flex justify-center items-center   ">
                                         <img 
-                                        className="w-30 h-20 rounded-lg  mb-2 object-cover "
-                                        src={product.imagenes[0].url} alt="producto"
+                                        className="w-30 h-20 rounded-lg  mb-2 object-contain object-center "
+                                        src={product.imagenes[0].url} 
                                         onLoad={()=>handleImageLoad(product.id)} 
-                                        style={{display:loadImage.includes(product.id)? 'block':'none'}}                   
+                                        style={{display:loadImage.includes(product.id)? 'block':'none'}} 
+                                        loading="lazy"
+                                        decoding="async" 
+                                        alt={product.modelo}             
                                         />
 
                                     </div>

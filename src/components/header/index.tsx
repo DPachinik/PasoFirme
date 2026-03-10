@@ -66,7 +66,12 @@ export function Header(){
 
             
                     <div className='absolute  right-0 flex w-full   justify-end '>
-                            <img src={zapato} className=' w-3xs md:w-sm lg:w-lg' /> 
+                            <img 
+                            src={zapato} 
+                            className=' w-3xs md:w-sm lg:w-lg'
+                            decoding='async'
+                            alt='zapato'
+                            /> 
                     </div>
                                                         
                 </div>

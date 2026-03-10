@@ -29,7 +29,7 @@ export interface ProductsProps{
 
 const estadoColors:Record<string, string>={
     'Novedades': 'bg-white text-primary',
-    'Pocas unidades': 'bg-secondary-rel text-white',
+    'Pocas unidades': 'bg-secondary text-white',
     'Agotado': 'bg-[#ff2323] text-white'
 }
 
@@ -107,15 +107,22 @@ export function Home(){
                                 
                                     <img 
                                     className="w-full h-full rounded-t-lg border border-[#2A4D4E] mb-2 object-contain  sm:p-4"
-                                    src={product.imagenes[0].url} alt="producto"
+                                    src={product.imagenes[0].url} 
                                     onLoad={()=>handleImageLoad(product.id)} 
-                                    style={{display:loadImage.includes(product.id)? 'block':'none'}}                   
+                                    style={{display:loadImage.includes(product.id)? 'block':'none'}} 
+                                    decoding='async'
+                                    alt={product.modelo}                   
                                     />
+
 
                                     <div className={`absolute top-2 left-2  rounded text-white px-2 py-1 font-medium text-xs  ${estadoColors[product.estado]} `}>
                                         {product.estado}
                                     </div>
                                 
+                            </div>
+
+                            <div className='h-50'>
+
                             </div>
 
                             <div className='absolute top-[190px] h-[200px] w-full flex flex-col   px-3 rounded-xl  bg-white '>
@@ -139,11 +146,11 @@ export function Home(){
                                     </div>
                                 </div>
 
-                                <div className='text-xs sm:text-sm text-slate-600  mt-3'>{product.descripcionCorta}</div>
+                                <div className='text-xs sm:text-[12px] text-[#2A4D4E]  mt-3'>{product.descripcionCorta}</div>
 
                                 <div className="flex h-full items-end justify-between  mb-4 ">
                                     <div className='flex flex-col'>
-                                        <span className=' text-xs sm:text-[11px] font-bold text-slate-600'>PRECIO</span>
+                                        <span className=' text-xs sm:text-[11px] font-bold text-primary'>PRECIO</span>
                                         <strong className="text-secondary-rel text-sm sm:text-lg">
                                             {product.precio.toLocaleString("es-PY",{
                                                 style:'currency',

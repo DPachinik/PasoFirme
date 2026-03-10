@@ -128,6 +128,9 @@ export function Carrito(){
                                                 <img 
                                                 src={item.imagenes[0].url}
                                                 className=' w-30 lg:min-w-40 h-25 object-contain object-center'
+                                                loading='lazy'
+                                                decoding='async'
+                                                alt={item.modelo}
                                                 />
 
                                                 <div className=' flex flex-col justify-center  text-start '>
