@@ -16,6 +16,7 @@ export function Detail(){
     const [product, setProduct] = useState<ProductsProps>();
     const [loadImage, setLoadImage] = useState<string[]>([])
     const [selectedSize,setSelectedSize]= useState<number | null>(null);
+    const [mainImage,setMainImage]= useState<string>();
 
     const {addItemCart}=useContext(CartContext)
 
@@ -40,6 +41,10 @@ export function Detail(){
                     descripcion:snapshot.data()?.descripcion,
                     imagenes:snapshot.data()?.imagenes,
                 })
+
+                if(snapshot.data()?.imagenes?.length){
+                    setMainImage(snapshot.data()?.imagenes[0].id)
+                }
              }) 
 
         };
@@ -86,6 +91,11 @@ export function Detail(){
         tamaños=[min];
     }
 
+    const oderedImages = [...product.imagenes].sort((a,b)=>{
+        if(a.idImage === mainImage) return -1
+        if(b.idImage === mainImage) return 1
+        return 0
+    })
 
 
     return(
@@ -97,15 +107,16 @@ export function Detail(){
                 
                 <div className=' w-full flex-1 px-4 '>
                     <div className="grid grid-cols-3 gap-4">
-                        {product.imagenes.map((imagen, index) => {
+                        {oderedImages.map((imagen, index) => {
 
                             const isLoaded = loadImage.includes(imagen.idImage);
 
                             return (
                                 <div
                                 key={imagen.idImage}
+                                onClick={()=>setMainImage(imagen.idImage)}
                                 className={`relative w-full rounded-lg  border border-[#2A4D4E] overflow-hidden 
-                                ${index === 0 ? "col-span-3 h-70" : "h-40"} `}
+                                ${index === 0 ? "col-span-3 h-70" : "h-40 hover:border-[#E86343] cursor-pointer"} `}
                                 >
 
                                     {!isLoaded && (
@@ -114,11 +125,12 @@ export function Detail(){
 
 
                                     <img
-                                    src={imagen.url}
-                                    alt="calzado de cuero"
-                                    onLoad={() => handleLoadImage(imagen.idImage)}
                                     className={`w-full h-full object-contain transition-opacity duration-300
-                                    ${isLoaded ? "opacity-100" : "opacity-0"} hover:scale-110 hover:transition-all duration-150`}
+                                    ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"} hover:scale-110 hover:transition-all duration-150`}
+                                    src={imagen.url}
+                                    onLoad={() => handleLoadImage(imagen.idImage)}
+                                    decoding='async'
+                                    alt={product.modelo}
                                     />
                                 </div>
                             );
