@@ -8,11 +8,11 @@ export function Header(){
     return(
         <header className='flex flex-col justify-center    mx-auto gap-4 mt-4 '>
                     
-            <div className=' relative flex flex-col border-y border-[#2A4D4E] shadow-[0_-8px_10px_-10px_rgba(255,255,255,0.3)] '>
+            <div className=' relative flex flex-col border-y border-[#2A4D4E] shadow-[0_-8px_10px_-10px_rgba(255,255,255,0.4)] '>
 
                 <div className=' flex   w-full h-[200px] md:h-[300px] '>
 
-                    <div className="absolute  inset-0 bg-linear-to-tr from-white/10 to-[#2A4D4E]/50 backdrop-blur"></div> 
+                    <div className="absolute  inset-0 bg-linear-to-tr from-white/10 to-[#2A4D4E]/30 backdrop-blur"></div> 
 
                     <div className='   w-full flex flex-col mt-2 sm:pl-10  pl-2 z-20'>
 
