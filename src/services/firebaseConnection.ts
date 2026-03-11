@@ -7,12 +7,11 @@ import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "pasofirme.firebaseapp.com",
-  projectId: "pasofirme",
-  storageBucket: "pasofirme.firebasestorage.app",
-  messagingSenderId: "70013520935",
-  appId: "1:70013520935:web:4febfc875e17c0259e9202",
-  measurementId: "G-QSZV2JFWED"
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 //const analytics = getAnalytics(app);
