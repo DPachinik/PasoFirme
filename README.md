@@ -17,8 +17,6 @@ La aplicación está desarrollada con **React + TypeScript** y utiliza **Firebas
 
 # 🚀 Demo
 
-*(Agregar cuando hagas deploy)*
-
 Frontend: https://pasofirme.vercel.app
 
 ---
@@ -28,6 +26,7 @@ Frontend: https://pasofirme.vercel.app
 ### Página principal
 
 ![Home](./docs/home.png)
+![Home](./docs/home1.png)
 
 ### Detalle de producto
 
