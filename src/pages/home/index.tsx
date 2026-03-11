@@ -66,6 +66,7 @@ export function Home(){
 
             <Header />
             <main className="w-full max-w-7xl  mx-auto z-0 px-2 ">
+                
                 <div className='arrow-container'>
                     <MdKeyboardDoubleArrowDown size={50}  color='#2A4D4E' className='arrow' />
                 </div>
@@ -73,7 +74,7 @@ export function Home(){
                 
                 <h1 
                 id="productos"
-                className="  font-bold text-2xl  mb-4 text-center text-secondary text-glow ]">Productos Destacados</h1>
+                className="  font-medium text-2xl  mb-4 text-center text-secondary ">Productos Destacados</h1>
 
 
                 <div className='flex  w-full px-8  mb-8'>
@@ -90,11 +91,11 @@ export function Home(){
 
                 <div 
 
-                className=" grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center mb-4">
+                className=" grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-4 place-items-center mb-4">
                     {products.map((product)=>(
                         <section 
                         key={product.id}
-                        className="relative w-full   sm:max-w-[80%] md:max-w-[90%] h-[380px] rounded-lg  flex flex-col items-center">
+                        className="relative max-w-[75%] sm:max-w-[80%] md:max-w-[90%] h-[380px] rounded-lg  flex flex-col items-center">
 
                             <div 
                             className='w-full min-h-[200px] bg-slate-100 rounded-t-lg'
@@ -121,7 +122,7 @@ export function Home(){
                                 
                             </div>
 
-                            <div className='h-50'>
+                            <div className='h-60'>
 
                             </div>
 

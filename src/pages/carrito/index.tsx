@@ -5,6 +5,7 @@ import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiShoppingCart } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import styles from './carrito.module.css'
+import { MdKeyboardDoubleArrowDown } from 'react-icons/md';
 
 export function Carrito(){
 
@@ -82,16 +83,21 @@ export function Carrito(){
                     Tu Carrito 
                 </h1>
                 <FiShoppingCart size={24} className='text-white -rotate-12'/>
-
+                
             </div>
 
+                <div className='arrow-container'>
+                    <MdKeyboardDoubleArrowDown size={50}  color='#2A4D4E' className='arrow' />
+                </div>
 
             {cart.length === 0 && (
                 <div className='flex flex-col items-center justify-center gap-3'>
-                    <p className='text-xl font-medium'>Tú carrito está vacío!</p>
+
+                    <p className='text-xl font-medium text-[#2A4D4E] text-center'>¡Carrito vacío, es hora de seleccionar productos!</p>
+
                     <Link 
                     to="/"
-                    className='bg-gray-500 p-1 px-3 rounded text-white'
+                    className='bg-secondary p-1 px-3 rounded text-white'
                     >
                         Agregar Productos
                     </Link>
@@ -124,10 +130,10 @@ export function Carrito(){
                                         className={`rounded-tl-lg rounded-bl-lg ${styles.td} `}
                                         data-label='Producto'
                                         >
-                                            <div className='flex   w-full max-w-3xs '>
+                                            <div className='flex   w-full max-w-3xs  pl-8 sm:pl-0'>
                                                 <img 
                                                 src={item.imagenes[0].url}
-                                                className=' w-30 lg:min-w-40 h-25 object-contain object-center'
+                                                className=' min-w-30 lg:min-w-40 h-25 object-contain object-center'
                                                 loading='lazy'
                                                 decoding='async'
                                                 alt={item.modelo}
@@ -202,7 +208,7 @@ export function Carrito(){
 
                     </div> 
 
-                    <div className=' flex-1 mx-auto w-full  max-w-sm px-4 py-2 border border-[#2A4D4E]  rounded-lg'>
+                    <div className=' flex-1 mx-auto w-full  max-w-sm px-4 py-2 border border-[#2A4D4E]  md:rounded-lg'>
                         <h2 className='border-b border-[#2A4D4E]  py-2 mb-4 font-semibold text-white'>Resumen del Pedido</h2>
                         <div className='mb-8'>
                             <div className='flex justify-between mb-4 font-medium text-white'>

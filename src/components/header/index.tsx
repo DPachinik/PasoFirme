@@ -10,26 +10,26 @@ export function Header(){
                     
             <div className=' relative flex flex-col border-y border-[#2A4D4E] shadow-[0_-8px_10px_-10px_rgba(255,255,255,0.4)] '>
 
-                <div className=' flex   w-full h-[200px] md:h-[300px] '>
+                <div className=' flex   w-full h-[220px] md:h-[300px] '>
 
-                    <div className="absolute  inset-0 bg-linear-to-tr from-white/10 to-[#2A4D4E]/30 backdrop-blur"></div> 
+                    
 
-                    <div className='   w-full flex flex-col mt-2 sm:pl-10  pl-2 z-20'>
+                    <div className='  flex flex-col mt-2 sm:pl-10  pl-2 z-20'>
 
-                        <div className='  w-full  flex  flex-col  z-30 '>
+                        <div className='  flex  flex-col  z-30 '>
                                     
                                     <div className='w-full flex items-center md:mt-4 gap-3 '>
 
-                                        <p className=' text-white font-bold text-2xl sm:text-3xl md:text-4xl  '>Elegancia en cada paso  </p>
+                                        <p className='w-full text-secondary font-semibold text-2xl sm:text-3xl md:text-4xl  '>Elegancia en cada paso  </p>
                                     </div>
 
-                                    <p className='text-xs md:text-lg font- text-white  '>Calzado masculino en cuero premium 100% nacional</p>
+                                    <p className='text-xs md:text-lg  max-w-[200px] sm:max-w-full text-white '>Calzado masculino en cuero premium 100% nacional</p>
                         </div>
 
                         <div className='relative flex   w-fit  sm:flex-row  sm:justify-start sm:items-center sm:gap-4 mt-4 border border-[#E86343]  px-4 py-1 gap-2'>
                             
-                            <p className='text-2xl md:text-4xl font-semibold text-white  pl-1 '>Hasta  </p>
-                            <p className='text-secondary text-2xl md:text-4xl text-center  md:text-start font-bold'>40% OFF </p>
+                            <p className='text-xl md:text-4xl font-semibold text-white  pl-1 '>Hasta  </p>
+                            <p className='text-secondary text-xl md:text-4xl text-center  md:text-start font-bold'>40% OFF </p>
                             <MdDiscount  color='#E86343' className='absolute -right-4 top-0  text-xl md:text-2xl'/>
                         </div>
 
@@ -68,7 +68,7 @@ export function Header(){
                     <div className='absolute  right-0 flex w-full   justify-end '>
                             <img 
                             src={zapato} 
-                            className=' w-3xs md:w-sm lg:w-lg'
+                            className=' w-[220px] md:w-sm '
                             decoding='async'
                             alt='zapato'
                             /> 

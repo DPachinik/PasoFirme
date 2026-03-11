@@ -214,7 +214,6 @@ export function Dashboard(){
                                         src={product.imagenes[0].url} 
                                         onLoad={()=>handleImageLoad(product.id)} 
                                         style={{display:loadImage.includes(product.id)? 'block':'none'}} 
-                                        loading="lazy"
                                         decoding="async" 
                                         alt={product.modelo}             
                                         />

@@ -15,7 +15,7 @@ export function Navbar(){
     return(
         <div className="  w-full mt-4 px-2 ">
 
-            <nav className=" flex bg-white w-full  max-w-7xl h-14 md:flex items-center justify-between px-6 mx-auto  gap-3 rounded-lg ">
+            <nav className=" flex bg-white w-full  max-w-7xl h-14 md:flex items-center justify-between px-2 md:px-6 mx-auto   rounded-lg ">
                 <Link className=" relative flex font-bold text-2xl text-amber-50" to='/'>
 
                     <span className='bg-primary bg-clip-text text-transparent select-none'>Paso</span>
@@ -30,7 +30,7 @@ export function Navbar(){
                 </Link>
 
 
-                <div className='flex  items-center justify-center gap-8 px-4'>
+                <div className='flex  items-center justify-center gap-3 md:gap-6'>
 
                     <Link className="relative" to='/cart'>
                         <FiShoppingCart size={24} color="#213747"/>

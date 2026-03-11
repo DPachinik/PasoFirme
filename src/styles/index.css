@@ -42,7 +42,6 @@
         justify-content: center;
         overflow:hidden;
         margin-bottom: 8px;
-        background-color:
     }
 
     .arrow{
@@ -68,6 +67,30 @@
             opacity: 0;
         }
     }
+
+    .container-rotate{
+        height:100px;
+        width:100px;
+        display:flex;
+        justify-content:center;
+        align-item:center;
+    }
+
+    .arrow-rotate{
+        color:#2A4D4E;
+        animation: rotate 2s linear infinite
+    }
+
+    @keyframes rotate {
+        from{
+            transform: rotate(0deg);
+        }
+
+        to{
+            transform: rotate(360deg);
+        }
+    }
+
 
 
 }

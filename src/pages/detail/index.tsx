@@ -8,6 +8,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../services/firebaseConnection';
 import { IoIosStar } from "react-icons/io";
 import type { ProductsProps } from '../home';
+import { FaArrowsRotate } from "react-icons/fa6";
 
 
 export function Detail(){
@@ -77,7 +78,16 @@ export function Detail(){
 
     if(!product){
         
-       return <h2>Cargando Producto</h2>
+       return (
+       <div className='w-full h-screen text-2xl text-secondary flex flex-col items-center justify-center gap-4'>
+        <h1>Cargando Producto</h1>
+
+        <div className='container-rotate'>
+            <FaArrowsRotate size={30} className='arrow-rotate' />
+        </div>
+        
+        </div>
+       )
     }
 
     const min = Number(product.calceMin);
@@ -115,7 +125,7 @@ export function Detail(){
                                 <div
                                 key={imagen.idImage}
                                 onClick={()=>setMainImage(imagen.idImage)}
-                                className={`relative w-full rounded-lg  border border-[#2A4D4E] overflow-hidden 
+                                className={`relative w-full rounded-lg  border border-[#2A4D4E] bg-[#2A4D4E] overflow-hidden 
                                 ${index === 0 ? "col-span-3 h-70" : "h-40 hover:border-[#E86343] cursor-pointer"} `}
                                 >
 
@@ -194,9 +204,11 @@ export function Detail(){
                             
                     </div>
                     
-                    <div className='sticky bottom-0 w-full    flex items-center justify-center gap-0 md:gap-4 mt-4 md:mx-4 md:max-w-[90%]  '>
+                    <div className='w-full flex flex-col md:flex-row px-4  items-center justify-center gap-4 mt-4  md:max-w-[90%]  my-4'>
 
-                            <button onClick={() => product && handleAddItemCart(product)} className="bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426]  text-white py-2   w-full font-medium flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer  md:rounded z-50">
+                            <button 
+                            onClick={() => product && handleAddItemCart(product)} 
+                            className="bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426]  text-white py-2   w-full font-medium flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer  rounded ">
                                 Añadir al carrito
                             </button>
 
@@ -205,7 +217,7 @@ export function Detail(){
                             className='w-full flex flex-1'
                             >
 
-                            <button  className="bg-linear-to-t to-[#2A4D4E] via-[#0B2D2E] from-[#B2D2E] text-white font-medium py-2   w-full flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer md:rounded z-50 md:border border-[#2A4D4E]">
+                            <button  className="bg-linear-to-t to-[#2A4D4E] via-[#0B2D2E] from-[#B2D2E] border border-[#2A4D4E] text-white font-medium  py-2   w-full flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer rounded  ">
                                 Ver más
                             </button>
                             </Link>
