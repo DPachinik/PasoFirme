@@ -22,7 +22,7 @@ const schema = z.object({
     descripcion:z.string().trim().nonempty('campo obligatorio'),
     color:z.string().nonempty('campo obligatorio'),
     precio:z.string().trim().nonempty('campo obligatorio'),
-    estado:z.enum(['En stock', 'Agotado', 'Novedades']),
+    estado:z.enum(['Pocas unidades', 'Agotado', 'Novedades']),
 })
 
 type FormData = z.infer<typeof schema>
@@ -165,13 +165,13 @@ export function New(){
                 
                 <div className="flex flex-col my-4 ">
                     
-                    <div className="w-full border border-[#2A4D4E] border-b-0 rounded-t-lg max-w-4xl mx-auto py-1 pl-4  text-white">
+                    <div className="w-full border border-[#2A4D4E] border-b-0 md:rounded-t-lg max-w-4xl mx-auto py-1 pl-4  text-white">
                         <h2 className={labelStyle}>REGISTRAR NUEVO PRODUCTO</h2>
                     </div>
 
-                    <div className="w-full max-w-4xl  flex flex-col mx-auto border border-[#2A4D4E] rounded-b-lg">
+                    <div className="w-full max-w-4xl  flex flex-col mx-auto border border-[#2A4D4E] md:rounded-b-lg">
 
-                        <div className="flex gap-2 w-full max-w-4xl mx-auto px-10  rounded-t-lg pt-4">
+                        <div className="flex gap-2 w-full max-w-4xl  md:mx-auto px-1 md:px-10  rounded-t-lg pt-4 ">
 
                             <button className="w-25 h-30  rounded-lg flex items-center justify-center bg-white">
                                 <FiUpload size={30} color="#2A4D4E" className="absolute cursor-pointer"/>
@@ -183,7 +183,7 @@ export function New(){
                                 />
                             </button>
 
-                            <div className="grid grid-cols-4 w-full gap-2 ">
+                            <div className="grid grid-cols-4 w-full gap-2">
 
                                 {[0,1,2,3].map((index)=>(
                                     <ImagePreview 
@@ -286,7 +286,7 @@ export function New(){
                                 />
                             </div>
 
-                            <div className="flex gap-12 items-center"> 
+                            <div className="flex gap-4 md:gap-12 items-center"> 
                                 <div className=" p-2 rounded-lg">
                                     <p className={labelStyle}>ESTADO DEL PRODUCTO</p>
                                     <div className="flex gap-4  w-fit p-2 rounded-lg mt-1  text-xs text-primary bg-white">
