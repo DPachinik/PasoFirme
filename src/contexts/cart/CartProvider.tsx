@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { CartContext, type CartProps } from "./CartContext";
-import type { ProductsProps } from "../../pages/home";
+import type { Product } from "../../features/products/types/product";
+
 
 
 
@@ -8,7 +9,7 @@ interface ProviderProps{
     children:ReactNode;
 }
 
-export type AddCartItem = ProductsProps & {
+export type AddCartItem = Product & {
   talle: number;
 }
 
