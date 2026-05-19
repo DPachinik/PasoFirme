@@ -9,40 +9,21 @@ import styles from './dashboard.module.css'
 import { IoWarningOutline } from "react-icons/io5";
 import { FiX } from "react-icons/fi";
 import { FaRegEdit } from "react-icons/fa";
-import { ProductsContext } from "../../contexts/products/ProductsContext";
-
-
-export interface ProductsProps{
-    id:string;
-    modelo:string;
-    calceMin:string;
-    calceMax?:string;
-    precio:number;
-    color:string;
-    estado:string;
-    descripcion:string;
-    imagenes:ImageProps[];
-}
-
-type ImageProps ={
-    idImage:string;
-    uid:string;
-    url:string;
-}
-
+import { ProductsContext } from "../../features/products/context/ProductsContext";
+import type { Product } from "../../features/products/types/product";
 
 
 
 export function Dashboard(){
 
     const {uid} = useContext(AuthContext);
-    const { updateItem } = useContext(ProductsContext);
+    const { updateProduct } = useContext(ProductsContext);
 
-    const[products, setProducts] = useState<ProductsProps[]>([]);
+    const[products, setProducts] = useState<Product[]>([]);
     const[loadImage, setLoadImage] = useState<string[]>([]);
     const[openModal, setOpenModal] = useState<boolean>(false);
     const[openStatusModal, setOpenStatusModal] = useState<boolean>(false);
-    const[shoe, setShoe]= useState<ProductsProps | null >(null);
+    const[shoe, setShoe]= useState<Product | null >(null);
     
     
         useEffect(()=>{
@@ -53,7 +34,7 @@ export function Dashboard(){
     
                 getDocs(queryRef)
                 .then((snapshot)=>{
-                    const list = [] as ProductsProps[];
+                    const list = [] as Product[];
     
                     snapshot.forEach((product)=>{
                         list.push({
@@ -100,7 +81,7 @@ export function Dashboard(){
 
 
 
-        async function handleDelete(product: ProductsProps){
+        async function handleDelete(product: Product){
 
             const docRef = doc(db,'shoes',product.id)           
             await deleteDoc(docRef);
@@ -120,7 +101,7 @@ export function Dashboard(){
             setProducts(products.filter(item=>item.id !== product.id))
         }
 
-        function handleOpenModal(product:ProductsProps){
+        function handleOpenModal(product:Product){
             setOpenModal(true);
             setShoe(product);
         }
@@ -140,7 +121,7 @@ export function Dashboard(){
             setShoe(null);
         }
 
-        function handleStatusOpenModal(product:ProductsProps){
+        function handleStatusOpenModal(product:Product){
             setOpenStatusModal(true);
             setShoe(product);
         }
@@ -158,7 +139,7 @@ export function Dashboard(){
             const formData = new FormData(e.currentTarget);
             const status = formData.get("estado") as string;
 
-            updateItem(shoe, status);
+            updateProduct(shoe, status);
 
             setOpenStatusModal(false)
 

@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { CartContext } from "../../../contexts/cart/CartContext";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import type { ProductsProps } from "../../dashboard";
+
 
 export function ProductDetails({ product }: { product: Product }) {
   const { addItemCart } = useContext(CartContext);
@@ -22,7 +22,7 @@ export function ProductDetails({ product }: { product: Product }) {
     tamaños = [min];
   }
 
-  function handleAddItemCart(product: ProductsProps) {
+  function handleAddItemCart(product: Product) {
     if (!selectedSize) {
       toast.error("seleccione un talle");
       return;

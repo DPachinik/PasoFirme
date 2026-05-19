@@ -11,7 +11,7 @@ interface ProductsContextData{
     loadInitialProducts:()=>void,
     getMoreProducts:()=>void,
     searchProducts:(input:string)=>void,
-    updateProduct:(productId:string, status:string)=>void,
+    updateProduct:(product:Product, status:string)=>void,
     clearSearch: () => void,
     getProduct: (id:string)=>void,
 

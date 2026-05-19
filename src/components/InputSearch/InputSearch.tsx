@@ -1,6 +1,6 @@
 import { useState, useContext} from "react";
 import { IoSearch } from "react-icons/io5";
-import { ProductsContext } from "../../contexts/products/ProductsContext";
+import { ProductsContext } from "../../features/products/context/ProductsContext";
 
 
 export function InputSearch(){
@@ -11,10 +11,7 @@ export function InputSearch(){
 
 
     function handleSearch(){
-        
-    if(input===''){
-        return;
-    }
+        if(input==='') return;
         searchProducts(input);
         setInput('');
     }
@@ -22,9 +19,9 @@ export function InputSearch(){
 
     return(
 
-        <div className='flex w-full items-center justify-center gap-2'>
+        <div className='flex w-full items-center justify-center gap-2  px-4 my-4'>
             <input
-                className='w-full max-w-2xl pl-2  h-8 border-b border-slate-400 outline-none text-white ' 
+                className='w-full max-w-xl pl-2  h-8 border-b border-slate-400 outline-none text-white ' 
                 type='text' 
                 placeholder='Buscar'
                 value={input}
@@ -37,8 +34,7 @@ export function InputSearch(){
                 onClick={handleSearch}
             >
                 <IoSearch  size={28} className='cursor-pointer text-[#2A4D4E] hover:text-[#C14426]' />
-            </button>
-                           
+            </button>        
         </div>
     )
 

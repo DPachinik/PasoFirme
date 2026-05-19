@@ -328,7 +328,7 @@ export function New(){
                                     type="color"
                                     name="color"
                                     register={register}
-                                    error={errors.modelo?.message}
+                                    error={errors.color?.message}
                                     />
                                 </div>
                             </div>
