@@ -1,6 +1,6 @@
 import { DashboardHeader } from "../../components/panelheader";
 import { useState, useEffect, useContext, useCallback } from 'react'
-import { AuthContext } from "../../contexts/auth/authContext";
+import { AuthContext } from "../../features/auth/authContext";
 import { ProductsContext } from "../../features/products/context/ProductsContext";
 import type { Product } from "../../features/products/types/product";
 import { DeleteModal } from "./components/deleteModal";

@@ -1,6 +1,6 @@
 import { DashboardHeader } from "../../../components/panelheader";
 import { useContext } from 'react';
-import { AuthContext } from '../../../contexts/auth/authContext'
+import { AuthContext } from '../../../features/auth/authContext'
 import { useShoes } from "./hook/useShoes";
 import { ImageUpLoadSection } from "./components/ImageUpLoadSection";
 import { Form } from "./components/form";

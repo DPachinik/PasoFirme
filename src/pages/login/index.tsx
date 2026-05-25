@@ -8,7 +8,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import  Toast  from 'react-hot-toast';
 import { useContext } from 'react';
-import { AuthContext} from '../../contexts/auth/authContext'
+import { AuthContext} from '../../features/auth/authContext'
 import logo from '/logo.png'
 
 

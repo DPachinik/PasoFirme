@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../contexts/cart/CartContext';
+import { CartContext } from '../../features/cart/CartContext';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiShoppingCart } from 'react-icons/fi';
 import toast from 'react-hot-toast';

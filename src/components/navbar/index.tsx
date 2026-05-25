@@ -1,4 +1,4 @@
-import {CartContext} from '../../contexts/cart/CartContext'
+import {CartContext} from '../../features/cart/CartContext'
 import { useContext } from 'react'
 import {  FiShoppingCart, FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";

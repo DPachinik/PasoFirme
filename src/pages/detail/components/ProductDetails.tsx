@@ -1,7 +1,7 @@
 import { IoIosStar } from "react-icons/io";
 import type { Product } from "../../../features/products/types/product";
 import { useContext, useState } from "react";
-import { CartContext } from "../../../contexts/cart/CartContext";
+import { CartContext } from "../../../features/cart/CartContext";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
