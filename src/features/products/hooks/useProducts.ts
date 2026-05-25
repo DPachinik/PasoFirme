@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import type { Product } from '../types/product';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
-import { getMoreProducts, getProduct, loadInitialProducts, searchProducts, updateProduct } from '../services/products.api';
+import { deleteProductApi, deleteImage, getMoreProducts, getProduct, loadInitialProducts, loadUserProducts, searchProducts, updateProduct } from '../services/products.api';
 import toast from 'react-hot-toast';
 
 
+
 export function useProducts(){
+
     const [products, setProducts] = useState <Product[]>([]);
     const [product, setProduct] = useState <Product | null>(null);
+    const [userProducts, setUserProducts] = useState <Product[] >([]);
     const [lastDoc, setLastDoc] = useState <QueryDocumentSnapshot | null>(null);
     const [loading, setLoading] = useState <boolean>(false);
     const [empty, setEmpty] = useState<boolean>(false);
@@ -84,7 +87,7 @@ export function useProducts(){
         }
     }
 
-        //función para actualizar el estado de un producto 
+    //función para actualizar el estado de un producto 
     async function handleUpdateProduct(product:Product, status:string){
         try{
             await updateProduct(product, status);
@@ -126,6 +129,36 @@ export function useProducts(){
         }
     }
 
+    //función para búsqueda de Productos por filtro de ususario
+
+    async function getUserProducts(uid:string | undefined) {
+        try{
+            setLoading(true);
+            if(!uid){
+                return;
+            }
+            const items = await loadUserProducts(uid);
+            setUserProducts(items);
+        }catch(err){
+            console.log(err);
+            toast.error('Error al buscar producto')
+        }finally{
+            setLoading(false);
+        }
+    }
+
+    //función para eliminar un Producto
+    async function deleteProduct({product, uid}:{product:Product; uid:string}){
+        try{
+            await deleteImage({product, uid});
+            await deleteProductApi(product);
+            setProducts(prev =>prev.filter(item => item.id !== product.id));
+        }catch(err){
+            console.log(err);
+            toast.error('Error al eliminar producto')
+        }  
+    }
+
     return{
         products,
         product,
@@ -133,11 +166,14 @@ export function useProducts(){
         loading,
         isFiltered,
         firstImage,
+        userProducts,
         loadInitialProducts:handleLoadInitialProducts,
         getMoreProducts:handleGetMoreProducts,
         searchProducts:handleSearchProducts,
         updateProduct:handleUpdateProduct,
         clearSearch:handleClearSearch,
         getProduct:handleGetProduct,
+        getUserProducts,
+        deleteProduct,
     };
 }

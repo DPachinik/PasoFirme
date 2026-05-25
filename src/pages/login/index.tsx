@@ -1,5 +1,5 @@
 import { Link, Navigate } from "react-router-dom";
-import { Input } from "../../components/input";
+import { Input } from "../dashboard/components/input";
 import {useForm} from 'react-hook-form'
 import {  z } from 'zod'
 import {zodResolver} from '@hookform/resolvers/zod'

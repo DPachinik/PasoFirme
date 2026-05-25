@@ -16,12 +16,15 @@ export function ProductsProvider ({children}:ProviderProps){
             loading,
             isFiltered,
             firstImage,
+            userProducts,
             loadInitialProducts,
             getMoreProducts,
             searchProducts,
             updateProduct,
             clearSearch,
             getProduct,
+            getUserProducts,
+            deleteProduct,
         } = useProducts();
         
     return(
@@ -33,12 +36,15 @@ export function ProductsProvider ({children}:ProviderProps){
             loading,
             isFiltered,
             firstImage,
+            userProducts,
             loadInitialProducts,
             getMoreProducts,
             searchProducts,
             updateProduct,
             clearSearch,
-            getProduct
+            getProduct,
+            getUserProducts,
+            deleteProduct,
         }}>
             {children}
         </ProductsContext.Provider>

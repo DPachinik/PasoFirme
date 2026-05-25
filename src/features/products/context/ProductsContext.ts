@@ -8,13 +8,15 @@ interface ProductsContextData{
     loading:boolean,
     isFiltered:boolean,
     firstImage:string | null,
+    userProducts:Product[],
     loadInitialProducts:()=>void,
     getMoreProducts:()=>void,
     searchProducts:(input:string)=>void,
     updateProduct:(product:Product, status:string)=>void,
     clearSearch: () => void,
     getProduct: (id:string)=>void,
-
+    getUserProducts: (uid:string|undefined)=>void,
+    deleteProduct:({product, uid}:{product:Product; uid:string})=>void,
 }
 
 export const ProductsContext = createContext({} as ProductsContextData)

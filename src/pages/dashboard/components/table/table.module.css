@@ -11,14 +11,13 @@
     height:40px;
     background:#ffffff;
     font-weight:medium;
-    
-
 }
 
 .tr{
     background-color: #ffffff;
     text-align:center;
     color:#2A4D4E;
+    min-height:80px
 }
 
 .td::before {
@@ -51,7 +50,6 @@
         padding: 8px;
         border-bottom:0.5px solid #2A4D4E;
         border-radius:0;
-
     }
 
     .td::before{

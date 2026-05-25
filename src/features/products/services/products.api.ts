@@ -1,8 +1,9 @@
-import { collection, query, orderBy, limit, getDocs, startAfter, where, updateDoc, doc, getDoc } from 'firebase/firestore';
+import { collection, query, orderBy, limit, getDocs, startAfter, where, updateDoc, doc, getDoc, deleteDoc } from 'firebase/firestore';
 import type { QueryDocumentSnapshot } from 'firebase/firestore';
-import { db } from '../../../services/firebaseConnection';
+import { db, storage } from '../../../services/firebaseConnection';
 import type { Product } from '../types/product';
 import { productMapper } from '../mappers/product.mapper';
+import { deleteObject, ref } from 'firebase/storage';
 
 //conexión inicial para buscar productos 
 export async function loadInitialProducts(): Promise<{
@@ -20,7 +21,7 @@ export async function loadInitialProducts(): Promise<{
    };
 }
 
-
+      
 //llamada para buscar más productos (paginación)
 export async function getMoreProducts(lastDoc:QueryDocumentSnapshot):Promise<{
     products:Product[];
@@ -52,7 +53,6 @@ export async function searchProducts(input:string):Promise<
         where('modelo', '<=',input.trim().toUpperCase()+ '\uf8ff'),
     );
     const snapshot = await getDocs(q)
-
     return snapshot.docs.map(productMapper)
     
 }
@@ -71,9 +71,33 @@ export async function getProduct(id:string):Promise<Product | null>{
     
 }
 
-
 //llamada para actualizar el estado de un producto
 export async function updateProduct(product:Product, status:string):Promise<void>{
     const itemRef = doc(db, 'shoes', product.id);
     await updateDoc(itemRef, {estado:status});
+}
+
+//llamada  para buscar productos de un usuario (búsqueda por filtro de uid)
+export async function loadUserProducts(uid:string): Promise<Product[]> {
+    const productsRef = collection(db, 'shoes');
+    const q = query(productsRef, where('uid', '==' , uid));
+    const snapshot = await getDocs(q);
+
+    return snapshot.docs.map(productMapper);
+}
+
+//llamada para eliminar un producto de la coleccion
+export async function deleteProductApi(product:Product):Promise<void> {
+    const productRef = doc(db,'shoes', product.id)
+    await deleteDoc(productRef);
+}
+
+//llamada al storaged para eliminar imagenes del producto
+export async function deleteImage({product, uid}:{product:Product; uid:string}):Promise<void>{
+    await Promise.all(product.imagenes.map(async (image)=>{
+        const imagePath = `images/${uid}/${image.idImage}`
+        const imageRef = ref(storage, imagePath);
+
+        await deleteObject(imageRef);
+    }))
 }

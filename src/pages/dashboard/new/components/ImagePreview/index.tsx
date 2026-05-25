@@ -1,6 +1,6 @@
 import { BiImageAdd } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
-import type { ImageProps } from "../../pages/dashboard/new";
+import type { ImageProps } from "../../types/image";
 
 interface ImagePreviewProps{
     image?:ImageProps;
