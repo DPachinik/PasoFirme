@@ -7,7 +7,7 @@ import { DeleteModal } from "./components/deleteModal";
 import { StatusModal } from "./components/statusModal";
 import { Table } from "./components/table";
 
-export function Dashboard(){
+export default function Dashboard(){
 
     const {uid} = useContext(AuthContext);
     const { updateProduct, getUserProducts, deleteProduct, userProducts } = useContext(ProductsContext);

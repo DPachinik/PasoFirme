@@ -1,13 +1,17 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { lazy, Suspense } from 'react';
 
 import { Home } from './pages/home'
 import { Carrito } from './pages/carrito'
 import { Layout } from './components/layout';
 import { Detail } from './pages/detail';
 import { Login } from './pages/login';
-import { Dashboard } from './pages/dashboard';
 import { Private } from './routes/Private';
-import { New } from './pages/dashboard/new';
+import { Spinner } from './components/spinner';
+
+const Dashboard = lazy(()=>import('./pages/dashboard'))
+const New = lazy(()=>import('./pages/dashboard/new'))
+
 
 const router = createBrowserRouter([
   {
@@ -33,11 +37,23 @@ const router = createBrowserRouter([
   },
   {
     path:"/dashboard",
-    element:<Private><Dashboard /></Private>
+    element:(
+      <Private>
+        <Suspense fallback={<Spinner />}>
+                  <Dashboard />
+        </Suspense>
+      </Private>
+    )
   },
   {
     path:"/dashboard/new",
-    element:<Private>< New /></Private>
+    element:(
+      <Private>
+        <Suspense fallback={<Spinner />}>
+                  <New />
+        </Suspense>
+      </Private>
+    )
   },
 ])
 

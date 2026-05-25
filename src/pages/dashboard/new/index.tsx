@@ -5,7 +5,7 @@ import { useShoes } from "./hook/useShoes";
 import { ImageUpLoadSection } from "./components/ImageUpLoadSection";
 import { Form } from "./components/form";
 
-export function New(){
+export default function New(){
 
     const {uid} = useContext(AuthContext);
     const {handleFile,shoeImages,handleDeleteImage,registerProduct} = useShoes();
