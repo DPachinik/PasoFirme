@@ -6,9 +6,7 @@
         --secondary:#E86343;
         --secondary-rel:#C14426;  
     }
-    html {
-        scroll-behavior: smooth;
-    }
+
 }
 
 @layer utilities {

@@ -5,7 +5,7 @@ import type { Product } from "../../../../features/products/types/product";
     const estadoColors:Record<string, string>={
     'Novedades': 'bg-white text-primary',
     'Pocas unidades': 'bg-secondary text-white',
-    'Agotado': 'bg-[#ff2323] text-white'
+    'Agotado': 'bg-[#ff0000] text-white'
     }
 
 export function ShoesCard({products}:{products:Product[]}){

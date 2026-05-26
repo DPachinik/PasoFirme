@@ -81,7 +81,7 @@ export function ProductDetails({ product }: { product: Product }) {
         <div className="flex flex-col  mt-4">
           <div className="flex flex-col gap-1">
             <span className="font-bold  text-xl text-white">Tamaños</span>
-            <div className="flex gap-2">
+            <div className="grid grid-cols-6 gap-2">
               {tamaños.map((size) => (
                 <button
                   key={size}

@@ -11,7 +11,7 @@ export function Aside(){
     const style="shadow shadow-[#2A4D4E] border border-[#2A4D4E] rounded pt-2 px-2 max-h-35  "
     const color ='#E86343'
     return(
-       <aside className=" grid grid-cols-2 md:grid-cols-4 px-2 gap-4 w-full max-w-7xl md:mx-auto">
+       <aside className=" grid grid-cols-2 md:grid-cols-4 px-2 xl:px-0 gap-4 w-full max-w-7xl md:mx-auto">
 
             <section className={style}>
                 <Card  title="Diseño" description="100% originales y exclusivos" >

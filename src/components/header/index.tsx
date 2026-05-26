@@ -6,9 +6,9 @@ import { MdDiscount } from 'react-icons/md';
 
 export function Header(){
     return(
-        <header className='flex flex-col justify-center    mx-auto gap-4 mt-4 '>
+        <header className='flex flex-col justify-center max-w-7xl   mx-auto gap-4 mt-4  '>
                     
-            <div className=' relative flex flex-col border-y border-[#2A4D4E] shadow-[0_-8px_10px_-10px_rgba(255,255,255,0.4)] '>
+            <div className=' relative flex flex-col border border-[#2A4D4E] rounded-lg shadow shadow-[#2A4D4E] mx-2 xl:mx-0 '>
 
                 <div className=' flex   w-full h-[220px] md:h-[300px] '>
 

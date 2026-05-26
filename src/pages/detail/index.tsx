@@ -8,7 +8,7 @@ import { ProductDetails } from './components/ProductDetails';
 
 
 export function Detail(){
-
+ 
     const { id }= useParams();
     const navigate = useNavigate(); 
     const {getProduct, product }=useContext(ProductsContext);

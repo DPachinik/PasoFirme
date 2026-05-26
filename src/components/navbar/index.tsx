@@ -13,13 +13,12 @@ export function Navbar(){
 
 
     return(
-        <div className="  w-full mt-4 px-2 ">
+        <div className="  w-full mt-4 px-2  z-30 ">
 
             <nav className=" flex bg-white w-full  max-w-7xl h-14 md:flex items-center justify-between px-2 md:px-6 mx-auto   rounded-lg ">
                 <Link className=" relative flex font-bold text-2xl text-amber-50" to='/'>
 
-                    <span className='bg-primary bg-clip-text text-transparent select-none'>Paso</span>
-                    <span className='bg-secondary-rel bg-clip-text text-transparent select-none'>Firme</span>
+                    <h1 className='bg-secondary bg-clip-text text-transparent select-none hover:tracking-widest duration-300'>PasoFirme</h1>
                     <img 
                     src={logo} 
                     className='w-12 absolute -right-10'
@@ -35,7 +34,7 @@ export function Navbar(){
                     <Link className="relative" to='/cart'>
                         <FiShoppingCart size={24} color="#213747"/>
                         { cart.length >0 && (
-                            <span className="absolute -right-3 -top-4 px-2.5 bg-[#C00000] w-6 h-6 rounded-full flex justify-center items-center text-white ">{ cart.length}</span>
+                            <span className="absolute -right-3 -top-3 px-2.5 bg-[#C00000] w-5 h-5 rounded-full flex justify-center items-center text-white ">{ cart.length}</span>
                         )}
                     </Link>
 

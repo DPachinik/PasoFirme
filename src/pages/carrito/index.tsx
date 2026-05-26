@@ -5,7 +5,7 @@ import { FaMinus, FaPlus } from 'react-icons/fa';
 import { FiShoppingCart } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import styles from './carrito.module.css'
-import { MdKeyboardDoubleArrowDown } from 'react-icons/md';
+
 
 export function Carrito(){
 
@@ -86,9 +86,6 @@ export function Carrito(){
                 
             </div>
 
-                <div className='arrow-container'>
-                    <MdKeyboardDoubleArrowDown size={50}  color='#2A4D4E' className='arrow' />
-                </div>
 
             {cart.length === 0 && (
                 <div className='flex flex-col items-center justify-center gap-3'>
