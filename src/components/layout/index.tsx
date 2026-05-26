@@ -1,11 +1,12 @@
 import { Navbar } from '../navbar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, ScrollRestoration } from 'react-router-dom'
 
 export function Layout(){
     return(
         <>
-        <Navbar />
-        <Outlet />
+            <ScrollRestoration />
+            <Navbar />
+            <Outlet />
         </>
 
     )
