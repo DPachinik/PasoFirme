@@ -21,7 +21,7 @@ export function ImagePreview({image, onDelete}:ImagePreviewProps){
 
                 <img 
                 src={`${image.previewUrl}`} 
-                className="w-full h-30  rounded-lg"
+                className="w-full h-30  rounded-lg object-contain"
                 loading="lazy"
                 decoding="async"
                 alt="producto"
