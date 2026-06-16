@@ -12,7 +12,7 @@ export interface Product{
 }
 
 export type ImageProps ={
-    idImage:string;
+    uidImage:string;
     uid:string;
     url:string;
 }

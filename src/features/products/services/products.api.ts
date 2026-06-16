@@ -94,8 +94,9 @@ export async function deleteProductApi(product:Product):Promise<void> {
 
 //llamada al storaged para eliminar imagenes del producto
 export async function deleteImage({product, uid}:{product:Product; uid:string}):Promise<void>{
+    console.log(product.imagenes)
     await Promise.all(product.imagenes.map(async (image)=>{
-        const imagePath = `images/${uid}/${image.idImage}`
+        const imagePath = `images/${uid}/${image.uidImage}`
         const imageRef = ref(storage, imagePath);
 
         await deleteObject(imageRef);

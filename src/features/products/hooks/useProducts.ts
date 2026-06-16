@@ -91,7 +91,7 @@ export function useProducts(){
     async function handleUpdateProduct(product:Product, status:string){
         try{
             await updateProduct(product, status);
-            setProducts((prev)=>
+            setUserProducts((prev)=>
                 prev.map(doc=> doc.id === product.id?{...doc, estado:status}:doc)
             )
             toast.success('Producto actualizado exitosamente', {style:{backgroundColor:'#ffff', color:'#0B2D2E'}})
@@ -120,7 +120,7 @@ export function useProducts(){
                 return null;
             }else{
 
-                setFirstImage(item.imagenes[0].idImage)
+                setFirstImage(item.imagenes[0].uidImage)
             }
             setProduct(item)
         }catch(err){
@@ -152,7 +152,7 @@ export function useProducts(){
         try{
             await deleteImage({product, uid});
             await deleteProductApi(product);
-            setProducts(prev =>prev.filter(item => item.id !== product.id));
+            setUserProducts(prev =>prev.filter(item => item.id !== product.id));
         }catch(err){
             console.log(err);
             toast.error('Error al eliminar producto')

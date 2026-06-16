@@ -21,18 +21,24 @@ const schema = z.object({
 export type FormData = z.infer<typeof schema>
 
 interface OnSubmitProps{
-  onSubmit:(data:FormData)=>void
+  onSubmit:(data:FormData)=> Promise<boolean |undefined | string>
 }
 export function Form({onSubmit}:OnSubmitProps) {
 
-      const{ register, handleSubmit, formState:{errors} }=useForm<FormData>({
+      const{ register, handleSubmit, formState:{errors} , reset }=useForm<FormData>({
         resolver:zodResolver(schema),
         mode:'onChange'
     })
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+       onSubmit={handleSubmit(async (data) => {
+    const success = await onSubmit(data);
+
+    if (success) {
+      reset();
+    }
+  })}
       className="flex flex-col gap-2 mx-auto  my-4 w-full max-w-3xl "
     >
       <div className=" p-2 rounded-lg flex flex-col gap-4 w-full ">

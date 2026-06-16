@@ -8,8 +8,8 @@ export function ImageContainer({product}:{product:Product}){
     const [loadImage, setLoadImage] = useState<string[]>([])
 
     const oderedImages = [...product.imagenes].sort((a,b)=>{
-        if(a.idImage === mainImage) return -1
-        if(b.idImage === mainImage) return 1
+        if(a.uidImage === mainImage) return -1
+        if(b.uidImage === mainImage) return 1
         return 0
     })
 
@@ -20,12 +20,12 @@ export function ImageContainer({product}:{product:Product}){
         <>
          {oderedImages.map((imagen, index) => {
 
-                            const isLoaded = loadImage.includes(imagen.idImage);
+                            const isLoaded = loadImage.includes(imagen.uidImage);
 
                             return (
                                 <div
-                                key={imagen.idImage}
-                                onClick={()=>setMainImage(imagen.idImage)}
+                                key={imagen.uidImage}
+                                onClick={()=>setMainImage(imagen.uidImage)}
                                 className={`relative w-full rounded-lg  border border-[#2A4D4E] bg-[#2A4D4E] overflow-hidden 
                                 ${index === 0 ? "col-span-3 h-70" : "h-40 hover:border-[#E86343] cursor-pointer"} `}
                                 >
@@ -39,7 +39,7 @@ export function ImageContainer({product}:{product:Product}){
                                     className={`w-full h-full object-contain transition-opacity duration-300
                                     ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"} hover:scale-110 hover:transition-all duration-150`}
                                     src={imagen.url}
-                                    onLoad={() => handleLoadImage(imagen.idImage)}
+                                    onLoad={() => handleLoadImage(imagen.uidImage)}
                                     decoding='async'
                                     alt={product.modelo}
                                     />

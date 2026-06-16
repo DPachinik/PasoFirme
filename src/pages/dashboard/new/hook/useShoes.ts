@@ -2,6 +2,7 @@ import { useState, type ChangeEvent } from "react";
 import type { ImageProps } from "../types/image";
 import { deleteImage, upLoadImage, upLoadProduct } from "../services/image.api";
 import type { FormData } from "../components/form";
+import toast from "react-hot-toast";
 
 interface FileProps{
     e:ChangeEvent<HTMLInputElement>;
@@ -17,22 +18,28 @@ export function useShoes(){
         
         try{
             if(!uid){
+                console.log('error: usuario no registrado como administrador')
                 return;
             }
 
             if(shoeImages.length >= 4){
+                toast('Máximo 4 imágenes por producto', {
+                icon: '⚠️',
+                });
+                
                 return;
             }
 
             if(e.target.files && e.target.files[0]){
             const image = e.target.files[0];
 
-            if(image.type === 'image/jpeg' || image.type === 'image/png'){
+            if(image.type === 'image/jpeg' || image.type === 'image/png' || image.type === 'image/webp' ){
                 
                 const imageItem= await upLoadImage({image, uid})
                 setShoeImages((prev)=>[...prev, imageItem])
 
             }else{
+                toast.error('formato de imagen no valido');
                 return
             }
         }
@@ -58,7 +65,7 @@ export function useShoes(){
     async function registerProduct(shoeImages:ImageProps[], data:FormData, uid:string|undefined) {
         try{
             if(shoeImages.length ===0){
-            return;
+            return toast.error('Debes cargar al menos una imagen');
             }
 
             if(!uid){
@@ -74,8 +81,16 @@ export function useShoes(){
             })
 
             await upLoadProduct(data, shoesListImage, uid)
+            toast.success('producto registrado exitosamente')
+
+            setShoeImages([]);
+
+            return true;
+
         }catch(err){
-            console.log(err)
+            console.log(err);
+            toast.error('error al registrar el producto');
+            return false;
         }
     }
 
