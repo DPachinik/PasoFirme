@@ -27,7 +27,7 @@ export interface CartProps{
 interface ImageProps{
     uid:string;
     url:string;
-    idImage:string;
+    uidImage:string;
 }
 
 export const   CartContext= createContext({} as CartContextData)
