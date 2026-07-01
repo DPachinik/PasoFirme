@@ -21,18 +21,18 @@ export function ShoesCard({products}:{products:Product[]}){
         {products.map((product)=>(
                         <article 
                         key={product.id}
-                        className="relative max-w-[75%] sm:max-w-[80%] md:max-w-[90%] h-[380px] rounded-lg  flex flex-col items-center">
+                        className="relative max-w-[75%] sm:max-w-[80%] md:max-w-[90%] h-[380px] rounded-lg  flex flex-col items-center mb-12">
 
                 
                             <div 
-                            className='w-full min-w-[250px] min-h-[200px] bg-slate-200 rounded-t-lg animate-pulse '
+                            className='w-full min-w-[250px] min-h-[200px] bg-slate-300 rounded-t-lg animate-pulse '
                             style={{display:loadImage.includes(product.id)? 'none':'block'}}
                             >
                             </div>
 
 
                             <div  style={{display:loadImage.includes(product.id)? 'block':'none'}} className=''  >
-                                <div className='relative w-full max-w-[250px] min-h-[200px]  rounded-t-lg bg-white/15 px-4 '>
+                                <div className='relative w-full max-w-[250px] min-h-[200px]  rounded-t-lg bg-white px-4  shadow shadow-gray-300'>
                                     
                                         <img 
                                         className=" h-[200px] w-[250px] rounded-t-lg   object-contain  sm:p-4 "
@@ -50,7 +50,7 @@ export function ShoesCard({products}:{products:Product[]}){
                                 </div>
                             </div>
 
-                            <section className='absolute top-[190px] h-[200px] w-full max-w-[250px] flex flex-col   px-3 rounded-xl  bg-white ' >
+                            <section className='absolute top-[190px] h-[200px] w-full max-w-[250px] flex flex-col   px-3 rounded-xl  bg-white shadow shadow-gray-300 ' >
                                     
                                 <div className='flex flex-col'>
                                     <p className="font-bold mt-2 mb-2 text-primary uppercase">{product.modelo}</p>

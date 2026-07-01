@@ -42,7 +42,7 @@ export function ProductDetails({ product }: { product: Product }) {
 
   return (
       <div className="w-full  flex flex-col   rounded-lg px-4 ">
-        <h1 className=" text-3xl font-bold text-white text-nowrap">
+        <h1 className=" text-3xl font-bold text-primary text-nowrap">
           {" "}
           {product.modelo}
         </h1>
@@ -55,7 +55,7 @@ export function ProductDetails({ product }: { product: Product }) {
         </div>
 
         <div className="flex  ">
-          <strong className="text-secondary-rel text-2xl">
+          <strong className="text-secondary text-2xl">
             {product?.precio.toLocaleString("es-PY", {
               style: "currency",
               currency: "PYG",
@@ -64,14 +64,14 @@ export function ProductDetails({ product }: { product: Product }) {
         </div>
 
         <div className="w-full flex flex-col mt-4 ">
-          <span className="font-bold text-white text-xl">Descripción</span>
-          <p className="text-base md:text-sm text-white/60">
+          <span className="font-bold text-primary text-xl">Descripción</span>
+          <p className="text-base md:text-sm text-gray-600">
             {product.descripcion}
           </p>
         </div>
 
         <div className="flex flex-col gap-1 mt-4">
-          <span className="font-bold text-white text-xl">Color</span>
+          <span className="font-bold text-primary text-xl">Color</span>
           <span
             className="h-4 w-4 rounded-full "
             style={{ backgroundColor: product.color }}
@@ -80,12 +80,12 @@ export function ProductDetails({ product }: { product: Product }) {
 
         <div className="flex flex-col  mt-4">
           <div className="flex flex-col gap-1">
-            <span className="font-bold  text-xl text-white">Tamaños</span>
+            <span className="font-bold  text-xl text-primary">Tamaños</span>
             <div className="grid grid-cols-6 gap-2">
               {tamaños.map((size) => (
                 <button
                   key={size}
-                  className=" px-3 py-1 rounded border border-[#2A4D4E] text-[#2A4D4E] cursor-pointer hover:bg-[#2A4D4E] hover:text-white transition-all"
+                  className=" px-3 py-1 rounded bg-white border border-[#2A4D4E] text-[#2A4D4E] cursor-pointer hover:bg-[#082F36] hover:text-white transition-all"
                   onClick={() => setSelectedSize(size)}
                   style={selectedSize === size? { backgroundColor: "#2A4D4E", color: "white" }: {}
                   }
@@ -97,17 +97,21 @@ export function ProductDetails({ product }: { product: Product }) {
           </div>
         </div>
 
-        <div className="w-full flex flex-col md:flex-row px-4  items-center justify-center gap-4 mt-4  md:max-w-[90%]  my-4">
-          <button
-            onClick={() => product && handleAddItemCart(product)}
-            className="bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426]  text-white py-2   w-full font-medium flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer  rounded "
-          >
-            Añadir al carrito
-          </button>
+        <div className="w-full flex flex-col md:flex-row   items-center justify-center gap-4 mt-8  md:max-w-[90%]  my-4">
+          
+          <div className="w-44 bg-[#C00000] rounded">
+            <button
+              onClick={() => product && handleAddItemCart(product)}
+              className="bg-[#E86343]/70  text-white text- text-nowrap py-2   w-full font-medium flex flex-1 items-center justify-center gap-4  cursor-pointer  rounded "
+            >
+              AÑADIR AL CARRITO
+            </button>
 
-          <div  className="w-full flex flex-1">
-            <Link to="/" className="bg-linear-to-t to-[#2A4D4E] via-[#0B2D2E] from-[#B2D2E] border border-[#2A4D4E] text-white font-medium  py-2   w-full flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer rounded  ">
-              Ver más
+          </div>
+
+          <div  className="w-44  flex bg-black rounded ">
+            <Link to="/" className="bg- text-white text-nowrap font-medium  py-2   w-full flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer rounded bg-[#082F36]/50 ">
+              SEGUIR COMPRANDO
             </Link>
           </div>
         </div>

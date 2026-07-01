@@ -82,7 +82,7 @@ export function Carrito(){
                 <h1 className="font-semibold text-3xl     text-secondary ">
                     Tu Carrito 
                 </h1>
-                <FiShoppingCart size={24} className='text-white -rotate-12'/>
+                <FiShoppingCart size={24} className='text-secondary -rotate-12'/>
                 
             </div>
 
@@ -90,7 +90,7 @@ export function Carrito(){
             {cart.length === 0 && (
                 <div className='flex flex-col items-center justify-center gap-3'>
 
-                    <p className='text-xl font-medium text-[#2A4D4E] text-center'>¡Carrito vacío, es hora de seleccionar productos!</p>
+                    <p className='text-xl font-medium text-primary text-center'>¡Carrito vacío, es hora de seleccionar productos!</p>
 
                     <Link 
                     to="/"
@@ -108,7 +108,7 @@ export function Carrito(){
 
                         <table>
 
-                            <thead>
+                            <thead className='shadow shadow-gray-400'>
                                 <tr >
                                     <th className='text-start pl-4  rounded-tl rounded-bl'>Productos</th>
                                     <th className='text-center '>Cantidad</th>
@@ -121,7 +121,7 @@ export function Carrito(){
                                 {cart.map((item)=>(
                                     <tr 
                                     key={item.id} 
-                                    className={styles.tr}>
+                                    className={`${styles.tr} shadow shadow-gray-400 rounded`}>
 
                                         <td 
                                         className={`rounded-tl-lg rounded-bl-lg ${styles.td} `}
@@ -194,75 +194,85 @@ export function Carrito(){
 
                         </table>
 
-                        <div className='w-full flex md:justify-center'>
-                            <Link 
-                            to='/'
-                            className='mx-4'
-                            >
-                                    <button className="bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426]  text-white   w-full max-w-3xs font-medium flex  items-center justify-center gap-4 cursor-pointer py-1 px-4 rounded"> seguir comprando</button>
-                            </Link>
+                        <div className='w-full flex items-center justify-center'>
+
+                            <div className=' flex md:justify-center w-44 bg-[#C00000] rounded'>
+                                <Link 
+                                to='/'
+                                className='bg-[#E86343]/70 text-nowrap text-white py-2 w-full rounded text-center  font-medium'
+                                >
+                                    SEGUIR COMPRANDO
+                                </Link>                                
+                            </div>
+
                         </div>
 
                     </div> 
 
-                    <div className=' flex-1 mx-auto w-full  max-w-sm px-4 py-2 border border-[#2A4D4E]  md:rounded-lg'>
-                        <h2 className='border-b border-[#2A4D4E]  py-2 mb-4 font-semibold text-white'>Resumen del Pedido</h2>
-                        <div className='mb-8'>
-                            <div className='flex justify-between mb-4 font-medium text-white'>
-                                <span >Total Productos</span>
-                                <span>{cantidad} items</span>
+                    <div className=' flex-1 mx-auto w-full  sm:max-w-sm   rounded-lg bg-black'>
+                        <div className='bg-[#082F36]/50 px-4 py-2 rounded-lg'>
+                            <h2 className='border-b border-[#2A4D4E]  py-2 mb-4 font-semibold text-white'>Resumen del Pedido</h2>
+                            <div className='mb-8'>
+                                <div className='flex justify-between mb-4 font-medium text-white'>
+                                    <span >Total Productos</span>
+                                    <span>{cantidad} items</span>
+                                </div>
+
+                                <div className='flex justify-between mb-8'>
+                                    <span className='font-medium text-white'>Total Precio</span>
+                                    <strong className='text-secondary text-lg'>{totalP}</strong>
+                                </div>
+
+                                <div>
+                                    <p className='text-white mb-2'>Completa tus datos</p>
+
+
+                                    <input
+                                        className='w-full max-w-2xl pl-2  h-8 text-primary bg-white rounded outline-none mb-4' 
+                                        type='text' 
+                                        placeholder='Nombre y Apellido'
+                                        value={nombre}
+                                        onChange={(e)=>setNombre(e.target.value)}
+                                        required
+                                    />
+
+                                    <input
+                                        className='w-full max-w-2xl pl-2  h-8 text-primary bg-white rounded outline-none mb-4' 
+                                        type='text' 
+                                        placeholder='C.I'
+                                        value={ci}
+                                        onChange={(e)=>setCi(e.target.value)}
+                                        required
+                                    />
+
+                                    <input
+                                        className='w-full max-w-2xl pl-2  h-8 text-primary bg-white rounded  outline-none mb-4' 
+                                        type='text' 
+                                        placeholder='Destino'
+                                        value={ciudad}
+                                        onChange={(e)=>setCiudad(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <p className='text-crema text-sm'> 🚚 El envío no está incluido en el total y se cobrará de manera adicional.</p>
+                                </div>
+
                             </div>
-
-                            <div className='flex justify-between mb-8'>
-                                <span className='font-medium text-white'>Total Precio</span>
-                                <strong className='text-secondary text-lg'>{totalP}</strong>
+                        
+                            <div className='flex justify-center m'>
+                                <div className='bg-[#C00000] w-fit rounded'>
+                                    <a 
+                                    onClick={handleWhatsApp} 
+                                    rel='external'
+                                    className='flex items-center justify-center  text-sm  px-6 py-1   font-medium cursor-pointer bg-[#E86343]/70 text-white rounded z-30'
+                                    >
+                                        FINALIZAR COMPRA
+                                        
+                                    </a>                                        
+                                </div>                                   
                             </div>
-
-                            <div>
-                                <p className='text-white mb-2'>Completa tus datos</p>
-
-
-                                <input
-                                    className='w-full max-w-2xl pl-2  h-8 text-primary bg-white rounded outline-none mb-4' 
-                                    type='text' 
-                                    placeholder='Nombre y Apellido'
-                                    value={nombre}
-                                    onChange={(e)=>setNombre(e.target.value)}
-                                    required
-                                />
-
-                                <input
-                                    className='w-full max-w-2xl pl-2  h-8 text-primary bg-white rounded outline-none mb-4' 
-                                    type='text' 
-                                    placeholder='C.I'
-                                    value={ci}
-                                    onChange={(e)=>setCi(e.target.value)}
-                                    required
-                                />
-
-                                <input
-                                    className='w-full max-w-2xl pl-2  h-8 text-primary bg-white rounded  outline-none mb-4' 
-                                    type='text' 
-                                    placeholder='Destino'
-                                    value={ciudad}
-                                    onChange={(e)=>setCiudad(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <p className='text-[#2A4D4E] text-sm'> 🚚 El envío no está incluido en el total y se cobrará de manera adicional.</p>
-                            </div>
-
                         </div>
-                       
-                         <a 
-                        onClick={handleWhatsApp} 
-                        rel='external'
-                        className='flex items-center justify-center  text-sm  px-6 py-1   font-medium cursor-pointer bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426]  text-white rounded '
-                        >
-                            Finalizar compra
-                            
-                        </a>
 
 
                     </div>

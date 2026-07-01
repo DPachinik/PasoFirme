@@ -2,9 +2,13 @@
 
 @layer base {
     :root {
-        --primary:#0B2D2E;
+        --primary:#082F36;
         --secondary:#E86343;
-        --secondary-rel:#C14426;  
+        --secondary-rel:#C14426;
+        --titulos:#082F36;
+        --crema:#F1EFE7;
+        --coral:#E86A5C;
+        --coral-oscuro:#C85B50; 
     }
 
 }
@@ -12,8 +16,21 @@
 @layer utilities {
 
     .text-primary{
-        color: var(--primary);
+        color: var(--titulos);
     }
+
+    .text-crema{
+        color: var(--crema);
+    }
+
+    .text-coral{
+        color: var(--coral);
+    }
+    .text-coral-oscuro{
+        color: var(--coral-oscuro);
+    }
+
+    
 
     .text-secondary{
         color: var(--secondary)
@@ -24,6 +41,10 @@
 
     .bg-primary{
         background-color: var(--primary)
+    }
+
+    .bg-coral-oscuro{
+        background-color: var(--coral-oscuro)
     }
 
     .bg-secondary{
@@ -88,6 +109,36 @@
             transform: rotate(360deg);
         }
     }
+
+    .animate-pin{ animation: pin 1.4s cubic-bezier(0,0,0.2,1) infinite; }
+
+    @keyframes pin {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    75%,
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+        } 
+    }
+
+    .animate-down{ animation: down 0.4s ease-out forwards}
+
+    @keyframes down{
+        0%{
+           transform: translateY(-100%);
+            opacity:0;
+        }
+
+        100%{
+            transform:translateY(0);
+            opacity:1;
+        }
+    }
+
 
 
 

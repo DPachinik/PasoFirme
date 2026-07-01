@@ -1,84 +1,53 @@
-import { Aside } from '../../components/aside';
-import  zapato  from '/zapato.png'
-import { IoIosArrowForward, IoIosStar } from 'react-icons/io';
-import { MdDiscount } from 'react-icons/md';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import  zapato  from '/oxford.webp'
 
 
 export function Header(){
     return(
-        <header className='flex flex-col justify-center max-w-7xl   mx-auto gap-4 mt-4  '>
+        <header className='flex flex-col justify-center   gap-4  bg-black'>
                     
-            <div className=' relative flex flex-col border border-[#2A4D4E] rounded-lg shadow shadow-[#2A4D4E] mx-2 xl:mx-0 '>
+            <section className=' relative flex flex-col  bg-[#082F36]/60  '>
 
-                <div className=' flex   w-full h-[220px] md:h-[300px] '>
+                <div className=' flex  justify-between w-full  h-[400px] sm:h-[300px] max-w-7xl mx-auto'>
 
-                    
+                    <div className='  flex flex-col mt-4 sm:mt-0 sm:pl-10  pl-2 z-20'>
 
-                    <div className='  flex flex-col mt-2 sm:pl-10  pl-2 z-20'>
-
-                        <div className='  flex  flex-col  z-30 '>
-                                    
+                        <div className='  flex  flex-col space-y-2 sm:space-y-4'>               
                                     <div className='w-full flex items-center md:mt-4 gap-3 '>
-
-                                        <p className='w-full text-secondary font-semibold text-2xl sm:text-3xl md:text-4xl  '>Elegancia en cada paso  </p>
+                                        <p className='w-full text-secondary font-medium text-sm '>NUEVA COLECCIÓN 2026 </p>
                                     </div>
-
-                                    <p className='text-xs md:text-lg  max-w-[200px] sm:max-w-full text-white '>Calzado masculino en cuero premium 100% nacional</p>
+                                    <div className='w-full font-semibold text-4xl lg:text-5xl'>
+                                        <p className='sm:max-w-full text-white '>DISEÑADOS </p>
+                                        <p className='sm:max-w-full text-white '> PARA DESTACAR</p>
+                                        <p className='text-base text-crema mt-2 font-light text-wrap max-w-[250px] lg:max-w-full '>Calzado masculino en cuero premium 100% nacional</p>
+                                    </div>
                         </div>
 
-                        <div className='relative flex   w-fit  sm:flex-row  sm:justify-start sm:items-center sm:gap-4 mt-4 border border-[#E86343]  px-4 py-1 gap-2'>
-                            
-                            <p className='text-xl md:text-4xl font-semibold text-white  pl-1 '>Hasta  </p>
-                            <p className='text-secondary text-xl md:text-4xl text-center  md:text-start font-bold'>40% OFF </p>
-                            <MdDiscount  color='#E86343' className='absolute -right-4 top-0  text-xl md:text-2xl'/>
-                        </div>
-
-                        <div className='w-fit flex flex-col items-start  md:flex-row md:items-center  gap-2 mt-4 md:mt-12  '>
-
-                            <a 
-                            href='#productos'
-                            className='flex  items-center justify-center gap-2 p-1 px-4 w-fit bg-linear-to-t to-[#E86343] via-[#E86343] from-[#C14426] font-medium rounded shadow text-nowrap text-white text-sm '>
-                                Ver colección 
-                                <IoIosArrowForward className='text-sm md:text-lg' />
+                        <div className='relative bg-[#C00000] w-fit h-fit mt-8 rounded ml-2 sm:ml-0 '> 
+                            <a href='#productos'
+                            className=' flex  items-center justify-center  gap-2 p-2 px-2 w-fit   font-medium rounded  text-nowrap text-white text-base bg-[#E86343]/70 z-30'>
+                                    COMPRAR AHORA 
+                                    <FaArrowRightLong className='text-sm md:text-base'/>
                             </a>
 
-                            <div className='flex gap-2 items-center text-white text-sm md:text-lg '>
-                                <span className='font-semibold '>+5.000 </span>
+                            <div className='absolute -top-1 border-2 border border-[#C14426] h-12 w-[174px] rounded z-0 animate-pin'> 
 
-                                <p className='text-sm text-nowrap'>clientes satisfechos</p>
-
-                                <div className='flex items-center'>
-                                    <IoIosStar size={18} color='#FFCE1B' />
-                                    <IoIosStar size={18} color='#FFCE1B' />
-                                    <IoIosStar size={18} color='#FFCE1B' />
-                                    <IoIosStar size={18} color='#FFCE1B' />
-                                    <IoIosStar size={18} color='#FFCE1B' />
-                                </div>
                             </div>
-
-                        </div>
-                        
-
-                        
+                        </div> 
 
                     </div>
-                            
 
-            
-                    <div className='absolute  right-0 flex w-full   justify-end '>
-                            <img 
-                            src={zapato} 
-                            className=' w-[220px] md:w-sm '
-                            decoding='async'
-                            alt='zapato'
-                            /> 
-                    </div>
-                                                        
+                    <div className='absolute bottom-0 right-0 md:static w-60 px-2 sm:mx-8 sm:w-80 '>
+                        <img 
+                        src={zapato} 
+                        alt="zapato"
+                        className='drop-shadow-lg drop-shadow-black'
+                        />
+                    </div>                             
                 </div>
                 
-
-            </div>
-            <Aside />                     
+            </section>
+                  
         </header>
     )
 }

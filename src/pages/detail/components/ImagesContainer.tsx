@@ -26,7 +26,7 @@ export function ImageContainer({product}:{product:Product}){
                                 <div
                                 key={imagen.uidImage}
                                 onClick={()=>setMainImage(imagen.uidImage)}
-                                className={`relative w-full rounded-lg  border border-[#2A4D4E] bg-[#2A4D4E] overflow-hidden 
+                                className={`relative w-full rounded-lg  bg-white overflow-hidden shadow shadow-gray-400
                                 ${index === 0 ? "col-span-3 h-70" : "h-40 hover:border-[#E86343] cursor-pointer"} `}
                                 >
 
