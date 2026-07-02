@@ -11,7 +11,7 @@ export function Detail(){
  
     const { id }= useParams();
     const navigate = useNavigate(); 
-    const {getProduct, product, lastD }=useContext(ProductsContext);
+    const {getProduct, product }=useContext(ProductsContext);
 
     useEffect(()=>{
         function loadProducts (){
