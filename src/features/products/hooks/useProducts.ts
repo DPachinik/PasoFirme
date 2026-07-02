@@ -167,6 +167,7 @@ export function useProducts(){
         isFiltered,
         firstImage,
         userProducts,
+        lastDoc,
         loadInitialProducts:handleLoadInitialProducts,
         getMoreProducts:handleGetMoreProducts,
         searchProducts:handleSearchProducts,

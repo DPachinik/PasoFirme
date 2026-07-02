@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 import type { Product } from '../types/product';
+import type { QueryDocumentSnapshot } from 'firebase/firestore';
 
 interface ProductsContextData{
     products:Product[],
@@ -8,6 +9,7 @@ interface ProductsContextData{
     loading:boolean,
     isFiltered:boolean,
     firstImage:string | null,
+    lastDoc:QueryDocumentSnapshot | null
     userProducts:Product[],
     loadInitialProducts:()=>void,
     getMoreProducts:()=>void,
