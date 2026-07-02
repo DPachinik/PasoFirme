@@ -19,9 +19,9 @@ export function InputSearch(){
 
     return(
 
-        <div className='flex w-full items-center justify-center gap-2  px-4 my-4'>
+        <div className='flex w-full max-w-2xl  items-center justify-center gap-2  my-4 bg-white px-2 rounded '>
             <input
-                className='w-full max-w-xl pl-2  h-8 border-b border-slate-400 outline-none text-white ' 
+                className='w-full   h-8  outline-none text-[#082F36] ' 
                 type='text' 
                 placeholder='Buscar'
                 value={input}
@@ -33,7 +33,7 @@ export function InputSearch(){
                 className=''
                 onClick={handleSearch}
             >
-                <IoSearch  size={28} className='cursor-pointer text-[#2A4D4E] hover:text-[#C14426]' />
+                <IoSearch  size={24} className='cursor-pointer text-[#2A4D4E] hover:text-[#C14426]' />
             </button>        
         </div>
     )
