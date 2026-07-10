@@ -110,7 +110,7 @@ export function ProductDetails({ product }: { product: Product }) {
           </div>
 
           <div  className="w-44  flex bg-black rounded ">
-            <Link to="/" className="bg- text-white text-nowrap font-medium  py-2   w-full flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer rounded bg-[#082F36]/50 ">
+            <Link to="/#shoes" className="bg- text-white text-nowrap font-medium  py-2   w-full flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer rounded bg-[#082F36]/50 ">
               SEGUIR COMPRANDO
             </Link>
           </div>

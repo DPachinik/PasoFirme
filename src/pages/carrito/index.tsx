@@ -198,7 +198,7 @@ export function Carrito(){
 
                             <div className=' flex md:justify-center w-44 bg-[#C00000] rounded'>
                                 <Link 
-                                to='/'
+                                to='/#shoes'
                                 className='bg-[#E86343]/70 text-nowrap text-white py-2 w-full rounded text-center  font-medium'
                                 >
                                     SEGUIR COMPRANDO
