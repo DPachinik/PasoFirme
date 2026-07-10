@@ -8,7 +8,7 @@ import type { CartProps } from "../../../features/cart/CartContext";
 
 export function NavbarDesktop({cart}:{cart:CartProps[]}){
     return(
-        <div className="hidden sm:block w-full h-18  z-30 bg-black border-b border-[#2A4D4E] ">
+        <div className="hidden sm:block sticky top-0 w-full h-18  z-30 bg-black border-b border-[#2A4D4E] ">
 
             <nav className=" flex bg-[#082F36]/60   h-full md:flex items-center justify-between px-2 sm:px-4 mx-auto ">
 
@@ -29,13 +29,13 @@ export function NavbarDesktop({cart}:{cart:CartProps[]}){
                 </Link>
 
                 <section className=' max-w-xs w-full  justify-between items-center flex flex-1 '>
-                    <NavLink to='/sport' className={({isActive})=>isActive?'text-primary ':'text-white hover:text-[#E86343]'}>
+                    <NavLink to='/' className={({isActive})=>isActive?'text-[#E86343] ':'text-white hover:text-[#E86343]'}>
                         Clásicos
                     </NavLink>
-                    <NavLink to='/sport' className={({isActive})=>isActive?'text-primary ':'text-white hover:text-[#E86343]'}>
+                    <NavLink to='/accesorios' className={({isActive})=>isActive?'text-[#E86343] ':'text-white hover:text-[#E86343]'}>
                         Accesorios
                     </NavLink>
-                    <NavLink to='/sport' className={({isActive})=>isActive?'text-primary ':'text-white hover:text-[#E86343]'}>
+                    <NavLink to='/sport' className={({isActive})=>isActive?'text-[#E86343] ':'text-white hover:text-[#E86343]'}>
                         Sport
                     </NavLink>
                 </section>
