@@ -21,6 +21,10 @@ export function useProducts(){
     //función para búsqueda inicial de Productos
     async function handleLoadInitialProducts(){
         try{
+
+            if(products.length>0) return;
+            
+            console.log('consultando base de datos')
             setLoading(true);
             setEmpty(false);
             setIsFiltered(false);
