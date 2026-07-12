@@ -23,14 +23,14 @@ export function Header(){
                                     </div>
                         </div>
 
-                        <div className='relative bg-[#C00000] w-fit h-fit mt-8 rounded ml-2 sm:ml-0 '> 
-                            <a href='#productos'
-                            className=' flex  items-center justify-center  gap-2 p-2 px-2 w-fit   font-medium rounded  text-nowrap text-white text-base bg-[#E86343]/70 z-30'>
+                        <div className='relative bg-[#C00000] w-fit h-fit mt-8 rounded ml-2 sm:ml-0 cursor-pointer '> 
+                            <a href='#shoes'
+                            className=' flex  items-center justify-center  gap-2 p-2 px-2 w-fit   font-medium rounded  text-nowrap text-white text-base bg-[#E86343]/70 z-30 hover:cursor-pointer'>
                                     COMPRAR AHORA 
                                     <FaArrowRightLong className='text-sm md:text-base'/>
                             </a>
 
-                            <div className='absolute -top-1 border-2 border border-[#C14426] h-12 w-[174px] rounded z-0 animate-pin'> 
+                            <div className='absolute -top-1  border-2 border-[#C14426] h-12 w-[174px] rounded z-0 animate-pin'> 
 
                             </div>
                         </div> 
