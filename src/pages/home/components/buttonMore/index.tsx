@@ -5,7 +5,7 @@ export function ButtonMore(){
 
     const {empty,isFiltered,getMoreProducts} = useContext(ProductsContext)
     return(
-        <div className='w-44  flex justify-center bg-[#C00000] rounded '>
+        <div className='w-44 mb-4 flex justify-center bg-[#C00000] rounded '>
             <button
             onClick={getMoreProducts}
             className='bg-[#E86343]/70 text-white text-base h-9 w-full  rounded font-medium cursor-pointer'

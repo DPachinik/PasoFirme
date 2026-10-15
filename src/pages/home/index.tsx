@@ -14,7 +14,7 @@ import { CartContext } from '../../features/cart/CartContext';
 
 export function Home(){
 
-    const { products,isFiltered, loadInitialProducts, lastDoc, loading } = useContext(ProductsContext)
+    const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty} = useContext(ProductsContext)
     const {cart} = useContext(CartContext)
 
     const [scrollActive, setScrollActive]= useState(false);
@@ -45,7 +45,7 @@ export function Home(){
                     <MdKeyboardDoubleArrowDown size={50}  color='#082F36' className='arrow' />
                 </div>
      
-                <h1 id="productos" className="  font-medium text-2xl  mb-4 text-center text-secondary ">Nuestra Colección</h1>
+                <h1 id="productos" className="  font-medium text-2xl  mb-4 text-center text-secondary ">NUESTRA COLECCIÓN</h1>
 
                 <div className='w-full max-w-[80%] flex  items-center justify-center mx-auto gap-8 lg:hidden'>
               
@@ -72,12 +72,21 @@ export function Home(){
                 </section>
                 
                 <div className='w-full flex items-center justify-center '>
-                    { !lastDoc && <ButtonMore />}
+                    { lastDoc && <ButtonMore />}
                 </div>
 
                 <div className='w-full flex items-center justify-center '>
                             { isFiltered && (
                                 <ButtonProducts />
+                            )}
+
+                            { empty && (
+                                <div className='flex mb-4'>
+
+                                <p className='text-secondary text-lg font-bebas font-bold  mb-4'>¡HAS LLEGADO AL FINAL DE LA LISTA!</p>
+
+                                </div>
+
                             )}
                 </div>
 
