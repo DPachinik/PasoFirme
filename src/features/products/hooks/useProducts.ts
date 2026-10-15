@@ -22,7 +22,7 @@ export function useProducts(){
     async function handleLoadInitialProducts(){
         try{
 
-            if(products.length>0) return;
+            if(products.length>0 && !isFiltered) return; //condicional para evitar consulta de productos recurrentes 
             
             console.log('consultando base de datos')
             setLoading(true);
@@ -30,8 +30,9 @@ export function useProducts(){
             setIsFiltered(false);
 
             const result = await loadInitialProducts()
-                setProducts(result.products);
-                setLastDoc(result.lastDoc);
+            setProducts(result.products);
+            setLastDoc(result.lastDoc);
+            console.log(result.lastDoc);
             
         }catch(error){
             toast.error('Error al cargar los productos');
@@ -53,9 +54,10 @@ export function useProducts(){
             const result = await getMoreProducts(lastDoc);
 
             if(result.products.length === 0) {
-                return setEmpty(true);
-            
+                setEmpty(true);
+                
             }
+
             setProducts((prevDoc)=>[...prevDoc, ...result.products]);
             setLastDoc(result.lastDoc);    
         }catch(error){
@@ -72,7 +74,6 @@ export function useProducts(){
 
         try{
             setLoading(true);
-            setIsFiltered(true);
             const result = await searchProducts(input);
 
 
@@ -80,7 +81,9 @@ export function useProducts(){
                 toast.error('El producto buscado no existe')
                 return setProducts((prev)=>[...prev])
             }
+
             setProducts(result)
+            setIsFiltered(true);
 
         } catch(error){
             toast.error('Error al buscar productos');
@@ -108,7 +111,6 @@ export function useProducts(){
 
     //función para actualizar estados de boton 'ver más' y 'volver' al salir de una búsqueda filtrada
     async function handleClearSearch() {
-        setIsFiltered(false);
         setEmpty(false);
         await handleLoadInitialProducts();
     }
