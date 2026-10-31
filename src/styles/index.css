@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/scrollbar';
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@theme {
+    --font-bebas: "Bebas Neue", sans-serif;
+    --font-roboto: "Roboto", sans-serif;
+}
+
 @layer base {
     :root {
         --primary:#082F36;
