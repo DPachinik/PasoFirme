@@ -13,5 +13,6 @@ export function productMapper(doc:QueryDocumentSnapshot <DocumentData> | Documen
     descripcionCorta: doc.data()?.descripcionCorta,
     descripcion: doc.data()?.descripcion,
     imagenes: doc.data()?.imagenes,
+    categoria:doc.data()?.categoria,
     }
 }
