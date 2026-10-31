@@ -1,5 +1,5 @@
 import {  useEffect, useContext, useState } from 'react'
-import { Header } from '../../components/header';
+import { Hero} from '../../components/hero';
 import { InputSearch } from '../../components/InputSearch/InputSearch';
 import { MdKeyboardDoubleArrowDown } from 'react-icons/md';
 import { ProductsContext } from '../../features/products/context/ProductsContext';
@@ -11,15 +11,19 @@ import SubBanner from '../../components/subBanner';
 import Footer from '../../components/footer';
 import CartHome from './components/carthome';
 import { CartContext } from '../../features/cart/CartContext';
+import {  useNavigate, useParams } from 'react-router-dom';
+
 
 export function Home(){
 
+    const { route }= useParams();
+    const navigate = useNavigate();  
     const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty} = useContext(ProductsContext)
     const {cart} = useContext(CartContext)
-
     const [scrollActive, setScrollActive]= useState(false);
+    const [path, setPath]=useState<string |null>(null)
 
-
+    
     function handleScroll(){
         if(window.scrollY>10){
            setScrollActive(true)
@@ -28,24 +32,38 @@ export function Home(){
         }
     }
 
+
+
     useEffect(()=>{
-        loadInitialProducts();
+
+        function routes(route:string | undefined) {
+        if(!route){
+            return navigate('/');
+        }
+        console.log(`llamando a los productos en la ruta:${route}`)
+        loadInitialProducts(route);
+        setPath(route)
+        }
+
+        routes(route);
 
         window.addEventListener('scroll', handleScroll)
 
         return ()=>window.removeEventListener('scroll', handleScroll)
-    },[])
+    },[ route])
 
     return(
         <div>
-            <Header />
+            <Hero/>
 
             <div className=''>
                 <div className='arrow-container'>
                     <MdKeyboardDoubleArrowDown size={50}  color='#082F36' className='arrow' />
                 </div>
      
-                <h1 id="productos" className="  font-medium text-2xl  mb-4 text-center text-secondary ">NUESTRA COLECCIÓN</h1>
+                <h1 
+                id="productos" 
+                className="  font-medium text-2xl  mb-4 text-center text-secondary ">NUESTRA COLECCIÓN</h1>
 
                 <div className='w-full max-w-[80%] flex  items-center justify-center mx-auto gap-8 lg:hidden'>
               
@@ -54,8 +72,8 @@ export function Home(){
                 </div>
             </div>
 
-            <main className="w-full max-w-7xl  mx-auto z-0 px-2 mt-14  flex flex-col">
-                <section className=" grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4   place-items-center " id='shoes'>
+            <main className="w-full max-w-7xl  mx-auto z-0 px-2 mt-14  flex flex-col" >
+                <section className=" grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4   place-items-center " >
                     {loading && products.length===0 ?(
                         Array.from({length:8}).map((_,index)=>(
                             <article key={index} className="w-[250px] h-[380px] bg-slate-100 border border-slate-200 animate-pulse rounded-lg mb-12 flex flex-col p-4 justify-between">
@@ -72,12 +90,12 @@ export function Home(){
                 </section>
                 
                 <div className='w-full flex items-center justify-center '>
-                    { lastDoc && <ButtonMore />}
+                    { lastDoc && path && <ButtonMore path={path} />}
                 </div>
 
                 <div className='w-full flex items-center justify-center '>
-                            { isFiltered && (
-                                <ButtonProducts />
+                            { isFiltered && path && (
+                                <ButtonProducts path={path} />
                             )}
 
                             { empty && (
