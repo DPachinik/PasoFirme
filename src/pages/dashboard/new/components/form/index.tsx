@@ -9,13 +9,14 @@ const labelStyle = "text-xs font-medium  text-secondary"
 
 const schema = z.object({
     modelo:z.string().trim().nonempty('campo obligatorio'),
-    calceMin:z.string().trim().nonempty('campo obligatorio'),
+    calceMin:z.string().trim().optional(),
     calceMax:z.string().trim().optional(),
     descripcionCorta:z.string().trim().nonempty('campo obligatorio'),
     descripcion:z.string().trim().nonempty('campo obligatorio'),
     color:z.string().nonempty('campo obligatorio'),
     precio:z.string().trim().nonempty('campo obligatorio'),
     estado:z.enum(['Pocas unidades', 'Agotado', 'Novedades']),
+    categoria:z.enum(['clásicos', 'accesorios', 'sport']),
 })
 
 export type FormData = z.infer<typeof schema>
@@ -172,6 +173,40 @@ export function Form({onSubmit}:OnSubmitProps) {
           />
         </div>
       </div>
+      <div className=" p-2 rounded-lg">
+          <p className={labelStyle}>CATEGORÍA</p>
+          <div className="flex gap-4  w-fit p-2 rounded-lg mt-1  text-xs text-primary bg-white">
+            <label className="text-center flex items-center gap-2 ">
+              <p>Clásicos</p>
+              <input
+                type="radio"
+                value="clásicos"
+                {...register("categoria")}
+                name="categoria"
+              />
+            </label>
+            <label className="text-center flex items-center gap-2">
+              <p>Accesorios</p>
+              <input
+                type="radio"
+                value="accesorios"
+                {...register("categoria")}
+                name="categoria"
+                className="cursor-pointer"
+              />
+            </label>
+            <label className="text-center flex items-center gap-2">
+              <p>Sport</p>
+              <input
+                type="radio"
+                value="sport"
+                {...register("categoria")}
+                name="categoria"
+                className="cursor-pointer"
+              />
+            </label>
+          </div>
+        </div>
 
       <button
         type="submit"
