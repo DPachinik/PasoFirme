@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import type { Product } from '../types/product';
+import { useCallback, useState } from 'react';
+import type { CategoryCache, Product } from '../types/product';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
 import { deleteProductApi, deleteImage, getMoreProducts, getProduct, loadInitialProducts, loadUserProducts, searchProducts, updateProduct } from '../services/products.api';
 import toast from 'react-hot-toast';
@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 
 export function useProducts(){
 
+    const [productsByCategory, setProductsByCategory] = useState<Record<string, CategoryCache>>({});
     const [products, setProducts] = useState <Product[]>([]);
     const [product, setProduct] = useState <Product | null>(null);
     const [userProducts, setUserProducts] = useState <Product[] >([]);
@@ -18,20 +19,46 @@ export function useProducts(){
     const [firstImage, setFirstImage] = useState<string | null>(null);
 
 
+
     //función para búsqueda inicial de Productos
-    async function handleLoadInitialProducts(){
+    const handleLoadInitialProducts = useCallback(
+        async (route:string)=>{
         try{
 
-            if(products.length>0 && !isFiltered) return; //condicional para evitar consulta de productos recurrentes 
+            // 1.Buscar categoria en caché
+            console.log(`buscando en ruta:' ${route} `)
+            const cachedProducts = productsByCategory[route];
             
+            //2.Recuperar datos sin consultar a Firestore
+            if(cachedProducts){
+                setProducts(cachedProducts.products);
+                setLastDoc(cachedProducts.lastDoc);
+                setEmpty(false);
+                setIsFiltered(false);
+                return;
+            }
+          
+            //3.No hay caché: consultar Firestore
             console.log('consultando base de datos')
             setLoading(true);
             setEmpty(false);
             setIsFiltered(false);
 
-            const result = await loadInitialProducts()
+            const result = await loadInitialProducts(route);
+
+            //Guardar productos y cursor de esta categoria
+            setProductsByCategory((prev)=>({
+                ...prev,
+                    [route]:{
+                        products:result.products,
+                        lastDoc:result.lastDoc,
+                    },
+            }));
+
+            // Mostrar los resultados en el catálogo
             setProducts(result.products);
             setLastDoc(result.lastDoc);
+            setEmpty(result.products.length ==0);
             console.log(result.lastDoc);
             
         }catch(error){
@@ -41,23 +68,49 @@ export function useProducts(){
         finally{
             setLoading(false);
         }
-    }
+    
+        },
+        [productsByCategory]
+    );
+
+
+
 
     //función para buscar más 16 Productos
-    async function handleGetMoreProducts(){
+    async function handleGetMoreProducts(route:string){
 
-        if(!lastDoc) return;
+        const cached = productsByCategory[route];
 
+        if(!cached?.lastDoc) return;
+
+        
         try{
             setLoading(true);
 
-            const result = await getMoreProducts(lastDoc);
+            console.log(`buscando mas productos con: ${route}`)
+            const result = await getMoreProducts(cached.lastDoc, route);
 
             if(result.products.length === 0) {
                 setEmpty(true);
                 
             }
 
+            //actualizar cache de la categoria
+            setProductsByCategory((prev)=>{
+                const current = prev[route];
+                if(!current) return prev;
+                
+                return{
+                    ...prev,
+                    [route]:{
+                        products:[...current.products, ...result.products],
+                        lastDoc:result.lastDoc,
+                    }
+                }
+                
+            })
+
+            //Actualizar los productos visibles
             setProducts((prevDoc)=>[...prevDoc, ...result.products]);
             setLastDoc(result.lastDoc);    
         }catch(error){
@@ -110,9 +163,9 @@ export function useProducts(){
     } 
 
     //función para actualizar estados de boton 'ver más' y 'volver' al salir de una búsqueda filtrada
-    async function handleClearSearch() {
+    async function handleClearSearch(route:string) {
         setEmpty(false);
-        await handleLoadInitialProducts();
+        await handleLoadInitialProducts(route);
     }
 
     //función para búsqueda dinámica de un Producto
