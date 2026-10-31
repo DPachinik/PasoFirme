@@ -7,9 +7,9 @@ import CartProvider from './features/cart/CartProvider'
 import  AuthProvider from './features/auth/authProvider'
 import {Toaster} from 'react-hot-toast' 
 import { ProductsProvider } from './features/products/context/ProductsProvider'
+import {register} from 'swiper/element-bundle'
 
-
-
+register();
 createRoot(document.getElementById('root')!).render(
 
   <StrictMode>
