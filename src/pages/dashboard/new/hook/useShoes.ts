@@ -13,7 +13,7 @@ export function useShoes(){
 
     const [shoeImages, setShoeImages] = useState<ImageProps[]>([])
 
-
+    //Funcion encargada de gestionar archivo de Imagen  
     async function handleFile({e, uid}:FileProps) {
         
         try{
@@ -62,6 +62,7 @@ export function useShoes(){
         }
     }
 
+    //Funcion Encargada de Gestionar el Registro de un Producto
     async function registerProduct(shoeImages:ImageProps[], data:FormData, uid:string|undefined) {
         try{
             if(shoeImages.length ===0){
