@@ -1,3 +1,10 @@
+import type { QueryDocumentSnapshot } from "firebase/firestore";
+
+export type CategoryCache={
+    products:Product[];
+    lastDoc:QueryDocumentSnapshot | null;
+}
+
 export interface Product{
     id:string;
     modelo:string;
@@ -9,6 +16,7 @@ export interface Product{
     descripcion:string;
     descripcionCorta?:string;
     imagenes:ImageProps[];
+    categoria:string;
 }
 
 export type ImageProps ={
