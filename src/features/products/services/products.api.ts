@@ -6,12 +6,12 @@ import { productMapper } from '../mappers/product.mapper';
 import { deleteObject, ref } from 'firebase/storage';
 
 //conexión inicial para buscar productos 
-export async function loadInitialProducts(): Promise<{
+export async function loadInitialProducts(route:string): Promise<{
     products:Product[];
-    lastDoc: QueryDocumentSnapshot | null ;  
+    lastDoc: QueryDocumentSnapshot | null ;
 }> {
     const productsRef = collection(db, 'shoes');
-    const queryRef = query(productsRef, orderBy('created', 'desc'), limit(16));
+    const queryRef = query(productsRef,where('categoria', '==' , route), orderBy('created', 'desc'), limit(16));
 
    const snapshot = await getDocs(queryRef);
 
@@ -23,16 +23,17 @@ export async function loadInitialProducts(): Promise<{
 
       
 //llamada para buscar más productos (paginación)
-export async function getMoreProducts(lastDoc:QueryDocumentSnapshot):Promise<{
+export async function getMoreProducts(lastDoc:QueryDocumentSnapshot, route:string):Promise<{
     products:Product[];
     lastDoc: QueryDocumentSnapshot | null ;
 }>{
     const productRef = collection(db, 'shoes');
-    const nextquery = query(productRef, orderBy('created','desc'), startAfter(lastDoc),limit(16));
+    const nextquery = query(productRef,where('categoria', '==' , route), orderBy('created','desc'), startAfter(lastDoc),limit(16));
 
     const snapshot = await getDocs(nextquery);
 
     if(snapshot.empty){
+        console.log('vacio')
         return { products: [], lastDoc: null };
     }
     
@@ -102,3 +103,4 @@ export async function deleteImage({product, uid}:{product:Product; uid:string}):
         await deleteObject(imageRef);
     }))
 }
+
