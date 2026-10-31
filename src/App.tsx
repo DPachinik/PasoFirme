@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { lazy, Suspense } from 'react';
-
 import { Home } from './pages/home'
 import { Carrito } from './pages/carrito'
 import { Layout } from './components/layout';
@@ -17,8 +16,13 @@ const router = createBrowserRouter([
   {
     element:<Layout />,
     children:[
+
       {
         path:"/",
+        element:<Home />,
+      },
+      {
+        path:"/:route",
         element:<Home />,
       },
       {
