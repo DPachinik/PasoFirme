@@ -51,6 +51,7 @@ export async function upLoadProduct(data:FormData, shoesListImage:ListImageProps
             created: new Date(),
             uid:uid,
             imagenes:shoesListImage,
+            categoria:data.categoria,
         })
 }
 
