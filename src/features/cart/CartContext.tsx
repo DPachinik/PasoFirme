@@ -21,7 +21,8 @@ export interface CartProps{
     color:string;
     estado:string;
     imagenes:ImageProps[];
-    talle:number;   
+    talle:number;
+    categoria:string;   
 }
 
 interface ImageProps{
