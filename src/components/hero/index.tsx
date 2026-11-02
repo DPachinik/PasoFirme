@@ -108,7 +108,7 @@ export function Hero(){
                                         <img 
                                             src={slide.image} 
                                             alt="Zapato de cuero premium 100% nacional"
-                                            className=' w-full  absolute -bottom-20  right-10 object-cover   object-bottom lg:scale-120  z-10'
+                                            className=' w-full  absolute -bottom-20  right-0 lg:right-10 object-cover   object-bottom lg:scale-120  z-10'
                                         />
 
                                 </div>
