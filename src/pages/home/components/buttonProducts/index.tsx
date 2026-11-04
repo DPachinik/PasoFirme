@@ -1,20 +1,26 @@
-import { useContext } from "react"
-import { ProductsContext } from "../../../../features/products/context/ProductsContext"
-import { FaArrowLeftLong } from "react-icons/fa6"
+import { useSearchParams } from "react-router-dom";
+import { CaretLeftIcon } from "@phosphor-icons/react";
 
-export function ButtonProducts({path}:{path:string}){
-    const {clearSearch} = useContext(ProductsContext)
+export function ButtonProducts() {
 
-    return(
-        <div className='w-44  mb-4 flex  items-center justify-center   bg-[#C00000] rounded'>
-            <button 
-            className='bg-[#E86343]/70 text-white text-base h-9 w-full  rounded font-medium cursor-pointer flex items-center justify-center gap-4 z-20'
-            onClick={()=>clearSearch(path)}
+    const [, setSearchParams] = useSearchParams();
+
+    function handleClear() {
+        setSearchParams(prev => {
+            prev.delete('busqueda');
+            return prev;
+        });
+    }
+
+    return (
+        <div className='w-full ml-4 mb-4 flex justify-start items-center'>
+            <button
+                className='text-base text-primary font-bebas cursor-pointer flex items-center gap-2 border rounded px-2 bg-[#ffff] hover:bg-[#082F36] hover:text-white transition all duration-200'
+                onClick={handleClear}
             >
-                <FaArrowLeftLong />
-                COLECCIÓN
-
+                <CaretLeftIcon size={16} />
+                regresar
             </button>
         </div>
-    )
+    );
 }
