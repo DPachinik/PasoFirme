@@ -11,14 +11,18 @@ import SubBanner from '../../components/subBanner';
 import Footer from '../../components/footer';
 import CartHome from './components/carthome';
 import { CartContext } from '../../features/cart/CartContext';
-import {  useNavigate, useParams } from 'react-router-dom';
+import {  useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
 
 
 export function Home(){
 
     const { route }= useParams();
+    const [searchParams]=useSearchParams();
+    const busqueda = searchParams.get('busqueda');
+
     const navigate = useNavigate();  
-    const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty} = useContext(ProductsContext)
+    const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty, searchProducts} = useContext(ProductsContext)
     const {cart} = useContext(CartContext)
     const [scrollActive, setScrollActive]= useState(false);
     const [path, setPath]=useState<string |null>(null)
@@ -36,21 +40,29 @@ export function Home(){
 
     useEffect(()=>{
 
-        function routes(route:string | undefined) {
+        function routes(route:string | undefined, busqueda:string | null) {
         if(!route){
             return navigate('/');
         }
+
+        setPath(route)
+        if(busqueda){
+            console.log(`Buscando por parametro:${busqueda}`)
+            searchProducts(busqueda)
+            
+        }else{
         console.log(`llamando a los productos en la ruta:${route}`)
         loadInitialProducts(route);
-        setPath(route)
+        }
         }
 
-        routes(route);
+
+        routes(route, busqueda);
 
         window.addEventListener('scroll', handleScroll)
 
         return ()=>window.removeEventListener('scroll', handleScroll)
-    },[ route])
+    },[ route, busqueda])
 
     return(
         <div>
@@ -63,7 +75,7 @@ export function Home(){
      
                 <h1 
                 id="productos" 
-                className="  font-medium text-2xl  mb-4 text-center text-secondary ">NUESTRA COLECCIÓN</h1>
+                className="  font-bebas  text-base  mb-4 text-center text-primary ">NUESTRA COLECCIÓN</h1>
 
                 <div className='w-full max-w-[80%] flex  items-center justify-center mx-auto gap-8 lg:hidden'>
               
@@ -89,19 +101,19 @@ export function Home(){
 
                 </section>
                 
-                <div className='w-full flex items-center justify-center '>
+                <div className='w-full flex items-center justify-center mx-4'>
                     { lastDoc && path && <ButtonMore path={path} />}
                 </div>
 
-                <div className='w-full flex items-center justify-center '>
+                <div className='w-full flex items-center mx-8 '>
                             { isFiltered && path && (
-                                <ButtonProducts path={path} />
+                                <ButtonProducts  />
                             )}
 
                             { empty && (
                                 <div className='flex mb-4'>
 
-                                <p className='text-secondary text-lg font-bebas font-bold  mb-4'>¡HAS LLEGADO AL FINAL DE LA LISTA!</p>
+                                <p className='text-primary text-lg font-bebas   mb-4'>¡HAS LLEGADO AL FINAL DE LA LISTA!</p>
 
                                 </div>
 
