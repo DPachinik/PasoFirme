@@ -1,18 +1,23 @@
 import { useContext } from "react"
 import { ProductsContext } from "../../../../features/products/context/ProductsContext"
+import { CaretRightIcon } from "@phosphor-icons/react"
 
 export function ButtonMore({path}:{path:string} ){
 
     const {empty,isFiltered,getMoreProducts} = useContext(ProductsContext)
     return(
-        <div className='w-44 mb-4 flex justify-center bg-[#C00000] rounded '>
+        <div className='w-full ml-4 mb-4 flex justify-start  items-center'>
+        
             <button
             onClick={()=>getMoreProducts(path)}
-            className='bg-[#E86343]/70 text-white text-base h-9 w-full  rounded font-medium cursor-pointer'
+            className=' text-base text-primary font-bebas  cursor-pointer flex items-center gap-2 border rounded px-2 bg-[#ffff] hover:bg-[#082F36] hover:text-white transition all duration-200'
             style={empty || isFiltered ? {display:'none'} : {}}
             >
-                VER MAS
+                ver más
+                <CaretRightIcon size={18} />
             </button>
+
+
         </div>
     )
 }
