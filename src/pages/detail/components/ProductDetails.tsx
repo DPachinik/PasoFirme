@@ -4,10 +4,19 @@ import { useContext, useState } from "react";
 import { CartContext } from "../../../features/cart/CartContext";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { CaretLeftIcon, ShoppingCartSimpleIcon } from "@phosphor-icons/react";
+import { ProductsContext } from "../../../features/products/context/ProductsContext";
 
+  interface ObjectProps{
+        product:Product;
+        path:string| null;
+    }
 
-export function ProductDetails({ product }: { product: Product }) {
+  export function ProductDetails({ product, path }: ObjectProps) {
+  
+
   const { addItemCart } = useContext(CartContext);
+  const { isFiltered } =useContext(ProductsContext)
   const [selectedSize, setSelectedSize] = useState<number | null>(null);
   const navigate = useNavigate();
 
@@ -99,20 +108,38 @@ export function ProductDetails({ product }: { product: Product }) {
 
         <div className="w-full flex flex-col md:flex-row   items-center justify-center gap-4 mt-8  md:max-w-[90%]  my-4">
           
-          <div className="w-44 bg-[#C00000] rounded">
+          <div className="w-full bg-[#C00000] rounded">
             <button
               onClick={() => product && handleAddItemCart(product)}
-              className="bg-[#E86343]/70  text-white text- text-nowrap py-2   w-full font-medium flex flex-1 items-center justify-center gap-4  cursor-pointer  rounded "
+              className="bg-[#E86343]/70  text-white text- text-nowrap py-2   w-full font-bebas flex flex-1 items-center justify-center gap-4  cursor-pointer rounded "
             >
-              AÑADIR AL CARRITO
+              <ShoppingCartSimpleIcon size={24} />
+              Agregar al carrito 
             </button>
 
           </div>
 
-          <div  className="w-44  flex bg-black rounded ">
-            <Link to="/#shoes" className="bg- text-white text-nowrap font-medium  py-2   w-full flex flex-1 items-center justify-center gap-4 px-2 cursor-pointer rounded bg-[#082F36]/50 ">
-              SEGUIR COMPRANDO
-            </Link>
+          <div  className="w-full flex">
+
+            {isFiltered && (
+              <button 
+              onClick={() => {
+                navigate(-1)
+              }}
+              className=' w-full py-2 text-base text-primary font-bebas  cursor-pointer flex items-center justify-center gap-2 border rounded px-2 bg-[#ffff] hover:bg-[#082F36] hover:text-white transition all duration-200'
+              >
+                <CaretLeftIcon size={24} />
+                Volver atrás
+              </button>
+            )}
+            {!isFiltered && ( 
+              <Link to={`/${path}#productos`} className=' w-full py-2 text-base text-primary font-bebas  cursor-pointer flex items-center justify-center gap-2 border rounded px-2' >
+                <CaretLeftIcon size={24} />
+                Volver al catálogo
+              </Link>
+            )
+
+            }
           </div>
         </div>
       </div>
