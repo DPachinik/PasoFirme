@@ -84,7 +84,7 @@ export function ShoesCard({products}:{products:Product[]}){
                                             </strong>
                                         </div>
 
-                                        <Link to={`/detail/${product.id}`}>
+                                        <Link to={`/detail/${product.categoria}/${product.id}`}>
                                             <button  className="bg-primary p-1 px-2 rounded cursor-pointer text-xs sm:text-sm font-medium text-white">
                                                 ver detalles
                                             </button>
