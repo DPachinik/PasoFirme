@@ -1,18 +1,18 @@
-import { useState, useContext} from "react";
+import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
-import { ProductsContext } from "../../features/products/context/ProductsContext";
-
+import { useSearchParams } from 'react-router-dom';
 
 export function InputSearch(){
 
-    const {searchProducts} =useContext(ProductsContext)
-    
+    const [searchParams, setSearchParams] = useSearchParams();
     const [input, setInput] =useState<string>('');
 
 
     function handleSearch(){
-        if(input==='') return;
-        searchProducts(input);
+        if(input.trim()==='') return;
+
+        searchParams.set('busqueda', input.trim());
+        setSearchParams(searchParams)
         setInput('');
     }
 
