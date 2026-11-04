@@ -133,7 +133,7 @@ import { ProductsContext } from "../../../features/products/context/ProductsCont
               </button>
             )}
             {!isFiltered && ( 
-              <Link to={`/${path}#productos`} className=' w-full py-2 text-base text-primary font-bebas  cursor-pointer flex items-center justify-center gap-2 border rounded px-2' >
+              <Link to={`/${path}#productos`} className=' w-full py-2 text-base text-primary font-bebas  cursor-pointer flex items-center justify-center gap-2 border rounded px-2 bg-[#ffff] hover:bg-[#082F36] hover:text-white transition all duration-200' >
                 <CaretLeftIcon size={24} />
                 Volver al catálogo
               </Link>
