@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useContext} from 'react'
 import { FaArrowsRotate } from "react-icons/fa6";
@@ -7,17 +7,22 @@ import { ImageContainer } from './components/ImagesContainer';
 import { ProductDetails } from './components/ProductDetails';
 
 
+
 export function Detail(){
  
-    const { id }= useParams();
+    const {route, id }= useParams();
     const navigate = useNavigate(); 
     const {getProduct, product }=useContext(ProductsContext);
+    const [path, setPath] = useState<string| null>(null);
+
 
     useEffect(()=>{
         function loadProducts (){
-            if(!id){
+            if(!id || !route ){
                 return navigate('/');
             }
+
+            setPath(route);
             getProduct(id);
         }
 
@@ -37,6 +42,7 @@ export function Detail(){
        )
     }
 
+
     return(
         <main  className="  w-full  max-w-7xl  mx-auto flex items-center justify-center ">
             <div className='flex flex-col md:flex-row justify-between w-full  gap-8  mt-4  rounded-lg ' >
@@ -48,9 +54,9 @@ export function Detail(){
                 </section>
 
                 <section className='w-full flex-1 '>
-                    <ProductDetails product={product}/>
+                    <ProductDetails product={product} path={path}/>
                 </section>    
             </div>
         </main>
     )
-}
+} 
