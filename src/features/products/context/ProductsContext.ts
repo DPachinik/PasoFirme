@@ -1,8 +1,9 @@
 import { createContext } from 'react';
-import type { Product } from '../types/product';
+import type { CategoryCache, Product } from '../types/product';
 import type { QueryDocumentSnapshot } from 'firebase/firestore';
 
 interface ProductsContextData{
+    productsByCategory:Record<string, CategoryCache>,
     products:Product[],
     product:Product | null,
     empty:boolean,

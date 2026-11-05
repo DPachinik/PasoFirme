@@ -10,6 +10,7 @@ interface ProviderProps{
 export function ProductsProvider ({children}:ProviderProps){
 
     const {
+            productsByCategory,
             products,
             product,
             empty,
@@ -31,6 +32,7 @@ export function ProductsProvider ({children}:ProviderProps){
     return(
         <ProductsContext.Provider 
         value={{
+            productsByCategory,
             products,
             product,
             empty,
