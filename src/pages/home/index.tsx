@@ -22,7 +22,7 @@ export function Home(){
     const busqueda = searchParams.get('busqueda');
 
     const navigate = useNavigate();  
-    const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty, searchProducts} = useContext(ProductsContext)
+    const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty, searchProducts, productsByCategory} = useContext(ProductsContext)
     const {cart} = useContext(CartContext)
     const [scrollActive, setScrollActive]= useState(false);
     const [path, setPath]=useState<string |null>(null)
@@ -38,22 +38,42 @@ export function Home(){
 
 
 
+
+
     useEffect(()=>{
 
         function routes(route:string | undefined, busqueda:string | null) {
         if(!route){
             return navigate('/');
         }
+        
 
-        setPath(route)
+
+        //llamar la variable para ambos casos
+        setPath(route);
+
         if(busqueda){
             console.log(`Buscando por parametro:${busqueda}`)
             searchProducts(busqueda)
             
         }else{
-        console.log(`llamando a los productos en la ruta:${route}`)
-        loadInitialProducts(route);
+            console.log(`llamando a los productos en la ruta:${route}`)
+            loadInitialProducts(route);
         }
+
+        //Condición de Scroll para navegación directa a grid de 'Productos'
+        function moveScroll(){
+
+           const isProduct = !! productsByCategory[route];
+            
+
+            if(isProduct){
+                window.scrollBy(0, 500);
+            }
+        }
+
+        moveScroll();
+
         }
 
 
