@@ -22,7 +22,7 @@ export function Home(){
     const busqueda = searchParams.get('busqueda');
 
     const navigate = useNavigate();  
-    const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty, searchProducts, productsByCategory} = useContext(ProductsContext)
+    const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty, searchProducts, cached} = useContext(ProductsContext)
     const {cart} = useContext(CartContext)
     const [scrollActive, setScrollActive]= useState(false);
     const [path, setPath]=useState<string |null>(null)
@@ -36,10 +36,6 @@ export function Home(){
         }
     }
 
-
-
-
-
     useEffect(()=>{
 
         function routes(route:string | undefined, busqueda:string | null) {
@@ -47,8 +43,6 @@ export function Home(){
             return navigate('/');
         }
         
-
-
         //llamar la variable para ambos casos
         setPath(route);
 
@@ -61,17 +55,15 @@ export function Home(){
             loadInitialProducts(route);
         }
 
-        //Condición de Scroll para navegación directa a grid de 'Productos'
+        //función de scroll directo a grid de 'Productos': navegación entre páginas
         function moveScroll(){
 
-           const isProduct = !! productsByCategory[route];
-            
-
-            if(isProduct){
-                window.scrollBy(0, 500);
+            if(cached){
+                document.getElementById('productos')?.scrollIntoView({
+                    block:'start',
+                });
             }
         }
-
         moveScroll();
 
         }
@@ -81,8 +73,9 @@ export function Home(){
 
         window.addEventListener('scroll', handleScroll)
 
-        return ()=>window.removeEventListener('scroll', handleScroll)
-    },[ route, busqueda])
+        return ()=>window.removeEventListener('scroll', handleScroll);
+
+    },[ route, busqueda, cached])
 
     return(
         <div>
