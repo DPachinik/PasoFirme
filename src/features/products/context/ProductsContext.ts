@@ -3,6 +3,7 @@ import type { CategoryCache, Product } from '../types/product';
 import type { QueryDocumentSnapshot } from 'firebase/firestore';
 
 interface ProductsContextData{
+    cached:boolean,
     productsByCategory:Record<string, CategoryCache>,
     products:Product[],
     product:Product | null,

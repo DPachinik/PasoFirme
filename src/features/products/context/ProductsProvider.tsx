@@ -10,6 +10,7 @@ interface ProviderProps{
 export function ProductsProvider ({children}:ProviderProps){
 
     const {
+            cached,
             productsByCategory,
             products,
             product,
@@ -32,6 +33,7 @@ export function ProductsProvider ({children}:ProviderProps){
     return(
         <ProductsContext.Provider 
         value={{
+            cached,
             productsByCategory,
             products,
             product,

@@ -17,6 +17,7 @@ export function useProducts(){
     const [empty, setEmpty] = useState<boolean>(false);
     const [isFiltered, setIsFiltered] = useState<boolean>(false);
     const [firstImage, setFirstImage] = useState<string | null>(null);
+    const [cached, setCached] = useState<boolean>(false);
 
 
 
@@ -35,6 +36,7 @@ export function useProducts(){
                 setLastDoc(cachedProducts.lastDoc);
                 setEmpty(false);
                 setIsFiltered(false);
+                setCached(true);
                 return;
             }
           
@@ -43,6 +45,7 @@ export function useProducts(){
             setLoading(true);
             setEmpty(false);
             setIsFiltered(false);
+            setCached(false);
 
             const result = await loadInitialProducts(route);
 
@@ -126,8 +129,10 @@ export function useProducts(){
         if(input ==='') return;
 
         try{
+            setEmpty(false);
             setLoading(true);
-            const result = await searchProducts(input);
+            const result = await searchProducts(input)
+            ;
 
 
             if(result.length === 0){
@@ -219,6 +224,8 @@ export function useProducts(){
     }
 
     return{
+        cached,
+        productsByCategory,
         products,
         product,
         empty,
@@ -235,5 +242,6 @@ export function useProducts(){
         getProduct:handleGetProduct,
         getUserProducts,
         deleteProduct,
+
     };
 }
