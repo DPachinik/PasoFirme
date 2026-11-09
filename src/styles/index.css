@@ -65,6 +65,10 @@
     .bg-secondary-rel{
         background-color: var(--secondary-rel)
     }
+    
+    .clip{
+        clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+    }
 
     .arrow-container{
         position: relative;
