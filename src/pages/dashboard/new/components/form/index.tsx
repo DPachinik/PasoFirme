@@ -2,6 +2,7 @@ import { Input } from "../../../components/input";
 import {  z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CloudArrowUpIcon } from "@phosphor-icons/react";
 
 
 const containerStyle = "flex flex-col gap-1 w-full"
@@ -40,7 +41,7 @@ export function Form({onSubmit}:OnSubmitProps) {
       reset();
     }
   })}
-      className="flex flex-col gap-2 mx-auto  my-4 w-full max-w-3xl "
+      className="flex flex-col gap-2 mx-auto  my-4 w-full max-w-3xl font-bebas"
     >
       <div className=" p-2 rounded-lg flex flex-col gap-4 w-full ">
         <div className={containerStyle}>
@@ -210,9 +211,11 @@ export function Form({onSubmit}:OnSubmitProps) {
 
       <button
         type="submit"
-        className="w-full bg-primary text-white rounded-sm h-6 font-semibold  bg-secondary-rel cursor-pointer"
+        className="w-[80%] mx-auto max-w-lg h-9 md:mx-auto rounded-sm bg-primary opacity-70 hover:transform hover:opacity-100 text-white text-sm  bg-secondary-rel cursor-pointer flex items-center justify-center gap-4 "
       >
-        Registrar
+        <CloudArrowUpIcon size={22} />
+        REGISTRAR
+
       </button>
     </form>
   );

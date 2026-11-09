@@ -1,29 +1,28 @@
-import { HiOutlineTruck } from "react-icons/hi";
-import { HiOutlineShieldCheck } from "react-icons/hi2";
-import { RiCustomerService2Line } from "react-icons/ri";
+import { HeadsetIcon, MoneyWavyIcon, TruckIcon } from "@phosphor-icons/react";
+
 
 export default function SubBanner(){
     return(
-        <section className="mt-8  flex justify-around">
-            <div className="flex flex-col md:flex-row   items-center justify-center text-center md:text-start w-30 sm:w-fit sm:gap-2">
-                <HiOutlineTruck  className="text-primary text-[35px]" />
+        <section className="mt-8  flex justify-around font-bebas  text-[8px] lg:text-[12px]">
+            <div className="flex flex-col md:flex-row   items-center justify-center text-center md:text-start  sm:w-fit sm:gap-2">
+                <TruckIcon  className="text-primary text-[26px] sm:text-2xl md:text-3xl mb-2" />
                 <div className="text-primary">
-                    <strong className="text-sm ">ENVÍOS RÁPIDOS</strong>
-                    <p className="text-xs md:text-sm text-gray-500">Entregas a todo el país</p>
+                    <strong>ENVÍOS RÁPIDOS</strong>
+                    <p className=" text-gray-500">Entregas a todo el país</p>
                 </div>
             </div>
-            <div className="flex flex-col md:flex-row   items-center justify-center text-center md:text-start w-30 sm:w-fit sm:gap-2">
-                <HiOutlineShieldCheck  className="text-primary text-[35px]" />
+            <div className="flex flex-col md:flex-row   items-center justify-center text-center md:text-start  sm:w-fit sm:gap-2">
+                <MoneyWavyIcon  className="text-primary text-[26px] sm:text-2xl md:text-3xl mb-2" />
                 <div className="text-primary">
-                    <strong className="text-sm">PAGOS SEGUROS</strong>
-                    <p className="text-xs md:text-sm text-gray-500">Transferencias protegidas</p>
+                    <strong >PAGOS SEGUROS</strong>
+                    <p className=" text-gray-500">Transferencias protegidas</p>
                 </div>
             </div>
-            <div  className="flex flex-col md:flex-row   items-center justify-center text-center md:text-start  w-30 sm:w-fit sm:gap-2">
-                <RiCustomerService2Line   className="text-primary text-[35px]" />
+            <div  className="flex flex-col md:flex-row   items-center justify-center text-center md:text-start   sm:w-fit sm:gap-2">
+                <HeadsetIcon    className="text-primary text-[26px] sm:text-2xl md:text-3xl mb-2" />
                 <div className="text-primary">
-                    <strong className="text-sm">ATENCIÓN 24/7</strong>
-                    <p className="text-xs md:text-sm text-gray-500">Soporte siempre disponible</p>
+                    <strong >ATENCIÓN 24/7</strong>
+                    <p className=" text-gray-500">Soporte por WhatsApp</p>
                 </div>
             </div>
         </section>

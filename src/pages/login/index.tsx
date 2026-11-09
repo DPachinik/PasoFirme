@@ -91,7 +91,7 @@ export function Login(){
 
 
     return(
-        <div className=" w-full h-dvh flex flex-col items-center justify-center ">
+        <div className=" w-full h-dvh flex flex-col items-center justify-center bg-primary">
                 <Link className=" relative flex font-bold text-4xl text-amber-50" to='/'>
 
                     <span className='bg-white bg-clip-text text-transparent select-none'>Paso</span>

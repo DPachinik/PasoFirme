@@ -50,6 +50,7 @@
         padding: 8px;
         border-bottom:0.5px solid #2A4D4E;
         border-radius:0;
+        font-size:14px;
     }
 
     .td::before{
@@ -58,6 +59,7 @@
         display:flex;
         align-items:center;
         font-weight:semibold;
+        text-height:8px;
     }
 
 }

@@ -21,7 +21,7 @@ export const Table=memo(({handleStatusOpenModal, handleOpenModal, userProducts, 
   return (
     <table className={styles.table}>
       <thead className={styles.thead}>
-        <tr>
+        <tr className="font-bebas">
           <th className="rounded-tl rounded-bl">Producto</th>
           <th>Modelo</th>
           <th>Calce-Mín/Máx</th>
@@ -31,7 +31,7 @@ export const Table=memo(({handleStatusOpenModal, handleOpenModal, userProducts, 
         </tr>
       </thead>
 
-      <tbody>
+      <tbody className="font-bebas">
         {uid &&
           userProducts.map((product) => (
             <tr key={product.id} className={styles.tr}>

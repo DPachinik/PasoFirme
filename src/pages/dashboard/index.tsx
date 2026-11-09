@@ -82,12 +82,12 @@ export default function Dashboard(){
 
     return(
 
-        <div className="grid grid-cols-1 md:grid-cols-[0.5fr_2fr]   h-full md:h-screen">
+        <div className=" h-full bg-primary">
             <div className="w-full">
                 <DashboardHeader />
             </div>    
-            <section className="relative flex flex-col gap-4 mt-6  md:mt-0">               
-                <h1 className="text-center mt-4 text-secondary text-2xl font-semibold">Inventario de Productos</h1>
+            <section className="relative flex flex-col gap-4 mt-6  md:mt-0 md:ml-64">               
+                <h1 className="text-center mt-4 text-white  text-xl font-bebas ">Inventario de Productos</h1>
 
                 <Table handleOpenModal={handleOpenModal} handleStatusOpenModal={handleStatusOpenModal} userProducts={userProducts} uid={uid}/>
                 <DeleteModal openModal={openModal} handleDeleteConfirm={handleDeleteConfirm} handleCancel={handleCancel}/>
