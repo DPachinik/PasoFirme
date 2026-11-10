@@ -97,7 +97,7 @@ export function Home(){
                 </div>
             </div>
 
-            <main className="w-full max-w-7xl  mx-auto z-0 px-2 mt-14  flex flex-col" >
+            <main className="w-full max-w-7xl  mx-auto z-0  mt-14  flex flex-col " >
                 <section className=" grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4   place-items-center " >
                     {loading && products.length===0 ?(
                         Array.from({length:8}).map((_,index)=>(
@@ -114,11 +114,11 @@ export function Home(){
 
                 </section>
                 
-                <div className='w-full flex items-center justify-center mx-4'>
+                <div className='w-full flex items-center justify-center '>
                     { lastDoc && path && <ButtonMore path={path} />}
                 </div>
 
-                <div className='w-full flex items-center mx-8 '>
+                <div className='w-full flex items-center'>
                             { isFiltered && path && (
                                 <ButtonProducts  />
                             )}
@@ -135,7 +135,7 @@ export function Home(){
 
             </main>
 
-                <div className=' mb-14 w-full max-w-7xl mx-auto  md:px-6 lg:px-10'>
+                <div className=' mb-14 w-full max-w-7xl mx-auto  md:px-6 lg:px-10 '>
                     <Banner />
                     <SubBanner />
                 </div>
