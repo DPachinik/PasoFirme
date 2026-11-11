@@ -14,7 +14,7 @@ export function Banner(){
         let others = '';
         switch(route){
         case 'clásicos': 
-            others='deportivos';
+            others='sport';
             break;
         case 'sport':
             others='accesorios';
