@@ -5,6 +5,8 @@ import { FaArrowsRotate } from "react-icons/fa6";
 import { ProductsContext } from '../../features/products/context/ProductsContext';
 import { ImageContainer } from './components/ImagesContainer';
 import { ProductDetails } from './components/ProductDetails';
+import { SimilarShoes } from './components/similarShoes';
+import Footer from '../../components/footer';
 
 
 
@@ -24,6 +26,7 @@ export function Detail(){
 
             setPath(route);
             getProduct(id);
+            
         }
 
         loadProducts()
@@ -44,19 +47,32 @@ export function Detail(){
 
 
     return(
-        <main  className="  w-full  max-w-7xl  mx-auto flex items-center justify-center ">
-            <div className='flex flex-col md:flex-row justify-between w-full  gap-8  mt-4  rounded-lg ' >
-                
-                <section className=' w-full flex-1 px-4 '>
-                    <div className="grid grid-cols-3 gap-4">
-                       <ImageContainer product={product} />
+        <div className='w-full'>
+            <div className='flex flex-col w-full  max-w-7xl  mx-auto '>
+                <section  className=" flex items-center justify-center  ">
+                    <div className='flex flex-col md:flex-row justify-between w-full  gap-8  mt-12  rounded-lg ' >
+                        
+                        <section className=' w-full flex-1 px-4 '>
+                            <div className="grid grid-cols-3 gap-4">
+                            <ImageContainer product={product} />
+                            </div>
+                        </section>
+
+                        <section className='w-full flex-1 '>
+                            <ProductDetails product={product} path={path}/>
+                        </section>    
                     </div>
                 </section>
+                
 
-                <section className='w-full flex-1 '>
-                    <ProductDetails product={product} path={path}/>
-                </section>    
+                <section className='mt-10 px-4'>
+                    <h2 className='text-2xl font-bebas text-primary mb-6'>Productos Relacionados</h2>
+                    <SimilarShoes modelo={product.modelo} />
+                </section>
             </div>
-        </main>
+           
+            <Footer />
+        </div>
+
     )
 } 

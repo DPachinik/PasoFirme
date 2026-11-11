@@ -1,4 +1,4 @@
-import { IoIosStar } from "react-icons/io";
+
 import type { Product } from "../../../features/products/types/product";
 import { useContext, useState } from "react";
 import { CartContext } from "../../../features/cart/CartContext";
@@ -51,45 +51,38 @@ import { ProductsContext } from "../../../features/products/context/ProductsCont
 
   return (
       <div className="w-full  flex flex-col   rounded-lg px-4 ">
-        <h1 className=" text-3xl font-bold text-primary text-nowrap">
-          {" "}
+        <h1 className=" text-2xl text-primary text-nowrap font-bebas font-bold">
           {product.modelo}
         </h1>
-        <div className="flex items-center">
-          <IoIosStar size={18} color="#FFCE1B" />
-          <IoIosStar size={18} color="#FFCE1B" />
-          <IoIosStar size={18} color="#FFCE1B" />
-          <IoIosStar size={18} color="#FFCE1B" />
-          <IoIosStar size={18} color="#FFCE1B" />
-        </div>
 
-        <div className="flex  ">
-          <strong className="text-secondary text-2xl">
+
+        <div className="flex pb-4 border-b border-[#082F36]/50">
+          <p className="text-secondary-rel text-2xl font-bebas font-bold">
             {product?.precio.toLocaleString("es-PY", {
               style: "currency",
               currency: "PYG",
             })}
-          </strong>
+          </p>
         </div>
 
-        <div className="w-full flex flex-col mt-4 ">
-          <span className="font-bold text-primary text-xl">Descripción</span>
+        <div className="w-full flex flex-col mt-4 font-bebas ">
+          <span className=" text-primary text-xl">Descripción</span>
           <p className="text-base md:text-sm text-gray-600">
             {product.descripcion}
           </p>
         </div>
 
         <div className="flex flex-col gap-1 mt-4">
-          <span className="font-bold text-primary text-xl">Color</span>
+          <span className="font-bebas text-primary text-xl">Color</span>
           <span
-            className="h-4 w-4 rounded-full "
+            className="h-4 w-12 rounded  "
             style={{ backgroundColor: product.color }}
           ></span>
         </div>
 
         <div className="flex flex-col  mt-4">
           <div className="flex flex-col gap-1">
-            <span className="font-bold  text-xl text-primary">Tamaños</span>
+            <span className="font-bebas text-xl text-primary">Talla</span>
             <div className="grid grid-cols-6 gap-2">
               {tamaños.map((size) => (
                 <button
