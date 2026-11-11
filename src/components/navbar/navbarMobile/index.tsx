@@ -36,7 +36,7 @@ export function NavbarMobile({cart, signed, loadingAdmin}:{cart:CartProps[], sig
     }, [active])
 
     return(
-        <div className=" w-full h-18  z-30 bg-black border-b border-[#2A4D4E] sm:hidden">
+        <div className=" sticky top-0 w-full h-18  z-30 bg-black border-b border-[#2A4D4E] sm:hidden">
 
             <nav className=" relative flex bg-[#082F36]/60   h-full md:flex items-center justify-between px-4 mx-auto ">
 
