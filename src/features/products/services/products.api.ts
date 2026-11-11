@@ -57,6 +57,20 @@ export async function searchProducts(input:string):Promise<
     return snapshot.docs.map(productMapper)
     
 }
+//llamada  para buscar productos por modelo (productos similares)
+export async function searchSimilarProducts( modelo:string):Promise<
+    Product[]
+> {
+    
+    const productRef = collection(db, 'shoes');
+    const q = query(productRef,
+        where('modelo','==', modelo),
+
+    );
+    const snapshot = await getDocs(q)
+    return snapshot.docs.map(productMapper)
+    
+}
 
 
 //llamada  para buscar un solo producto (búsqueda dinámica)

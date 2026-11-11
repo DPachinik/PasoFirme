@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import type { CategoryCache, Product } from '../types/product';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
-import { deleteProductApi, deleteImage, getMoreProducts, getProduct, loadInitialProducts, loadUserProducts, searchProducts, updateProduct } from '../services/products.api';
+import { deleteProductApi, deleteImage, getMoreProducts, getProduct, loadInitialProducts, loadUserProducts,searchSimilarProducts, searchProducts, updateProduct } from '../services/products.api';
 import toast from 'react-hot-toast';
 
 
@@ -18,6 +18,7 @@ export function useProducts(){
     const [isFiltered, setIsFiltered] = useState<boolean>(false);
     const [firstImage, setFirstImage] = useState<string | null>(null);
     const [cached, setCached] = useState<boolean>(false);
+    const [similar, setSimilar]= useState<Product[]>([]);
 
 
 
@@ -152,6 +153,25 @@ export function useProducts(){
         }
     }
 
+    // función para buscar productos similares a través de 'modelos'
+
+    async function handleSimilarShoes(modelo:string, id:string) {
+
+        if(!modelo) return;
+        
+        try{
+            setLoading(true);
+            const result = await searchSimilarProducts(modelo);
+            setSimilar(()=>[...result.filter(item => item.id !== id )]);
+
+        }catch(error){
+            toast.error(`Error al cargar productos:'${error}`)
+
+        }finally{
+            setLoading(false)
+        }
+    }
+
     //función para actualizar el estado de un producto 
     async function handleUpdateProduct(product:Product, status:string){
         try{
@@ -187,6 +207,7 @@ export function useProducts(){
                 setFirstImage(item.imagenes[0].uidImage)
             }
             setProduct(item)
+            handleSimilarShoes(item.modelo, id);
         }catch(err){
             console.log(err);
             toast.error('Error al buscar producto')
@@ -234,14 +255,15 @@ export function useProducts(){
         firstImage,
         userProducts,
         lastDoc,
+        similar,
         loadInitialProducts:handleLoadInitialProducts,
         getMoreProducts:handleGetMoreProducts,
         searchProducts:handleSearchProducts,
+        searchSimilarProducts:handleSimilarShoes,
         updateProduct:handleUpdateProduct,
         clearSearch:handleClearSearch,
         getProduct:handleGetProduct,
         getUserProducts,
         deleteProduct,
-
     };
 }
