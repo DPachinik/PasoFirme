@@ -13,6 +13,7 @@ interface ProductsContextData{
     firstImage:string | null,
     lastDoc:QueryDocumentSnapshot | null
     userProducts:Product[],
+    similar:Product[],
     loadInitialProducts:(route:string)=>void,
     getMoreProducts:(route:string)=>void,
     searchProducts:(input:string)=>void,
