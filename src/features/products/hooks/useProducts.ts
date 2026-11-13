@@ -133,6 +133,7 @@ export function useProducts(){
             setEmpty(false);
             setLoading(true);
             const result = await searchProducts(input)
+            console.log('filtrando....')
             ;
 
 
@@ -140,7 +141,7 @@ export function useProducts(){
                 toast.error('El producto buscado no existe')
                 return setProducts((prev)=>[...prev])
             }
-
+            console.log('productos encontrados...')
             setProducts(result)
             setIsFiltered(true);
 
@@ -162,6 +163,7 @@ export function useProducts(){
         try{
             setLoading(true);
             const result = await searchSimilarProducts(modelo);
+            console.log(result);
             setSimilar(()=>[...result.filter(item => item.id !== id )]);
 
         }catch(error){

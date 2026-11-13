@@ -47,15 +47,16 @@ export async function getMoreProducts(lastDoc:QueryDocumentSnapshot, route:strin
 export async function searchProducts(input:string):Promise<
     Product[]
 > {
-    
+    const searchModel = input.trim().toLocaleUpperCase();
+
     const productRef = collection(db, 'shoes');
-    const q = query(productRef,
-        where('modelo','>=', input.trim().toUpperCase()),
-        where('modelo', '<=',input.trim().toUpperCase()+ '\uf8ff'),
-    );
+    const q = query(
+        productRef,
+        where('keywords','array-contains', searchModel),
+        limit(16));
+
     const snapshot = await getDocs(q)
-    return snapshot.docs.map(productMapper)
-    
+    return snapshot.docs.map(productMapper);
 }
 //llamada  para buscar productos por modelo (productos similares)
 export async function searchSimilarProducts( modelo:string):Promise<

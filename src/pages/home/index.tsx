@@ -36,6 +36,7 @@ export function Home(){
         }
     }
 
+
     useEffect(()=>{
 
         function routes(route:string | undefined, busqueda:string | null) {
@@ -58,7 +59,7 @@ export function Home(){
         //función de scroll directo a grid de 'Productos': navegación entre páginas
         function moveScroll(){
 
-            if(cached){
+            if(cached || isFiltered){
                 document.getElementById('productos')?.scrollIntoView({
                     block:'start',
                 });
