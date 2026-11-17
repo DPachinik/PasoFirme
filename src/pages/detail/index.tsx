@@ -65,10 +65,12 @@ export function Detail(){
                 </section>
                 
 
-                <section className='mt-10 px-4'>
-                    <h2 className='text-2xl font-bebas text-primary mb-6'>Productos Relacionados</h2>
-                    <SimilarShoes modelo={product.modelo} />
-                </section>
+                {SimilarShoes && (
+                    <section className='mt-10 px-4'>
+                        <h2 className='text-2xl font-bebas text-primary mb-6'>Productos Relacionados</h2>
+                        <SimilarShoes modelo={product.modelo} />
+                    </section>                    
+                )}
             </div>
            
             <Footer />
