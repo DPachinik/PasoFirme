@@ -20,12 +20,14 @@ export function Home(){
     const { route }= useParams();
     const [searchParams]=useSearchParams();
     const busqueda = searchParams.get('busqueda');
+    const search = !!busqueda;
 
     const navigate = useNavigate();  
     const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty, searchProducts, cached} = useContext(ProductsContext)
     const {cart} = useContext(CartContext)
     const [scrollActive, setScrollActive]= useState(false);
     const [path, setPath]=useState<string |null>(null)
+    
 
     
     function handleScroll(){
@@ -35,6 +37,8 @@ export function Home(){
             setScrollActive(false)
         }
     }
+
+    
 
 
     useEffect(()=>{
@@ -49,7 +53,8 @@ export function Home(){
 
         if(busqueda){
             console.log(`Buscando por parametro:${busqueda}`)
-            searchProducts(busqueda)
+            moveScroll();
+            searchProducts(busqueda);
             
         }else{
             console.log(`llamando a los productos en la ruta:${route}`)
@@ -59,7 +64,7 @@ export function Home(){
         //función de scroll directo a grid de 'Productos': navegación entre páginas
         function moveScroll(){
 
-            if(cached || isFiltered){
+            if(cached || search){
                 document.getElementById('productos')?.scrollIntoView({
                     block:'start',
                 });

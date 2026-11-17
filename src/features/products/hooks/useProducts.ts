@@ -135,8 +135,7 @@ export function useProducts(){
             const result = await searchProducts(input)
             console.log('filtrando....')
             ;
-
-
+            
             if(result.length === 0){
                 toast.error('El producto buscado no existe')
                 return setProducts((prev)=>[...prev])
