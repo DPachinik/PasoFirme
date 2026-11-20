@@ -87,24 +87,28 @@ export function Home(){
         <div>
             <Hero/>
 
-            <div className=''>
+            <div className='mb-4 lg:mb-12'>
                 <div className='arrow-container'>
                     <MdKeyboardDoubleArrowDown size={50}  color='#082F36' className='arrow' />
                 </div>
      
-                <h1 
+                <p 
                 id="productos" 
-                className="  font-bebas  text-base  mb-4 text-center text-primary ">NUESTRA COLECCIÓN</h1>
+                className="    text-xl font-bebas   mb-4 text-center text-primary font-bold ">Nuestros Productos</p>
 
-                <div className='w-full max-w-[80%] flex  items-center justify-center mx-auto gap-8 lg:hidden'>
+
+            </div>
+
+            <div className='sticky top-[65px] w-full sm:max-w-[80%] flex  items-center justify-center mx-auto gap-8 bg-[#F1EFE7] z-25 px-2 lg:hidden'>
               
                     <InputSearch />
 
-                </div>
             </div>
 
-            <main className="w-full max-w-7xl  mx-auto z-0  mt-14  flex flex-col " >
-                <section className=" grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4   place-items-center " >
+            <span className='pl-2 sm:pl-8 text-gray-600 '>{products.length} productos</span>
+
+            <main className="w-full max-w-7xl  mx-auto z-0  mt-10 flex flex-col " >
+                <section className=" grid  grid-cols-2  md:grid-cols-3 lg:grid-cols-4   place-items-center gap-2 " >
                     {loading && products.length===0 ?(
                         Array.from({length:8}).map((_,index)=>(
                             <article key={index} className="w-[250px] h-[380px] bg-slate-100 border border-slate-200 animate-pulse rounded-lg mb-12 flex flex-col p-4 justify-between">
@@ -114,9 +118,9 @@ export function Home(){
                                 <div className="w-1/2 h-6 bg-slate-300 rounded mt-4"></div>
                             </article>
                         ))
-                ):(
-                    <ShoesCard products ={products} />
-                )}
+                        ):(
+                        <ShoesCard products ={products} />
+                    )}
 
                 </section>
                 

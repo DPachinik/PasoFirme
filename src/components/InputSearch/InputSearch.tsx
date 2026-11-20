@@ -1,5 +1,5 @@
+import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 import { useState } from "react";
-import { IoSearch } from "react-icons/io5";
 import { useParams, useSearchParams } from 'react-router-dom';
 
 export function InputSearch(){
@@ -35,7 +35,7 @@ export function InputSearch(){
 
     return(
 
-        <div className='flex w-full max-w-2xl  items-center justify-center gap-2  my-4 bg-white px-2 rounded '>
+        <div className=' flex w-full sm:max-w-2xl  items-center justify-center gap-2  my-4 bg-white pl-2 lg:pr-2  shadow rounded'>
             <input
                 className='w-full text-sm  h-8  outline-none text-[#082F36] ' 
                 type='text' 
@@ -50,10 +50,10 @@ export function InputSearch(){
             />
 
             <button 
-                className=''
+                className='flex bg-primary lg:bg-white  h-8 w-10 lg:h-auto lg:w-auto  items-center justify-center rounded-r'
                 onClick={()=>{handleSearch()}}
             >
-                <IoSearch  size={24} className='cursor-pointer text-[#2A4D4E] hover:text-[#C14426]' />
+                <MagnifyingGlassIcon   size={24} className='cursor-pointer text-white lg:text-[#2A4D4E]  lg:bg-white' />
             </button>        
         </div>
     )

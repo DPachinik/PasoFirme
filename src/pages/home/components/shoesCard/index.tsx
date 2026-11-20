@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import type { Product } from "../../../../features/products/types/product";
 
     const estadoColors:Record<string, string>={
-    'Novedades': 'bg-white text-primary',
+    'Novedades': 'bg-white text-primary shadow',
     'Pocas unidades': 'bg-secondary text-white',
     'Agotado': 'bg-[#ff0000] text-white'
     }
@@ -21,8 +21,7 @@ export function ShoesCard({products}:{products:Product[]}){
         {products.map((product)=>(
                         <article 
                         key={product.id}
-                        className="relative max-w-[75%] sm:max-w-[80%] md:max-w-[90%] h-[380px] rounded-lg  flex flex-col items-center mb-12">
-
+                        className="relative w-full max-w-[95%] sm:max-w-[80%] md:max-w-[90%] h-[380px] rounded-lg  flex flex-col items-center mb-6">
                 
                             <div 
                             className='w-full min-w-[250px] min-h-[200px] bg-slate-300 rounded-t-lg animate-pulse '
@@ -31,16 +30,18 @@ export function ShoesCard({products}:{products:Product[]}){
                             </div>
 
 
-                            <div  style={{display:loadImage.includes(product.id)? 'block':'none'}} className=''  >
-                                <div className='relative w-full max-w-[250px] min-h-[200px]  rounded-t-lg bg-white px-4  shadow shadow-gray-300'>
-                                    
+                            <div  style={{display:loadImage.includes(product.id)? 'block':'none'}} className='w-full'  >
+                                <div className='relative w-full max-w-[250px] min-h-[200px]  rounded-t-lg  bg-white px-4  shadow shadow-gray-300 overflow-hidden'>
+                                    <Link to={`/detail/${product.categoria}/${product.id}`} className="">
                                         <img 
-                                        className=" h-[200px] w-[250px] rounded-t-lg   object-contain  sm:p-4 "
+                                        className=" h-[200px] w-[250px] rounded-t-lg   object-contain  sm:p-4 hover:scale-110 transition-all duration-200 "
                                         src={product.imagenes[0].url} 
                                         onLoad={()=>handleImageLoad(product.id)} 
                                         decoding='async'
                                         alt={product.modelo}                   
                                         />
+                                    </Link>
+
 
 
                                         <div className={`absolute top-2 left-2  rounded text-white px-2 py-1 font-medium text-xs  ${estadoColors[product.estado]} `}>
@@ -50,7 +51,7 @@ export function ShoesCard({products}:{products:Product[]}){
                                 </div>
                             </div>
 
-                            <section className='absolute top-[190px] h-[200px] w-full max-w-[250px] flex flex-col   px-3 rounded-xl  bg-white shadow shadow-gray-300 ' >
+                            <section className='absolute top-[190px] h-[200px] inset-0  w-full max-w-[250px] flex flex-col   px-3 rounded-xl  bg-white shadow shadow-gray-300 ' >
                                     
                                 <div className='flex flex-col'>
                                     <p className="font-bold mt-2 mb-2 text-primary uppercase">{product.modelo}</p>
@@ -75,8 +76,8 @@ export function ShoesCard({products}:{products:Product[]}){
 
                                     <div className="flex h-full items-end justify-between  mb-4 ">
                                         <div className='flex flex-col'>
-                                            <span className=' text-xs sm:text-[11px] font-bold text-primary'>PRECIO</span>
-                                            <strong className="text-secondary-rel text-sm sm:text-lg">
+
+                                            <strong className="text-secondary-rel text-lg font-bebas sm:text-lg">
                                                 {product.precio.toLocaleString("es-PY",{
                                                     style:'currency',
                                                     currency:'PYG'
@@ -84,7 +85,7 @@ export function ShoesCard({products}:{products:Product[]}){
                                             </strong>
                                         </div>
 
-                                        <Link to={`/detail/${product.categoria}/${product.id}`}>
+                                        <Link to={`/detail/${product.categoria}/${product.id}`} className="hidden sm:flex">
                                             <button  className="bg-primary p-1 px-2 rounded cursor-pointer text-xs sm:text-sm font-medium text-white">
                                                 ver detalles
                                             </button>
