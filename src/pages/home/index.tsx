@@ -31,18 +31,18 @@ export function Home(){
     const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty, searchProducts, cached} = useContext(ProductsContext);
     const {cart} = useContext(CartContext);
     const {signed, loadingAdmin} = useContext(AuthContext);
-    const [scrollActive, setScrollActive]= useState(false);
+    // const [scrollActive, setScrollActive]= useState(false);
     const [path, setPath]=useState<string |null>(null);
     
 
     
-    function handleScroll(){
-        if(window.scrollY>10){
-           setScrollActive(true)
-        }else{
-            setScrollActive(false)
-        }
-    }
+    // function handleScroll(){
+    //     if(window.scrollY>10){
+    //        setScrollActive(true)
+    //     }else{
+    //         setScrollActive(false)
+    //     }
+    // }
 
     
 
@@ -83,9 +83,9 @@ export function Home(){
 
         routes(route, busqueda);
 
-        window.addEventListener('scroll', handleScroll)
+        // window.addEventListener('scroll', handleScroll)
 
-        return ()=>window.removeEventListener('scroll', handleScroll);
+        // return ()=>window.removeEventListener('scroll', handleScroll);
 
     },[ route, busqueda, cached])
 
