@@ -1,14 +1,15 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import type { Product } from "../../../../features/products/types/product";
+import { HeartIcon } from "@phosphor-icons/react";
 
     const estadoColors:Record<string, string>={
-    'Novedades': 'bg-white text-primary shadow',
-    'Pocas unidades': 'bg-secondary text-white',
-    'Agotado': 'bg-[#ff0000] text-white'
+    'Novedades': 'bg-active text-white ',
+    'Pocas unidades': 'bg-dark text-white',
+    'Agotado': 'bg-black text-white'
     }
 
-export function ShoesCard({products}:{products:Product[]}){
+export function ShoesCard({products, path}:{products:Product[], path:string | null}){
 
     const [loadImage, setLoadImage] = useState<string[]>([]);
 
@@ -21,80 +22,54 @@ export function ShoesCard({products}:{products:Product[]}){
         {products.map((product)=>(
                         <article 
                         key={product.id}
-                        className="relative w-full max-w-[95%] sm:max-w-[80%] md:max-w-[90%] h-[380px] rounded-lg  flex flex-col items-center mb-6">
-                
+                        className="rounded-lg bg-white hover:bg-white  p-2  font-Poppins shadow ">
+
+                            { path === 'clásicos' && (
+                                <div className={` rounded text-white px-2 py-1 mt-2 font-medium text-xs  w-fit  ${estadoColors[product.estado]} `}>
+                                    {product.estado}
+                                </div>                                    
+                            )}
+
+                            {/* //skeleton de imagen */}
                             <div 
-                            className='w-full min-w-[250px] min-h-[200px] bg-slate-300 rounded-t-lg animate-pulse '
+                            className=' w-full h-[90px] bg-secondary rounded-t-md animate-pulse '
                             style={{display:loadImage.includes(product.id)? 'none':'block'}}
                             >
                             </div>
 
 
-                            <div  style={{display:loadImage.includes(product.id)? 'block':'none'}} className='w-full'  >
-                                <div className='relative w-full max-w-[250px] min-h-[200px]  rounded-t-lg  bg-white px-4  shadow shadow-gray-300 overflow-hidden'>
-                                    <Link to={`/detail/${product.categoria}/${product.id}`} className="">
-                                        <img 
-                                        className=" h-[200px] w-[250px] rounded-t-lg   object-contain  sm:p-4 hover:scale-110 transition-all duration-200 "
-                                        src={product.imagenes[0].url} 
-                                        onLoad={()=>handleImageLoad(product.id)} 
-                                        decoding='async'
-                                        alt={product.modelo}                   
-                                        />
-                                    </Link>
+                            <div  style={{display:loadImage.includes(product.id)? 'block':'none'}} className=''>
+                                <Link to={`/detail/${product.categoria}/${product.id}`} >
 
 
+                                    <div className='relative w-full h-[95px]  rounded-t-md  overflow-hidden'>
+                                        
+                                            <img 
+                                            className=" w-full h-full object-contain object-center   hover:scale-110 transition-all duration-200 "
+                                            src={product.imagenes[0].url} 
+                                            onLoad={()=>handleImageLoad(product.id)} 
+                                            decoding='async'
+                                            alt={product.modelo}                   
+                                            />                            
+                                    </div>
 
-                                        <div className={`absolute top-2 left-2  rounded text-white px-2 py-1 font-medium text-xs  ${estadoColors[product.estado]} `}>
-                                            {product.estado}
-                                        </div>
                                     
-                                </div>
+                                </Link>
+
+                                
                             </div>
 
-                            <section className='absolute top-[190px] h-[200px] inset-0  w-full max-w-[250px] flex flex-col   px-3 rounded-xl  bg-white shadow shadow-gray-300 ' >
-                                    
-                                <div className='flex flex-col'>
-                                    <p className="font-bold mt-2 mb-2 text-primary uppercase">{product.modelo}</p>
-                                    <div className='flex flex-row items-start gap-2 text-slate-600 font-medium '>
-                                        <div className="border border-slate-600 w-fit p-0.5 px-1 text-[10px] font-bold  rounded-sm ">
-                                                {product.calceMax
-                                                    ? `BRA ${product.calceMin} | ${product.calceMax}`
-                                                    :`BRA ${product.calceMin}`}
-                                            </div>
+                            <p className="text-[14px] font-semibold mt-4 text-gray-700 ">{product.modelo}</p>
 
-
-                                            <div className='flex  gap-2 border w-fit  p-0.5 px-1 text-[10px] font-bold rounded-sm uppercase items-center'>
-                                                <span >Color</span>
-                                                <span className='w-3 h-3  rounded-full' style={{backgroundColor:product.color}} />
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-                                    <div className='text-xs sm:text-[12px] text-[#2A4D4E]  mt-3'>{product.descripcionCorta}</div>
-
-                                    <div className="flex h-full items-end justify-between  mb-4 ">
-                                        <div className='flex flex-col'>
-
-                                            <strong className="text-secondary-rel text-lg font-bebas sm:text-lg">
-                                                {product.precio.toLocaleString("es-PY",{
-                                                    style:'currency',
-                                                    currency:'PYG'
-                                                })}
-                                            </strong>
-                                        </div>
-
-                                        <Link to={`/detail/${product.categoria}/${product.id}`} className="hidden sm:flex">
-                                            <button  className="bg-primary p-1 px-2 rounded cursor-pointer text-xs sm:text-sm font-medium text-white">
-                                                ver detalles
-                                            </button>
-                                        </Link>
-                                        
-                                    </div>
-
-                            </section>
-                                                        
+                            <div className="my-2 flex items-center justify-between text-basic">
+                                <span className="text-base font-semibold">
+                                {product?.precio.toLocaleString("es-PY", {
+                                    style: "currency",
+                                    currency: "PYG",
+                                })}
+                                </span>
+                                    <HeartIcon size={18} weight="fill" className="text-olive" />
+                            </div>                                    
                         </article>
                     ))}
         </>
