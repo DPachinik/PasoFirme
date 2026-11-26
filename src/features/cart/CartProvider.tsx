@@ -7,7 +7,7 @@ interface ProviderProps{
 }
 
 export type AddCartItem = Product & {
-  talle: number;
+  calces: number;
 }
 
 function CartProvider({children}:ProviderProps){
@@ -19,7 +19,7 @@ function CartProvider({children}:ProviderProps){
     function addItemCart(newItem:AddCartItem){
 
         const indexItem = cart.findIndex(
-         (item) => item.id === newItem.id && item.talle === newItem.talle
+         (item) => item.id === newItem.id && item.talles === newItem.talles
         );
 
         if(indexItem !== -1){
@@ -59,7 +59,7 @@ function CartProvider({children}:ProviderProps){
         }
 
 
-        const cartList = cart.filter(item => !(item.id === product.id && item.talle === product.talle));
+        const cartList = cart.filter(item => !(item.id === product.id && item.calces === product.calces));
         setCart(cartList);
         totalResultCart(cartList);
     }

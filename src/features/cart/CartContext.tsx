@@ -18,11 +18,14 @@ export interface CartProps{
     total:number;
     calceMin:string;
     calceMax?:string;
-    color:string;
+    colores:string[];
     estado:string;
     imagenes:ImageProps[];
-    talle:number;
-    categoria:string;   
+    talles:string[];
+    categoria:string;
+    marcas:string[]
+    popular:string;
+    calces:number;
 }
 
 interface ImageProps{

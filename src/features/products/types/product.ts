@@ -11,14 +11,14 @@ export interface Product{
     calceMin:string;
     calceMax?:string;
     precio:number;
-    colores:string;
+    colores:string[];
     estado:string;
     descripcion:string;
     descripcionCorta?:string;
     imagenes:ImageProps[];
     categoria:string;
-    marcas:string;
-    talles:string;
+    marcas:string[];
+    talles:string[];
     popular:string,
 
 }
