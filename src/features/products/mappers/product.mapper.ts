@@ -8,11 +8,13 @@ export function productMapper(doc:QueryDocumentSnapshot <DocumentData> | Documen
     calceMin: doc.data()?.calceMin,
     calceMax: doc.data()?.calceMax,
     precio: Number(doc.data()?.precio),
-    color: doc.data()?.color,
+    colores: doc.data()?.colores,
     estado: doc.data()?.estado,
-    descripcionCorta: doc.data()?.descripcionCorta,
     descripcion: doc.data()?.descripcion,
     imagenes: doc.data()?.imagenes,
     categoria:doc.data()?.categoria,
+    talles:doc.data()?.talles,
+    marcas:doc.data()?.marcas,
+    popular:doc.data()?.popular,
     }
 }
