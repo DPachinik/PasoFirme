@@ -39,7 +39,7 @@ import { ProductsContext } from "../../../features/products/context/ProductsCont
 
     addItemCart({
       ...product,
-      talle: selectedSize,
+      calces: selectedSize,
     });
 
     toast.success("Producto añadido al carrito", {
@@ -74,10 +74,16 @@ import { ProductsContext } from "../../../features/products/context/ProductsCont
 
         <div className="flex flex-col gap-1 mt-4">
           <span className="font-bebas text-primary text-xl">Color</span>
+          {
+            product.colores.map((color,i)=>(
           <span
+            key={i}
             className="h-4 w-12 rounded  "
-            style={{ backgroundColor: product.color }}
+            style={{ backgroundColor: color }}
           ></span>
+            ))
+          }
+
         </div>
 
         <div className="flex flex-col  mt-4">

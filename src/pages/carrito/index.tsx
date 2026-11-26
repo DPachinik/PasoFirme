@@ -36,7 +36,7 @@ export function Carrito(){
         const productos = cart.map((item)=>{
             return `
             ${iconZapato} *Modelo:* ${item.modelo}
-            Talle: ${item.talle}
+            Talle: ${item.talles}
             Precio: ${item.precio.toLocaleString('es-PY',{
                 style:'currency',
                 currency:'PYG'
@@ -139,7 +139,7 @@ export function Carrito(){
                                                 <div className=' flex flex-col justify-center  text-start '>
                                                     <div className='  pl-4 lg:pl-16'>
                                                         <p className='font-medium text-primary lg:text-nowrap '>{item.modelo}</p>
-                                                        <span className='block text-start text-secondary-rel text-nowrap '>Talle: {item.talle}</span>
+                                                        <span className='block text-start text-secondary-rel text-nowrap '>Talle: {item.talles}</span>
                                                     </div>
 
                                                 </div> 
