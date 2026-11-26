@@ -1,7 +1,7 @@
 import {  useEffect, useContext, useState } from 'react'
 import { Hero} from '../../components/hero';
-import { InputSearch } from '../../components/InputSearch/InputSearch';
-import { MdKeyboardDoubleArrowDown } from 'react-icons/md';
+// import { InputSearch } from '../../components/InputSearch/InputSearch';
+// import { MdKeyboardDoubleArrowDown } from 'react-icons/md';
 import { ProductsContext } from '../../features/products/context/ProductsContext';
 import { ShoesCard } from './components/shoesCard';
 import { ButtonMore } from './components/buttonMore';
@@ -9,9 +9,14 @@ import { ButtonProducts } from './components/buttonProducts';
 import { Banner } from '../../components/banner';
 import SubBanner from '../../components/subBanner';
 import Footer from '../../components/footer';
-import CartHome from './components/carthome';
+// import CartHome from './components/carthome';
 import { CartContext } from '../../features/cart/CartContext';
 import {  useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { Header } from '../../components/header';
+import { Skeleton } from './components/shoesCard/skeleton';
+import { CaretRightIcon } from '@phosphor-icons/react';
+import { MobileNavbar } from '../../components/navbar/lowerNavbar';
+import { AuthContext } from '../../features/auth/authContext';
 
 
 
@@ -23,10 +28,11 @@ export function Home(){
     const search = !!busqueda;
 
     const navigate = useNavigate();  
-    const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty, searchProducts, cached} = useContext(ProductsContext)
-    const {cart} = useContext(CartContext)
+    const { products,isFiltered, loadInitialProducts, lastDoc, loading ,empty, searchProducts, cached} = useContext(ProductsContext);
+    const {cart} = useContext(CartContext);
+    const {signed, loadingAdmin} = useContext(AuthContext);
     const [scrollActive, setScrollActive]= useState(false);
-    const [path, setPath]=useState<string |null>(null)
+    const [path, setPath]=useState<string |null>(null);
     
 
     
@@ -84,10 +90,11 @@ export function Home(){
     },[ route, busqueda, cached])
 
     return(
-        <div>
+        <div className=' w-full max-w-[480px] px-3.5 pt-4  h-100dvh  '>
+            <Header />
             <Hero/>
 
-            <div className='mb-4 lg:mb-12'>
+            {/* <div className='mb-4 lg:mb-12'>
                 <div className='arrow-container'>
                     <MdKeyboardDoubleArrowDown size={50}  color='#082F36' className='arrow' />
                 </div>
@@ -97,29 +104,21 @@ export function Home(){
                 className="    text-xl font-bebas   mb-4 text-center text-primary font-bold ">Nuestros Productos</p>
 
 
+            </div> */}
+
+
+            <div className='pl-2 sm:pl-8 text-basic flex gap-2 font-Poppins items-center'>
+                <CaretRightIcon size={16} />
+                {path}
             </div>
 
-            <div className='sticky top-[65px] w-full sm:max-w-[80%] flex  items-center justify-center mx-auto gap-8 bg-[#F1EFE7] z-25 px-2 lg:hidden'>
-              
-                    <InputSearch />
 
-            </div>
-
-            <span className='pl-2 sm:pl-8 text-gray-600 '>{products.length} productos</span>
-
-            <main className="w-full max-w-7xl  mx-auto z-0  mt-10 flex flex-col " >
-                <section className=" grid  grid-cols-2  md:grid-cols-3 lg:grid-cols-4   place-items-center gap-2 " >
+            <main className="w-full max-w-7xl  mx-auto z-0  mt-2 flex flex-col " >
+                <section className="grid grid-cols-2 md:grid-cols-3 gap-x-[9px] gap-y-3 px-2.5" >
                     {loading && products.length===0 ?(
-                        Array.from({length:8}).map((_,index)=>(
-                            <article key={index} className="w-[250px] h-[380px] bg-slate-100 border border-slate-200 animate-pulse rounded-lg mb-12 flex flex-col p-4 justify-between">
-                                <div className="w-full h-[180px] bg-slate-300 rounded-lg"></div>
-                                <div className="w-3/4 h-5 bg-slate-300 rounded mt-4"></div>
-                                <div className="w-full h-12 bg-slate-200 rounded mt-2"></div>
-                                <div className="w-1/2 h-6 bg-slate-300 rounded mt-4"></div>
-                            </article>
-                        ))
+                       <Skeleton />
                         ):(
-                        <ShoesCard products ={products} />
+                        <ShoesCard products ={products} path={path} />
                     )}
 
                 </section>
@@ -152,11 +151,11 @@ export function Home(){
 
                 <Footer />
 
-                {  cart.length>0 && scrollActive && (
-                    <div className='w-full bg-[#C00000] fixed bottom-0 sm:hidden'>
-                        <CartHome cart ={cart}/>
+                
+                    <div className=' w-full bg-fondo fixed bottom-0 px-3.5 max-w-[480px] mx-auto sm:hidden'>
+                        <MobileNavbar cart={cart} signed={signed} loadingAdmin={loadingAdmin}   />
                     </div>
-                ) }
+           
 
         </div>
     )
