@@ -1,15 +1,18 @@
 @import "tailwindcss";
-
 @import 'swiper/css';
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
 @import 'swiper/css/scrollbar';
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
 
 @theme {
     --font-bebas: "Bebas Neue", sans-serif;
     --font-roboto: "Roboto", sans-serif;
+    --font-Poppins:'Poppins', sans-serif;
 }
 
 @layer base {
@@ -20,12 +23,57 @@
         --titulos:#082F36;
         --crema:#F1EFE7;
         --coral:#E86A5C;
-        --coral-oscuro:#C85B50; 
+        --coral-oscuro:#C85B50;
+
+        /* Colors */
+        --color-primary: #95982E;           /* botones principales y elementos activos */
+        --color-secondary: #B1B070;  /* fondo destacado e imagenes */
+        --color-background: #E3DEDE;     /* fondo de las pantallas */
+        --color-blanco: #FFFFFF;        /* tarjetas y superficies*/
+        --color-gray: #A6A4A2;       /* tallas y controles secundarios*/
+        --color-dark: #67674A;   /* fondo exterior*/
+        --color-text: #151513; /* textos y precios */
+        --color-surface:#F8F7F7;  /* tarjetas e iconos inactivos */
+
+        /* Spacing */
+        --space-xs: 4px;
+        --space-sm: 8px;
+        --space-md: 12px;
+        --space-lg: 16px;
+        --space-xl: 24px;
+
+        /* Radius */
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 20px;
+
     }
 
 }
 
 @layer utilities {
+
+    /* TEXTOS */
+    .text-main{
+        color:var(--color-primary)
+    }
+    .text-basic{
+        color:var(--color-text)
+    }
+    .text-olive{
+        color:var(--color-primary)
+    }
+    .text-gray{
+        color:var(--color-gray)   
+    }
+    .text-off{
+        color:var(--color-background)   
+    }
+
+
+
+
 
     .text-primary{
         color: var(--titulos);
@@ -51,6 +99,32 @@
         color: var(--secondary-rel)
     }
 
+     /* FONDOS */
+     .bg-fondo{
+        background-color:var(--color-surface)
+    }
+
+    .bg-dark{
+        background-color:var(--color-dark)
+    }
+    
+    .bg-active{
+        background-color:var(--color-primary)
+    }
+    .bg-defuse{
+        background-color:var(--color-background)
+    }
+
+    .bg-off{
+        background-color:var(--color-gray)
+    }
+
+    .bg-secondary{
+        background-color: var(--color-secondary)
+    }
+
+
+
     .bg-primary{
         background-color: var(--primary)
     }
@@ -59,9 +133,9 @@
         background-color: var(--coral-oscuro)
     }
 
-    .bg-secondary{
+    /* .bg-secondary{
         background-color: var(--secondary)
-    }
+    } */
     .bg-secondary-rel{
         background-color: var(--secondary-rel)
     }
