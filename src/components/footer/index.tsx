@@ -4,7 +4,7 @@ import { FacebookLogoIcon, InstagramLogoIcon } from "@phosphor-icons/react";
 
 export default function Footer(){
     return(
-        <section className=" bg-black  flex ">
+        <section className="hidden bg-black  ">
             <div className="relative h-full bg-[#082F36]/60 w-full flex flex-col p-4 md:px-12 pb-11">
                 <div className="flex flex-col md:flex-row font-bebas">
                     <div className="flex flex-col ">

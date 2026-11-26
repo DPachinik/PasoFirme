@@ -44,7 +44,7 @@ export function Hero(){
                     <SwiperSlide
                     key={i}
                     >
-                    <header className='relative flex flex-col justify-center gap-4 bg-black'>
+                    <header className='relative  flex-col justify-center gap-4 bg-black hidden'>
                         <section className='flex flex-col bg-[#082F36]/60'>
                             <div className='flex flex-col sm:flex-row  w-full h-[500px] sm:h-[350px] lg:h-[450px]  overflow-hidden'>
 

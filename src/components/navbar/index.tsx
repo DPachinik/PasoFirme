@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import { NavbarMobile } from './navbarMobile';
 import { NavbarDesktop } from './navbarDesktop';
 
+
 export function Navbar(){
     const{ cart }= useContext(CartContext);
     const {signed, loadingAdmin} = useContext(AuthContext)
@@ -12,6 +13,7 @@ export function Navbar(){
         <>
             <NavbarMobile cart={cart} signed={signed} loadingAdmin={loadingAdmin} />
             <NavbarDesktop cart={cart} signed={signed} loadingAdmin={loadingAdmin} />
+
         </>
     )
 }

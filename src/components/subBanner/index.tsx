@@ -3,7 +3,7 @@ import { HeadsetIcon, MoneyWavyIcon, TruckIcon } from "@phosphor-icons/react";
 
 export default function SubBanner(){
     return(
-        <section className="mt-8  flex justify-around font-bebas  text-[8px] lg:text-[12px]">
+        <section className="hidden mt-8  flex justify-around font-bebas  text-[8px] lg:text-[12px]">
             <div className="flex flex-col md:flex-row   items-center justify-center text-center md:text-start  sm:w-fit sm:gap-2">
                 <TruckIcon  className="text-primary text-[26px] sm:text-2xl md:text-3xl mb-2" />
                 <div className="text-primary">

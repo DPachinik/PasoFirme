@@ -56,7 +56,7 @@ export function Banner(){
                     <SwiperSlide
                     key={i}
                     >
-                        <div className="flex w-full h-40 md:h-50  overflow-hidden   bg-linear-to-r from-[#C00000] via-[#C00000] to-[#C00000]/10 md:rounded">
+                        <div className=" hidden flex w-full h-40 md:h-50  overflow-hidden   bg-linear-to-r from-[#C00000] via-[#C00000] to-[#C00000]/10 md:rounded">
 
                             <section className="  relative w-full h-full flex  items-center bg-[#E86343]/40 ">
 
