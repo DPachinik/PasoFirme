@@ -17,7 +17,7 @@ export function ImagePreview({image, onDelete}:ImagePreviewProps){
         <div className={ layoutShift }> 
         {image?(
 
-            <div className="relative w-full ">
+            <div className="relative w-full  ">
 
                 <img 
                 src={`${image.previewUrl}`} 
@@ -38,7 +38,7 @@ export function ImagePreview({image, onDelete}:ImagePreviewProps){
             </div>
                                             
             ):(
-            <div className="w-full h-full flex items-center justify-center ">
+            <div className="w-full h-30 flex items-center justify-center ">
                 <BiImageAdd size={30} color="#ffff" className="flex" />
             </div>    
                                             

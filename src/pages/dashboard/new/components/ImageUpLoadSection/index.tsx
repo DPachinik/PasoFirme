@@ -1,7 +1,8 @@
-import { FiUpload } from "react-icons/fi";
+
 import { ImagePreview } from "../ImagePreview";
 import type { ChangeEvent } from "react";
 import type { ImageProps } from "../../types/image";
+import { UploadSimpleIcon } from "@phosphor-icons/react";
 
 interface PropsImageSection{
     handleFile:(e:ChangeEvent<HTMLInputElement>)=>void;
@@ -11,12 +12,13 @@ interface PropsImageSection{
 
 export function ImageUpLoadSection({handleFile, handleDeleteImage, shoeImages}:PropsImageSection) {
   return (
-    <div className="flex gap-2 w-full max-w-4xl  md:mx-auto px-1 md:px-10  rounded-t-lg pt-4 ">
-      <button className="w-25 h-30  rounded-lg flex items-center justify-center bg-white">
-        <FiUpload
+    <div className="flex flex-col gap-2 w-full max-w-4xl  md:mx-auto px-1 md:px-10  border border-white  rounded-lg  py-10 bg-gray-800 ">
+      <p className="text-white font-semibold text-lg">Fotos</p>
+      <button className="relative w-full h-30  rounded-lg flex items-center justify-center border border-dashed border-white hover:bg-gray-600 transition-all duration-200">
+        <UploadSimpleIcon
           size={30}
-          color="#2A4D4E"
-          className="absolute cursor-pointer"
+          color="#ffff"
+          className="absolute cursor-pointer "
         />
         <input
           type="file"
