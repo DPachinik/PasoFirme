@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon } from "@phosphor-icons/react";
+import { MagnifyingGlassIcon, SparkleIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useParams, useSearchParams } from 'react-router-dom';
 
@@ -20,13 +20,13 @@ export function InputSearch(){
     let placeholder=''
     switch(route){
         case 'clásicos':
-        placeholder ='oxford, baco, blucher...'
+        placeholder ='Oxford, Baco, Blucher...'
         break;
         case 'accesorios':
-        placeholder ='bolsos, medias, mochila...'
+        placeholder ='Bolsos, Medias, Mochilas...'
         break;
         case 'sport':
-        placeholder ='adidas, nike, olympikus...'
+        placeholder ='Adidas, Nike, Puma...'
         break;
 
     }
@@ -35,26 +35,37 @@ export function InputSearch(){
 
     return(
 
-        <div className=' flex w-full sm:max-w-2xl  items-center justify-center gap-2  my-4 bg-white pl-2 lg:pr-2  shadow rounded'>
-            <input
-                className='w-full text-sm  h-8  outline-none text-[#082F36] ' 
-                type='text' 
-                placeholder={placeholder}
-                value={input}
-                onChange={(e)=>setInput(e.target.value)}
-                onKeyDown={(e) => {
-                    if(e.key === 'Enter'){
-                        handleSearch();
-                    }
-                }}
-            />
+        <div className='relative  flex w-full sm:max-w-2xl  items-center justify-center gap-2'>
+            <div className="flex h-[42px] w-full sm:max-w-2xl  items-center justify-center rounded-md shadow shadow-[#A6A4A2]">
+                <button 
+                    className='absolute left-0 flex   h-8 w-10 lg:h-auto lg:w-auto  items-center justify-center rounded-r'
+                    onClick={()=>{handleSearch()}}
+                >
+                    <SparkleIcon   size={18} className='text-olive' />
 
-            <button 
-                className='flex bg-primary lg:bg-white  h-8 w-10 lg:h-auto lg:w-auto  items-center justify-center rounded-r'
-                onClick={()=>{handleSearch()}}
+                </button>
+
+                <input
+                    className=' w-full text-sm  h-8  outline-none pl-10 font-Poppins' 
+                    type='text' 
+                    placeholder={placeholder}
+                    value={input}
+                    onChange={(e)=>setInput(e.target.value)}
+                    onKeyDown={(e) => {
+                        if(e.key === 'Enter'){
+                            handleSearch();
+                        }
+                    }}
+                />
+            </div>
+
+            <button
+            className="bg-active h-[42px] w-[42px] rounded-md flex items-center justify-center"
+            onClick={()=>{handleSearch()}}
             >
-                <MagnifyingGlassIcon   size={24} className='cursor-pointer text-white lg:text-[#2A4D4E]  lg:bg-white' />
-            </button>        
+                <MagnifyingGlassIcon  size={26} weight="bold" className="text-white"/>
+            </button>
+
         </div>
     )
 
