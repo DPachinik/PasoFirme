@@ -41,18 +41,20 @@ export async function deleteImage({image, uid}:{image:ImageProps, uid:string} ):
 //función para cargar un producto en la Base de Datos Firestore
 export async function upLoadProduct(data:FormData, shoesListImage:ListImageProps[], uid:string):Promise<void>{
     await   addDoc(collection(db, 'shoes'),{
-            modelo:data.modelo.trim().toUpperCase(),
-            keywords:data.modelo.trim().split(/\s+/),
+            modelo:data.modelo.trim(),
+            keywords:data.modelo.trim().toLocaleUpperCase().split(/\s+/),
+            talles:data.talles,
             calceMin:data.calceMin,
             calceMax:data.calceMax,
             precio:data.precio,
             estado:data.estado,
-            color:data.color,
+            colores:data.colores,
             descripcion:data.descripcion,
-            descripcionCorta:data.descripcionCorta,
             created: new Date(),
             uid:uid,
             imagenes:shoesListImage,
             categoria:data.categoria,
+            popular:data.popular,
+            marcas:data.marcas,
         })
 }
