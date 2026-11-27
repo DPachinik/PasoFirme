@@ -4,8 +4,9 @@ import { useContext, useState } from "react";
 import { CartContext } from "../../../features/cart/CartContext";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { CaretLeftIcon, ShoppingCartSimpleIcon } from "@phosphor-icons/react";
+import { CaretLeftIcon } from "@phosphor-icons/react";
 import { ProductsContext } from "../../../features/products/context/ProductsContext";
+import { LiaCartArrowDownSolid } from "react-icons/lia";
 
   interface ObjectProps{
         product:Product;
@@ -50,14 +51,20 @@ import { ProductsContext } from "../../../features/products/context/ProductsCont
   }
 
   return (
-      <div className="w-full  flex flex-col   rounded-lg px-4 ">
-        <h1 className=" text-2xl text-primary text-nowrap font-bebas font-bold">
+      <div className="w-full  flex flex-col   rounded-lg px-3.5 font-Montserrat ">
+        <h1 className=" text-2xl  text-nowrap text-title ">
           {product.modelo}
         </h1>
 
+        <div className="w-full flex flex-col mt-4">
+          <p className="text-base md:text-sm text-gray-700  ">
+            {product.descripcion}
+          </p>
+        </div>
 
-        <div className="flex pb-4 border-b border-[#082F36]/50">
-          <p className="text-secondary-rel text-2xl font-bebas font-bold">
+        <div className="flex pb-4 mt-8 justify-between items-baseline ">
+          <h1 className="text-lg text-title  ">Precio</h1>
+          <p className="text-basic text-xl font-semibold text-title font-Poppins ">
             {product?.precio.toLocaleString("es-PY", {
               style: "currency",
               currency: "PYG",
@@ -65,37 +72,18 @@ import { ProductsContext } from "../../../features/products/context/ProductsCont
           </p>
         </div>
 
-        <div className="w-full flex flex-col mt-4 font-bebas ">
-          <span className=" text-primary text-xl">Descripción</span>
-          <p className="text-base md:text-sm text-gray-600">
-            {product.descripcion}
-          </p>
-        </div>
 
-        <div className="flex flex-col gap-1 mt-4">
-          <span className="font-bebas text-primary text-xl">Color</span>
-          {
-            product.colores.map((color,i)=>(
-          <span
-            key={i}
-            className="h-4 w-12 rounded  "
-            style={{ backgroundColor: color }}
-          ></span>
-            ))
-          }
-
-        </div>
 
         <div className="flex flex-col  mt-4">
           <div className="flex flex-col gap-1">
-            <span className="font-bebas text-xl text-primary">Talla</span>
-            <div className="grid grid-cols-6 gap-2">
+            <span className="text-lg text-title mb-2">Talla</span>
+            <div className="flex gap-2">
               {tamaños.map((size) => (
                 <button
                   key={size}
-                  className=" px-3 py-1 rounded bg-white border border-[#2A4D4E] text-[#2A4D4E] cursor-pointer hover:bg-[#082F36] hover:text-white transition-all"
+                  className=" px-4 py-2 rounded-md bg-defuse text-gray  cursor-pointer   transition-all"
                   onClick={() => setSelectedSize(size)}
-                  style={selectedSize === size? { backgroundColor: "#2A4D4E", color: "white" }: {}
+                  style={selectedSize === size? { backgroundColor: "#95982E", color: "white" }: {}
                   }
                 >
                   {size}
@@ -105,41 +93,44 @@ import { ProductsContext } from "../../../features/products/context/ProductsCont
           </div>
         </div>
 
-        <div className="w-full flex flex-col md:flex-row   items-center justify-center gap-4 mt-8  md:max-w-[90%]  my-4">
-          
-          <div className="w-full bg-[#C00000] rounded">
-            <button
-              onClick={() => product && handleAddItemCart(product)}
-              className="bg-[#E86343]/70  text-white text- text-nowrap py-2   w-full font-bebas flex flex-1 items-center justify-center gap-4  cursor-pointer rounded "
-            >
-              <ShoppingCartSimpleIcon size={24} />
-              Agregar al carrito 
-            </button>
+         
 
-          </div>
+        <div className="w-full flex  items-center justify-center gap-4 mt-8  md:max-w-[90%]  my-4">
 
-          <div  className="w-full flex">
-
+          <div  className="flex">
             {isFiltered && (
               <button 
               onClick={() => {
                 navigate(-1)
               }}
-              className=' w-full py-2 text-base text-primary font-bebas  cursor-pointer flex items-center justify-center gap-2 border rounded px-2 bg-[#ffff] hover:bg-[#082F36] hover:text-white transition all duration-200'
+              className=' py-2 text-base text-primary font-bebas  cursor-pointer flex items-center justify-center  rounded px-2 bg-[#ffff] hover:bg-[#082F36] hover:text-white transition all duration-200'
               >
                 <CaretLeftIcon size={24} />
-                Volver atrás
+
               </button>
             )}
             {!isFiltered && ( 
-              <Link to={`/${path}#productos`} className=' w-full py-2 text-base text-primary font-bebas  cursor-pointer flex items-center justify-center gap-2 border rounded px-2 bg-[#ffff] hover:bg-[#082F36] hover:text-white transition all duration-200' >
-                <CaretLeftIcon size={24} />
-                Volver al catálogo
+              <Link to={`/${path}#productos`} className=' py-3 px-3 text-base text-primary font-bebas  cursor-pointer flex items-center justify-center gap-2 shadow shadow-gray-300 rounded-md bg-white transition all duration-200' >
+                <CaretLeftIcon size={24} weight="bold"  className="text-gray"/>
+
               </Link>
             )
 
             }
           </div>
+
+          <div className="w-full ">
+            <button
+              onClick={() => product && handleAddItemCart(product)}
+              className="bg-active text-white text- text-nowrap py-2   w-full font-bebas flex flex-1 items-center justify-center gap-4  cursor-pointer rounded-md "
+            >
+              <LiaCartArrowDownSolid size={36} strokeWidth={0} />
+              Agregar  
+            </button>
+
+          </div>
+
+
         </div>
       </div>
   );
