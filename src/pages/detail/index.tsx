@@ -50,9 +50,9 @@ export function Detail(){
         <div className='w-full'>
             <div className='flex flex-col w-full  max-w-7xl  mx-auto '>
                 <section  className=" flex items-center justify-center  ">
-                    <div className='flex flex-col md:flex-row justify-between w-full  gap-8  mt-12  rounded-lg ' >
+                    <div className='flex flex-col md:flex-row justify-between w-full  gap-8    rounded-lg ' >
                         
-                        <section className=' w-full flex-1 px-4 '>
+                        <section className=' w-full flex-1  '>
                             <div className="grid grid-cols-3 gap-4">
                             <ImageContainer product={product} />
                             </div>
@@ -66,8 +66,7 @@ export function Detail(){
                 
 
                 {SimilarShoes && (
-                    <section className='mt-10 px-4'>
-                        <h2 className='text-2xl font-bebas text-primary mb-6'>Productos Relacionados</h2>
+                    <section className=' px-3.5'>
                         <SimilarShoes modelo={product.modelo} />
                     </section>                    
                 )}
