@@ -13,13 +13,13 @@ export function MobileNavbar({
   loadingAdmin: boolean;
 }) {
   return (
-    <nav className="w-full flex bg-fondo justify-between  items-center">
+    <nav className="w-full flex bg-fondo justify-around mx-auto  items-center pt-2 ">
       <NavLink
         to="/"
         end
         className={({ isActive }) =>
-          `flex items-center px-4 rounded-xl gap-2 hover:cursor-pointer h-12 ${
-            isActive ? "bg-active text-white" : "bg-fondo text-gray"
+          `flex items-center  rounded-xl  hover:cursor-pointer h-12 ${
+            isActive ? "bg-active text-white px-2" : "bg-fondo text-gray"
           }`
         }
       >
@@ -33,8 +33,8 @@ export function MobileNavbar({
       <NavLink
         to="/favoritos"
         className={({ isActive }) =>
-          `flex items-center px-2 rounded-xl gap-2 hover:cursor-pointer h-12 ${
-            isActive ? "bg-active text-white" : "bg-fondo text-gray"
+          `flex items-center  rounded-xl  hover:cursor-pointer h-12 ${
+            isActive ? "bg-active text-white px-2" : "bg-fondo text-gray"
           }`
         }
       >
@@ -48,7 +48,7 @@ export function MobileNavbar({
       <NavLink
         to="/cart"
         className={({ isActive }) =>
-          `flex items-center px-4 py-2 rounded-xl gap-2 hover:cursor-pointer ${
+          `flex items-center  py-2 rounded-xl  hover:cursor-pointer ${
             isActive ? "bg-active text-white" : "bg-fondo text-gray"
           }`
         }
@@ -66,14 +66,14 @@ export function MobileNavbar({
       <NavLink
         to="/login"
         className={({ isActive }) =>
-          `flex items-center px-4 py-2 rounded-xl gap-2 hover:cursor-pointer ${
+          `flex items-center  py-2 rounded-xl  hover:cursor-pointer ${
             isActive ? "bg-active text-white" : "bg-fondo text-gray"
           }`
         }
       >
         <div className="flex items-center justify-center transition-all">
           {!loadingAdmin && !signed && (
-            <div className="flex gap-4 items-center">
+            <div className="flex  items-center">
               <div className="flex items-baseline justify-center">
                 <UserIcon
                   size={30}
@@ -84,7 +84,7 @@ export function MobileNavbar({
           )}
 
           {!loadingAdmin && signed && (
-            <strong className="text-white text-sm">Admin</strong>
+            <strong className="text-white bg-active px-2 py-1 rounded-md font-semibold text-lg">Admin</strong>
           )}
         </div>
       </NavLink>
