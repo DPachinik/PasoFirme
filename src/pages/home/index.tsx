@@ -90,7 +90,7 @@ export function Home(){
     },[ route, busqueda, cached])
 
     return(
-        <div className=' w-full max-w-[480px] px-3.5 pt-4  h-100dvh  '>
+        <div className=' w-full max-w-[480px] h-100dvh  '>
             <Header />
             <Hero/>
 
@@ -107,8 +107,8 @@ export function Home(){
             </div> */}
 
 
-            <div className='pl-2 sm:pl-8 text-basic flex gap-2 font-Poppins items-center'>
-                <CaretRightIcon size={16} />
+            <div className='pl-2 sm:pl-8 text-title flex gap-2 font-Poppins items-center'>
+                <CaretRightIcon size={16} className='text-title' />
                 {path}
             </div>
 
